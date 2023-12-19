@@ -1,0 +1,63 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  padding: 0px;
+  margin: 0px;
+}
+
+:root {
+  --app-xs-mr: 0.25rem;
+  --app-sm-mr: 0.5rem;
+  --app-md-mr: 1rem;
+  --app-lg-mr: 1.5rem;
+  --app-xl-mr: 2rem;
+
+  --app-xs-fs: 0.75rem;
+  --app-sm-fs: 1rem;
+  --app-md-fs: 1.25rem;
+  --app-lg-fs: 1.5rem;
+  --app-xl-fs: 2rem;
+
+  --app-light-fw: 300;
+  --app-normal-fw: 400;
+  --app-medium-fw: 500;
+  --app-bold-fw: 700;
+
+  --app-dark-color: rgb(5, 48, 65);
+  --app-light-color: rgb(16, 15, 15);
+  --app-white-color: rgb(232, 225, 225);
+
+  --app-default-color: var(--app-dark-color);
+  --app-active-color: #7a1b1b;
+
+  --app-subZero-zi: -2;
+  --app-default-zi: 0;
+  --app-max-zi: 5;
+}
+
+label {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  padding: 0 var(--app-xs-mr);
+  /* margin: 0 auto; */
+}
+
+input,
+button {
+  outline: none;
+  font-family: inherit;
+  font-size: inherit;
+  background-color: rgb(106, 110, 110);
+  border: none;
+  border-radius: var(--app-xs-mr);
+  padding: var(--app-xs-mr);
+  width: 65%;
+  margin: var(--app-sm-mr) 0;
+  color: inherit;
+  font-family: "Roboto Condensed", sans-serif;
+  cursor: pointer;
+}
