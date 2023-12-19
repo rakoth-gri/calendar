@@ -1,38 +1,82 @@
 import { createDataList, monthFormat } from "./services.js";
 
 const names = ["year", "month"];
-const classes = ["calendar__field_cell", "calendar__panel_btn"]
+const classes = ["calendar__field_cell", "calendar__panel_btn"];
 
 export default class Calendar {
-  constructor(
-    { calendar, year, month, monthName, field, store, weekday },
-    options
-  ) {
+  constructor({ calendar,store, weekday, inputList}, options) {
     // DOM_ELEMENTS
     this.$calendar = calendar;
-    this.$monthName = monthName;
-    this.$year = year;
-    this.$month = month;
+    this.$monthName = null;
+    this.$year = null;
+    this.$month = null;
+    this.$calendarField = null;
     this.$cells = null;
     // CONTROLLER
     this.store = store;
     // METHODS
-    this.init(year, month, this.$monthName, field, weekday);
+    this.init(weekday, inputList);
   }
 
   // TEMP BUILDER (порядок имеет значение) ---
-  init(year, month, monthName, field, weekday) {
-    this.renderGrid(field, 35, weekday);
+  init(weekday, inputList) {
+    // 1
+    this.renderMarkUp(inputList);
+    // 2
+    this.renderGrid(this.$calendarField, 35, weekday);
+    // 3
     this.renderMonthDates(
       createDataList(this.store.datesInMonth(this.store.currDate)),
       this.$cells
     );
+    // 4
     this.addChangeListenerToCalendar();
+    // 5
     this.addClickListenerToCalendar();
-    this.store.showCurrDate(year, month, monthName, monthFormat);
+    // 6
+    this.store.showCurrDate(
+      this.$year,
+      this.$month,
+      this.$monthName,
+      monthFormat
+    );
   }
 
-  // отрисовываем сетку календаря единственный раз
+  // отрисовываем разметку календаря 1 раз
+  renderMarkUp(list) {
+    this.$calendar.innerHTML = `
+      ${list
+        .map(
+          ({ labelText, type, cls, min, max, step, name, autofocus, id }) => `
+        <label id="${id}">
+          ${labelText}
+          <input
+            type="${type}"
+            class="${cls}"
+            min="${min}"
+            max="${max}"
+            step="${step}"
+            name="${name}"
+            ${autofocus ? "autofocus" : ""}
+          />
+      </label>`
+        )
+        .join("")}
+      <div class="calendar__panel">
+        <button class="calendar__panel_btn"> сегодня </button>
+        <div class="calendar__panel_monthName"></div>
+      </div>      
+      <div class="calendar__field"></div>    
+    `;
+    this.$calendarField = this.$calendar.querySelector(".calendar__field");
+    this.$monthName = this.$calendar.querySelector(
+      ".calendar__panel_monthName"
+    );
+    this.$year = this.$calendar.querySelector(".calendar__year");
+    this.$month = this.$calendar.querySelector(".calendar__month");
+  }
+
+  // отрисовываем сетку календаря 1 раз
   renderGrid(container, maxCellNumber, weekday) {
     // формируем массив с данными и заполняем шаблон
     const HTML = createDataList(maxCellNumber)
@@ -42,7 +86,6 @@ export default class Calendar {
     const HEADINGS = weekday
       .map((day) => `<div class="calendar__field_header">${day}</div>`)
       .join("");
-
     container.insertAdjacentHTML("beforeend", HEADINGS + HTML);
     this.$cells = document.querySelectorAll(".calendar__field_cell");
   }
@@ -61,14 +104,13 @@ export default class Calendar {
   }
 
   // Секция Обработчиков событий ------
-
   // 1---
   calendarChangeHandler = (e) => {
     if (!names.includes(e.target.name)) return;
 
     const { name, value } = e.target;
 
-    if(name === names[1]) this.$monthName.textContent = monthFormat(+value);
+    if (name === names[1]) this.$monthName.textContent = monthFormat(+value);
 
     this.store.setCurrDate(name, +value);
 
@@ -83,21 +125,30 @@ export default class Calendar {
   }
 
   // 2---
-  calendarClickHandler = ({target: {dataset:{id}, className}}) => {
+  calendarClickHandler = ({
+    target: {
+      dataset: { id },
+      className,
+    },
+  }) => {
     if (!classes.includes(className)) return;
 
-    if(id) {
+    if (id) {
       this.store.currDate.date = +id;
-    }
-    else {
+    } else {
       Object.assign(this.store.currDate, {
         year: new Date().getFullYear(),
         month: new Date().getMonth(),
-        date: new Date().getDate()
-      })
-      this.store.showCurrDate(this.$year, this.$month, this.$monthName, monthFormat);  
-    }    
-    
+        date: new Date().getDate(),
+      });
+      this.store.showCurrDate(
+        this.$year,
+        this.$month,
+        this.$monthName,
+        monthFormat
+      );
+    }
+
     this.renderMonthDates(
       createDataList(this.store.datesInMonth(this.store.currDate)),
       this.$cells
@@ -108,7 +159,20 @@ export default class Calendar {
     this.$calendar.addEventListener("click", this.calendarClickHandler);
   }
 
+  // API -----
+
+  // изменение видимости
   toggleHidden() {
-    this.$calendar.classList.toggle("hidden")
+    this.$calendar.classList.toggle("hidden");
+  }
+
+  // Логирование для визуальных тестов ---
+  logCurrDate() {
+    console.log(this.store.currDate)
+  }
+
+  getCurrDate() {
+    const {year, month, date} = this.store.currDate
+    return `${year} ${month} ${date}` 
   }
 }

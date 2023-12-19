@@ -18,14 +18,6 @@ export class Store {
   }
 
   // val: number
-  static setCurrDate = (key, val) => Store.currDate[key] = val    
-  
-  // Логирование для визуальных тестов ---
-  static logCurrDate() {console.log(Store.currDate)}  
-  
-  static getCurrDate() {
-    const {year, month, date} = Store.currDate
-    return `${year} ${month} ${date}` 
-  }
+  static setCurrDate = (key, val) => Store.currDate[key] = val 
 }
 

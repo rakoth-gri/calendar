@@ -1,8 +1,4 @@
-const CALENDAR = document.querySelector(".calendar"),
-  YEAR = CALENDAR.querySelector(".calendar__year"),
-  MONTH = CALENDAR.querySelector(".calendar__month"),
-  MONTH_NAME = CALENDAR.querySelector(".calendar__panel_monthName"),
-  FIELD = CALENDAR.querySelector(".calendar__field");
+const CALENDAR = document.querySelector(".calendar");
 
 const MONTH_MAP = [
   "январь",
@@ -21,4 +17,29 @@ const MONTH_MAP = [
 
 const WEEK_DAY = ["Пн", "Вт", "Cр", "Чт", "Пт", "Cб", "Вс"]
 
-export { CALENDAR, YEAR, MONTH, MONTH_NAME, MONTH_MAP, FIELD, WEEK_DAY};
+const INPUT_LIST = [
+  {
+    id: "year",
+    labelText: "год:",
+    type: "number",
+    cls: "calendar__year",
+    min: "1900",
+    max: "2100",
+    step: "1",
+    name: "year",
+    autofocus: true
+  },
+  {
+    id: "month",
+    labelText: "месяц:",
+    type: "range",
+    cls: "calendar__month",
+    min: "0",
+    max: "11",
+    step: "1",
+    name: "month",
+    autofocus: false
+  }
+]
+
+export { CALENDAR, MONTH_MAP, WEEK_DAY, INPUT_LIST};
