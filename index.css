@@ -34,12 +34,55 @@
   --app-subZero-zi: -2;
   --app-default-zi: 0;
   --app-max-zi: 5;
-  
 }
 
-/* body {
-  background-color: #403c3c;  
-} */
+@font-face {
+  font-family: "Roboto";
+  src: url("./fonts/Roboto-Light.ttf");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./fonts/Roboto-Medium.ttf");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Roboto";
+  src: url("./fonts/Roboto-Bold.ttf");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("./fonts/Montserrat-Light.ttf");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("./fonts/Montserrat-Medium.ttf");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Montserrat";
+  src: url("./fonts/Montserrat-Bold.ttf");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
 
 /* CALENDAR CONTAINER STYLES */
 
@@ -52,9 +95,9 @@
   flex-direction: column;
   align-items: start;
   font-size: var(--app-md-fs);
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: "Roboto", sans-serif;
   color: var(--app-default-color);
-  transition: 0.3s all linear
+  transition: 0.3s all linear;
 }
 
 .hidden {
@@ -72,7 +115,8 @@ label {
   /* margin: 0 auto; */
 }
 
-input, button {
+input,
+button {
   outline: none;
   font-family: inherit;
   font-size: inherit;
@@ -83,7 +127,7 @@ input, button {
   width: 65%;
   margin: var(--app-sm-mr) 0;
   color: inherit;
-  font-family: "Roboto Condensed", sans-serif;
+  font-family: "Roboto", sans-serif;
   cursor: pointer;
 }
 
@@ -95,7 +139,7 @@ input, button {
 }
 
 .calendar__panel_btn {
-  background-color: var(--app-active-color);  
+  background-color: var(--app-active-color);
 }
 
 .calendar__panel_monthName {
@@ -131,15 +175,18 @@ input, button {
   height: 30px;
   cursor: pointer;
   overflow: hidden;
-  transition: 0.09s all linear
+  transition: 0.09s all linear;
 }
 
-.calendar__monthName, label {
+.calendar__monthName,
+label {
   font-family: "Montserrat";
   font-weight: var(--app-medium-fw);
-} 
+}
 
-.calendar__field_cell:hover, .calendar__field_header:hover, .calendar__panel_btn:hover {
+.calendar__field_cell:hover,
+.calendar__field_header:hover,
+.calendar__panel_btn:hover {
   color: var(--app-white-color);
   transform: scale(1.03);
 }
@@ -151,15 +198,14 @@ input, button {
 
 .calendar__field_header {
   font-weight: var(--app-bold-fw);
-  color: var(--app-light-color);  
+  color: var(--app-light-color);
 }
-
 
 /* MEDIA QUERRIES ---- */
 
 @media screen and (max-width: 1399.98px) {
   .calendar {
-    width: 23%;    
+    width: 23%;
   }
 }
 
@@ -173,10 +219,11 @@ input, button {
 @media screen and (max-width: 991.98px) {
   .calendar {
     width: 27%;
-    padding: var(--app-sm-mr)    
+    padding: var(--app-sm-mr);
   }
 
-  .calendar__field_cell, .calendar__field_header {
+  .calendar__field_cell,
+  .calendar__field_header {
     height: 27px;
   }
 }
@@ -184,14 +231,15 @@ input, button {
 @media screen and (max-width: 767.98px) {
   .calendar {
     width: 33%;
-    font-size: 15px; 
+    font-size: 15px;
   }
 
   .calendar__field {
     margin: var(--app-sm-mr) 0;
   }
 
-  .calendar__field_cell, .calendar__field_header {
+  .calendar__field_cell,
+  .calendar__field_header {
     height: 25px;
   }
 }
@@ -200,11 +248,11 @@ input, button {
   .calendar {
     width: 40%;
     font-size: 12.5px;
-    padding: var(--app-xs-mr)    
+    padding: var(--app-xs-mr);
   }
 
- 
-  .calendar__field_cell, .calendar__field_header {
+  .calendar__field_cell,
+  .calendar__field_header {
     height: 22px;
   }
 }
