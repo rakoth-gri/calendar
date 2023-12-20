@@ -19,6 +19,7 @@
 
     &_btn {
       background-color: var(--app-active-color);
+      font-family: 'Montserrat', serif;
       &:hover {
         color: var(--app-white-color);
         transform: scale(1.03);
@@ -28,7 +29,7 @@
     &_monthName {
       font-weight: var(--app-bold-fw);
       color: var(--app-active-color);
-      /* display: inline-block; */
+      font-family: 'Montserrat', serif;
       width: 100%;
       text-align: right;
       padding: var(--app-xs-mr);

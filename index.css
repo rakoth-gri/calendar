@@ -140,16 +140,17 @@ button {
 
 .calendar__panel_btn {
   background-color: var(--app-active-color);
+  font-family: 'Montserrat', serif;
 }
 
 .calendar__panel_monthName {
   font-weight: var(--app-bold-fw);
-  color: var(--app-active-color);
-  /* display: inline-block; */
+  color: var(--app-active-color);  
   width: 100%;
   text-align: right;
   padding: var(--app-xs-mr);
   display: inline-block;
+  font-family: 'Montserrat', serif;
 }
 
 .calendar__field {
