@@ -17,7 +17,7 @@ const calendar = new Calendar(
       color: "orangered",
       transform: "rotateZ(5deg)",
     },
-    $year: NaN,
+    $year: { backgroundColor: "whitesmoke" },
     $month: null,
     $calendar: { backgroundColor: "green" },
   }
