@@ -1,4 +1,4 @@
-import { createDataList, monthFormat } from "./services.js";
+import { getIntList, monthFormat, getHTML } from "./services.js";
 import {names, classes} from "../constants/index.js"
 
 export default class Calendar {
@@ -22,10 +22,10 @@ export default class Calendar {
     this.renderMarkUp(inputList);
     // 2
     this.renderGrid(this.$calendarField, 35, weekday);
-    // 4 (Подписываемся на изменение this.store.currDate)
+    // 3 (Подписываемся на изменение this.store.currDate)
     this.store.observe(() => {
       this.renderMonthDates(
-        createDataList(this.store.datesInMonth(this.store.currDate)),
+        getIntList(this.store.datesInMonth(this.store.currDate)),
         this.$cells
       );
       this.store.showCurrDate(
@@ -35,31 +35,28 @@ export default class Calendar {
         monthFormat
       );
     });
-    this.addChangeListenerToCalendar();
     // 4
+    this.addChangeListenerToCalendar();    
     this.addClickListenerToCalendar();
   }
 
   // отрисовываем разметку календаря 1 раз
   renderMarkUp(list) {
     this.$calendar.innerHTML = `
-      ${list
-        .map(
-          ({ labelText, type, cls, min, max, step, name, autofocus, id }) => `
-        <label id="${id}">
-          ${labelText}
-          <input
-            type="${type}"
-            class="${cls}"
-            min="${min}"
-            max="${max}"
-            step="${step}"
-            name="${name}"
-            ${autofocus ? "autofocus" : ""}
-          />
-      </label>`
-        )
-        .join("")}
+      ${getHTML(list, ({ labelText, type, cls, min, max, step, name, autofocus, id }) => `
+          <label id="${id}">
+            ${labelText}
+            <input
+              type="${type}"
+              class="${cls}"
+              min="${min}"
+              max="${max}"
+              step="${step}"
+              name="${name}"
+              ${autofocus ? "autofocus" : ""}
+            />
+          </label>`)
+      }
       <div class="calendar__panel">
         <button class="calendar__panel_btn"> сегодня </button>
         <div class="calendar__panel_monthName"></div>
@@ -67,9 +64,7 @@ export default class Calendar {
       <div class="calendar__field"></div>    
     `;
     this.$calendarField = this.$calendar.querySelector(".calendar__field");
-    this.$monthName = this.$calendar.querySelector(
-      ".calendar__panel_monthName"
-    );
+    this.$monthName = this.$calendar.querySelector(".calendar__panel_monthName");
     this.$year = this.$calendar.querySelector(".calendar__year");
     this.$month = this.$calendar.querySelector(".calendar__month");
   }
@@ -77,14 +72,10 @@ export default class Calendar {
   // отрисовываем сетку календаря 1 раз
   renderGrid(container, maxCellNumber, weekday) {
     // формируем массив с данными и заполняем шаблон
-    const HTML = createDataList(maxCellNumber)
-      .map((i) => `<div data-id="${i + 1}" class="calendar__field_cell"></div>`)
-      .join("");
-
-    const HEADINGS = weekday
-      .map((day) => `<div class="calendar__field_header">${day}</div>`)
-      .join("");
-    container.insertAdjacentHTML("beforeend", HEADINGS + HTML);
+    const HTML = getHTML(getIntList(maxCellNumber), (i) => `<div data-id="${i + 1}" class="calendar__field_cell"></div>`)
+    const HEADINGS = getHTML(weekday, (day) => `<div class="calendar__field_header">${day}</div>`)
+      
+    container.insertAdjacentHTML("beforeend", HEADINGS+HTML);
     this.$cells = document.querySelectorAll(".calendar__field_cell");
   }
 
@@ -102,12 +93,9 @@ export default class Calendar {
   }
 
   // Секция Обработчиков событий ------
-  // 1---
-  calendarChangeHandler = (e) => {
-    if (!names.includes(e.target.name)) return;
-
-    const { name, value } = e.target;
-
+  // 1--
+  calendarChangeHandler = ({target: {name, value}}) => {
+    if (!names.includes(name)) return;    
     this.store.setCurrDate(name, +value);
   };
 
@@ -115,7 +103,7 @@ export default class Calendar {
     this.$calendar.addEventListener("change", this.calendarChangeHandler);
   }
 
-  // 2---
+  // 2--
   calendarClickHandler = ({
     target: {
       dataset: { id },

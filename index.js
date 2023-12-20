@@ -10,8 +10,7 @@ import Calendar from "./services/Calendar.js"
 
 const calendar = new Calendar({calendar: CALENDAR, store: Store, weekday: WEEK_DAY, inputList: INPUT_LIST}, {})
 
-// calendar.logCurrDate()
-// console.log(calendar.getCurrDate());
+
  
  
 
