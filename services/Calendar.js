@@ -16,14 +16,14 @@ export default class Calendar {
     this.init(weekday, inputList, options);
   }
 
-  // TEMP BUILDER (порядок имеет значение) ---
+  // BUILDER SCHEME ---
   init(weekday, inputList, options) {
     // 1 --
     this.renderMarkUp(inputList);
     // 2 --
     this.renderGrid(this.$calendarField, 35, weekday);
     // 3 --
-    this.customStyles(options);
+    this.setInlineStyles(options);
     // 4 -- (Подписываемся на изменение this.store.currDate)
     this.store.observe(() => {
       this.renderMonthDates(
@@ -40,27 +40,6 @@ export default class Calendar {
     // 5 --
     this.addChangeListenerToCalendar();
     this.addClickListenerToCalendar();
-  }
-
-  customStyles(styled) {
-    if (!Object.values(styled).some((val) => val)) {
-      console.error("Значения полей объекта 'styled' не заданы...");
-      return;
-    }
-
-    Object.keys(styled).forEach((selector) => {
-
-      // Обработка ошибок 
-      const nested = styled[selector] ?? {}      
-      
-      if (Object.keys(nested).length && Object.values(nested).some((val) => val)) {
-        Object.keys(nested).forEach((key) => this[selector].style[key] = nested[key]);
-      } else return;
-    });
-  }
-
-  removeCustomStyles() {
-    [this.$calendar, this.$year, this.$month, this.$calendarField].forEach(el => el.removeAttribute("style"))
   }
 
   // отрисовываем разметку календаря 1 раз
@@ -112,7 +91,24 @@ export default class Calendar {
     this.$cells = document.querySelectorAll(".calendar__field_cell");
   }
 
-  // Вызываем при каждои изменении состояния объекта this.store.currData
+  // рендерим кастомные inline-стили только 1 раз
+  setInlineStyles(styled) {
+    if (!Object.values(styled).some((val) => val)) {
+      console.error("Значения полей объекта 'styled' не заданы...");
+      return;
+    }
+
+    Object.keys(styled).forEach((selector) => {
+      // Обработка ошибок 
+      const inline = styled[selector] ?? {};      
+      
+      if (Object.keys(inline).length && Object.values(inline).some((val) => val)) {
+        Object.keys(inline).forEach((key) => this[selector].style[key] = inline[key]);
+      } else return;
+    });
+  }
+
+  // Вызываем при каждом изменении this.store.currData
   renderMonthDates(datesList, cells) {
     // очищаем поля календаря и активные классы перед отрисовкой:
     cells.forEach((cell) => {
@@ -125,7 +121,7 @@ export default class Calendar {
     });
   }
 
-  // Секция Обработчиков событий ------
+  // События ------
   // 1--
   calendarChangeHandler = ({ target: { name, value } }) => {
     if (!names.includes(name)) return;
@@ -144,7 +140,6 @@ export default class Calendar {
     },
   }) => {
     if (!classes.some((cls) => className.includes(cls))) return;
-
     id
       ? this.store.setCurrDate("date", +id)
       : this.store.setCurrDate(null, {
@@ -158,20 +153,30 @@ export default class Calendar {
     this.$calendar.addEventListener("click", this.calendarClickHandler);
   }
 
-  // CUSTOMIZE WITH API -----
+  // API --
 
-  // изменение видимости
+  // изменение видимости календаря
   toggleHidden() {
     this.$calendar.classList.toggle("hidden");
   }
 
-  // Логирование для визуальных тестов ---
+  // Логирование для тестов ---
   logCurrDate() {
     console.log(this.store.currDate);
   }
 
+  // получение строки с текущей датой
   getCurrDate() {
     const { year, month, date } = this.store.currDate;
     return `${year} ${month} ${date}`;
+  }
+
+  // удаление всех кастомных inline-стилей 
+  removeInlineStyles() {
+    [this.$calendar, this.$year, this.$month, this.$calendarField].forEach(el => el.removeAttribute("style"))
+  }
+
+  removeSelectorStyles(selector) {
+    this[selector].removeAttribute("style")
   }
 }

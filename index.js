@@ -11,12 +11,18 @@ const calendar = new Calendar(
     weekday: WEEK_DAY,
     inputList: INPUT_LIST,
   },
-  {    
-    $calendarField: {textDecoration: "line-through", color: "orangered", transform: "rotateZ(5deg)"},
+  {
+    $calendarField: {
+      textDecoration: "line-through",
+      color: "orangered",
+      transform: "rotateZ(5deg)",
+    },
     $year: NaN,
-    $month: NaN,
-    $calendar: {backgroundColor: "green"},
+    $month: null,
+    $calendar: { backgroundColor: "green" },
   }
 );
 
-calendar.removeCustomStyles()
+// calendar.removeInlineStyles()
+
+// calendar.removeSelectorStyles("$calendar")
