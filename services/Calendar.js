@@ -1,5 +1,5 @@
 import { getIntList, monthFormat, getHTML } from "./services.js";
-import {names, classes} from "../constants/index.js"
+import { names, classes } from "../constants/index.js";
 
 export default class Calendar {
   constructor({ calendar, store, weekday, inputList }, options) {
@@ -13,16 +13,18 @@ export default class Calendar {
     // CONTROLLER
     this.store = store;
     // METHODS
-    this.init(weekday, inputList);
+    this.init(weekday, inputList, options);
   }
 
   // TEMP BUILDER (порядок имеет значение) ---
-  init(weekday, inputList) {
-    // 1
+  init(weekday, inputList, options) {
+    // 1 --
     this.renderMarkUp(inputList);
-    // 2
+    // 2 --
     this.renderGrid(this.$calendarField, 35, weekday);
-    // 3 (Подписываемся на изменение this.store.currDate)
+    // 3 --
+    this.customStyles(options);
+    // 4 -- (Подписываемся на изменение this.store.currDate)
     this.store.observe(() => {
       this.renderMonthDates(
         getIntList(this.store.datesInMonth(this.store.currDate)),
@@ -35,15 +37,38 @@ export default class Calendar {
         monthFormat
       );
     });
-    // 4
-    this.addChangeListenerToCalendar();    
+    // 5 --
+    this.addChangeListenerToCalendar();
     this.addClickListenerToCalendar();
+  }
+
+  customStyles(styled) {
+    if (!Object.values(styled).some((val) => val)) {
+      console.error("Значения полей объекта 'styled' не заданы...");
+      return;
+    }
+
+    Object.keys(styled).forEach((selector) => {
+
+      // Обработка ошибок 
+      const nested = styled[selector] ?? {}      
+      
+      if (Object.keys(nested).length && Object.values(nested).some((val) => val)) {
+        Object.keys(nested).forEach((key) => this[selector].style[key] = nested[key]);
+      } else return;
+    });
+  }
+
+  removeCustomStyles() {
+    [this.$calendar, this.$year, this.$month, this.$calendarField].forEach(el => el.removeAttribute("style"))
   }
 
   // отрисовываем разметку календаря 1 раз
   renderMarkUp(list) {
     this.$calendar.innerHTML = `
-      ${getHTML(list, ({ labelText, type, cls, min, max, step, name, autofocus, id }) => `
+      ${getHTML(
+        list,
+        ({ labelText, type, cls, min, max, step, name, autofocus, id }) => `
           <label id="${id}">
             ${labelText}
             <input
@@ -55,8 +80,8 @@ export default class Calendar {
               name="${name}"
               ${autofocus ? "autofocus" : ""}
             />
-          </label>`)
-      }
+          </label>`
+      )}
       <div class="calendar__panel">
         <button class="calendar__panel_btn"> сегодня </button>
         <div class="calendar__panel_monthName"></div>
@@ -64,7 +89,9 @@ export default class Calendar {
       <div class="calendar__field"></div>    
     `;
     this.$calendarField = this.$calendar.querySelector(".calendar__field");
-    this.$monthName = this.$calendar.querySelector(".calendar__panel_monthName");
+    this.$monthName = this.$calendar.querySelector(
+      ".calendar__panel_monthName"
+    );
     this.$year = this.$calendar.querySelector(".calendar__year");
     this.$month = this.$calendar.querySelector(".calendar__month");
   }
@@ -72,10 +99,16 @@ export default class Calendar {
   // отрисовываем сетку календаря 1 раз
   renderGrid(container, maxCellNumber, weekday) {
     // формируем массив с данными и заполняем шаблон
-    const HTML = getHTML(getIntList(maxCellNumber), (i) => `<div data-id="${i + 1}" class="calendar__field_cell"></div>`)
-    const HEADINGS = getHTML(weekday, (day) => `<div class="calendar__field_header">${day}</div>`)
-      
-    container.insertAdjacentHTML("beforeend", HEADINGS+HTML);
+    const HTML = getHTML(
+      getIntList(maxCellNumber),
+      (i) => `<div data-id="${i + 1}" class="calendar__field_cell"></div>`
+    );
+    const HEADINGS = getHTML(
+      weekday,
+      (day) => `<div class="calendar__field_header">${day}</div>`
+    );
+
+    container.insertAdjacentHTML("beforeend", HEADINGS + HTML);
     this.$cells = document.querySelectorAll(".calendar__field_cell");
   }
 
@@ -94,8 +127,8 @@ export default class Calendar {
 
   // Секция Обработчиков событий ------
   // 1--
-  calendarChangeHandler = ({target: {name, value}}) => {
-    if (!names.includes(name)) return;    
+  calendarChangeHandler = ({ target: { name, value } }) => {
+    if (!names.includes(name)) return;
     this.store.setCurrDate(name, +value);
   };
 
@@ -112,11 +145,13 @@ export default class Calendar {
   }) => {
     if (!classes.some((cls) => className.includes(cls))) return;
 
-    id ? this.store.setCurrDate("date", +id) : this.store.setCurrDate(null, {
-      year: new Date().getFullYear(),
-      month: new Date().getMonth(),
-      date: new Date().getDate(),
-    })    
+    id
+      ? this.store.setCurrDate("date", +id)
+      : this.store.setCurrDate(null, {
+          year: new Date().getFullYear(),
+          month: new Date().getMonth(),
+          date: new Date().getDate(),
+        });
   };
 
   addClickListenerToCalendar() {
