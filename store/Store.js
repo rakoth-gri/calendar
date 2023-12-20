@@ -5,6 +5,8 @@ export class Store {
     date: new Date().getDate()
   };
 
+  static subs = []
+
   static showCurrDate(year, month, monthName, cb) {    
     year.value = Store.currDate.year;
     month.value = Store.currDate.month;
@@ -17,7 +19,17 @@ export class Store {
     return new Date(year, month + 1, 0).getDate();
   }
 
-  // val: number
-  static setCurrDate = (key, val) => Store.currDate[key] = val 
+  // (val: number) => void
+  static setCurrDate = (key, val) => {
+    key ? Store.currDate[key] = val : Object.assign(Store.currDate, val)
+    Store.subs.forEach(cb => cb())
+  }
+
+  static observe = (cb) => {
+    if(!Store.subs.length) {
+      Store.subs.push(cb)
+      Store.subs.forEach(cb => cb())
+    }    
+  }
 }
 

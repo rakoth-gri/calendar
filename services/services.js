@@ -1,4 +1,4 @@
-import { MONTH_MAP } from "../constants/constants.js"
+import { MONTH_MAP } from "../constants/index.js"
 
 // принимаем только числовые значения
 export const monthFormat = (num) => MONTH_MAP[num]
