@@ -12,14 +12,15 @@ const calendar = new Calendar(
     inputList: INPUT_LIST,
   },
   {
-    // $calendarField: {
-    //   textDecoration: "line-through",
-    //   color: "orangered",
-    //   transform: "rotateZ(5deg)",
-    // },
+    $calendarField: {
+      textDecoration: "",
+      color: "green",
+      transform: "",
+      fontFamily: "Bebas Neue",      
+    },
     // $year: { backgroundColor: "whitesmoke" },
-    // $month: null,
-    // $calendar: { backgroundColor: "green" },
+    $month: [],
+    $calendar: { fontFamily: "Montserrat", color: "red", background: [true, false] },
   }
 );
 

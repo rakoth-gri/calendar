@@ -6,10 +6,11 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  font-size: var(--app-md-fs);
-  font-family: "Roboto", sans-serif;
+  font-size: var(--app-md-fs);  
   color: var(--app-default-color);
   transition: 0.3s all linear;
+  font-weight: 400;
+  font-family: "Roboto";
 
   &__panel {
     width: 100%;
@@ -18,8 +19,7 @@
     justify-content: space-around;
 
     &_btn {
-      background-color: var(--app-active-color);
-      font-family: "Montserrat", serif;
+      background-color: var(--app-active-color);      
       &:hover {
         transform: scale(1.03);
       }
@@ -27,8 +27,7 @@
 
     &_monthName {
       font-weight: var(--app-bold-fw);
-      color: var(--app-active-color);
-      font-family: "Montserrat", serif;
+      color: var(--app-active-color);      
       width: 100%;
       text-align: right;
       padding: var(--app-xs-mr);
@@ -71,8 +70,7 @@
   }
 
   &__monthName,
-  label {
-    font-family: "Montserrat";
+  label {    
     font-weight: var(--app-medium-fw);
   }
 }

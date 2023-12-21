@@ -99,8 +99,8 @@ export default class Calendar {
     }
 
     Object.keys(styled).forEach((selector) => {
-      // Обработка ошибок 
-      const inline = styled[selector] ?? {};      
+      // Обработка ошибок
+      const inline = styled[selector] ?? {};
       
       if (Object.keys(inline).length && Object.values(inline).some((val) => val)) {
         Object.keys(inline).forEach((key) => this[selector].style[key] = inline[key]);

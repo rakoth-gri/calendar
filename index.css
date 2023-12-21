@@ -36,6 +36,8 @@
   --app-max-zi: 5;
 }
 
+/* CONNECTING LOCAL FONTS */
+
 @font-face {
   font-family: "Roboto";
   src: url("./fonts/Roboto-Light.ttf");
@@ -84,6 +86,30 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: "Bebas Neue";
+  src: url("../fonts/BebasNeue-Regular.ttf");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Nunito Sans";
+  src: url("../fonts/NunitoSans-Regular.ttf");
+  font-weight: 500;
+  font-display: swap;
+  font-style: normal;
+}
+
+@font-face {
+  font-family: "Ubuntu";
+  src: url("../fonts/Ubuntu-Regular.ttf");
+  font-weight: 700;
+  font-display: swap;
+  font-style: normal;
+}
+
 /* CALENDAR CONTAINER STYLES */
 
 .calendar {
@@ -126,8 +152,7 @@ button {
   padding: var(--app-xs-mr);
   width: 65%;
   margin: var(--app-sm-mr) 0;
-  color: inherit;
-  font-family: "Roboto", sans-serif;
+  color: inherit;  
   cursor: pointer;
 }
 
@@ -139,8 +164,7 @@ button {
 }
 
 .calendar__panel_btn {
-  background-color: var(--app-active-color);
-  font-family: 'Montserrat', serif;
+  background-color: var(--app-active-color);  
 }
 
 .calendar__panel_monthName {
@@ -149,8 +173,7 @@ button {
   width: 100%;
   text-align: right;
   padding: var(--app-xs-mr);
-  display: inline-block;
-  font-family: 'Montserrat', serif;
+  display: inline-block;  
 }
 
 .calendar__field {
@@ -180,8 +203,7 @@ button {
 }
 
 .calendar__monthName,
-label {
-  font-family: "Montserrat";
+label {  
   font-weight: var(--app-medium-fw);
 }
 
