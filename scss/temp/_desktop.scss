@@ -11,12 +11,30 @@
   transition: 0.25s all linear;
   font-weight: 400;
   font-family: "Roboto";
+  background-position: center center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  position: relative;
+  
+
+  &__overlay {
+    width: 100%;
+    display: block;
+    background: rgba(0,0,0, .28);
+    position: absolute;
+    top: 0;
+    left: 0;    
+    height: 100%;
+    border-radius: var(--app-sm-mr);
+    backdrop-filter: blur(1.7px);    
+  }
 
   &__panel {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-around;
+    z-index: var(--app-max-zi);
 
     &_btn {
       background-color: var(--app-active-color);
@@ -32,6 +50,21 @@
       text-align: right;
       padding: var(--app-xs-mr);
       display: inline-block;
+      
+    }
+  }
+
+  &__year {
+    &:invalid {
+      border: 2px solid var(--app-active-color);
+      text-decoration: line-through;
+    }
+  }
+
+  &__year {
+    &:valid {
+      border: 2px solid var(--app-success-color);
+      text-decoration: none;
     }
   }
 
@@ -43,7 +76,7 @@
     grid-template-rows: repeat(5);
     border-right: 2px solid var(--app-default-color);
     border-bottom: 2px solid var(--app-default-color);
-    
+    z-index: var(--app-max-zi);
 
     &_cell,
     &_header {

@@ -1,5 +1,5 @@
 const CALENDAR = document.querySelector(".calendar");
-const ROOT = document.querySelector(":root")
+const ROOT = document.querySelector(":root");
 
 const MONTH_MAP = [
   "январь",
@@ -16,7 +16,7 @@ const MONTH_MAP = [
   "декабрь",
 ];
 
-const WEEK_DAY = ["Пн", "Вт", "Cр", "Чт", "Пт", "Cб", "Вс"]
+const WEEK_DAY = ["Пн", "Вт", "Cр", "Чт", "Пт", "Cб", "Вс"];
 
 const INPUT_LIST = [
   {
@@ -28,7 +28,8 @@ const INPUT_LIST = [
     max: "2100",
     step: "1",
     name: "year",
-    autofocus: true
+    autofocus: true,
+    listFor: "defaultYears",
   },
   {
     id: "month",
@@ -39,11 +40,26 @@ const INPUT_LIST = [
     max: "11",
     step: "1",
     name: "month",
-    autofocus: false
-  }
-]
+    autofocus: false,
+    listFor: false,
+  },
+];
 
-const names = ["year", "month"];
-const classes = ["calendar__field_cell", "calendar__panel_btn"];
+const YEARS_LIST = [
+  2002, 2003, 2004, 2005, 2006, 2007, 2008, 2009, 2010, 2011, 2012, 2013, 2014,
+  2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027,
+];
 
-export { CALENDAR, MONTH_MAP, WEEK_DAY, INPUT_LIST, ROOT, names, classes};
+const NAMES = ["year", "month"];
+const CLASSES = ["calendar__field_cell", "calendar__panel_btn"];
+
+export {
+  CALENDAR,
+  MONTH_MAP,
+  WEEK_DAY,
+  INPUT_LIST,
+  ROOT,
+  YEARS_LIST,
+  NAMES,
+  CLASSES,
+};

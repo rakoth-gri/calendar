@@ -1,5 +1,5 @@
 import { getIntList, monthFormat, getHTML, themeToggler } from "./services.js";
-import { names, classes } from "../constants/index.js";
+import { NAMES, CLASSES, YEARS_LIST } from "../constants/index.js";
 
 export default class Calendar {
   constructor({ calendar, store, weekday, inputList }, options) {
@@ -9,10 +9,10 @@ export default class Calendar {
     this.$year = null;
     this.$month = null;
     this.$calendarField = null;
-    this.$cells = null;    
+    this.$cells = null;
     // LOGICAL
     this.store = store;
-    this.theme = "light"
+    this.theme = "light";
     // METHODS
     this.init(weekday, inputList, options);
   }
@@ -40,15 +40,27 @@ export default class Calendar {
     });
     // 5 --
     this.addChangeListenerToCalendar();
-    this.addClickListenerToCalendar();   
+    this.addClickListenerToCalendar();
   }
 
   // отрисовываем разметку календаря 1 раз
   renderMarkUp(list) {
     this.$calendar.innerHTML = `
+    <div class="calendar__overlay"></div>
       ${getHTML(
         list,
-        ({ labelText, type, cls, min, max, step, name, autofocus, id }) => `
+        ({
+          labelText,
+          type,
+          cls,
+          min,
+          max,
+          step,
+          name,
+          autofocus,
+          id,
+          listFor,
+        }) => `
           <label id="${id}">
             ${labelText}
             <input
@@ -59,14 +71,20 @@ export default class Calendar {
               step="${step}"
               name="${name}"
               ${autofocus ? "autofocus" : ""}
+              ${listFor ? `list=${listFor}` : ""}
             />
-          </label>`
+          </label>
+        `
       )}
+      <datalist id="${list[0].listFor}">
+          ${getHTML(YEARS_LIST, (year) => `<option value="${year}"></option>`)}  
+      </datalist>
       <div class="calendar__panel">
         <button class="calendar__panel_btn"> сегодня </button>
         <div class="calendar__panel_monthName"></div>
       </div>      
-      <div class="calendar__field"></div>    
+      <div class="calendar__field"></div>
+        
     `;
     this.$calendarField = this.$calendar.querySelector(".calendar__field");
     this.$monthName = this.$calendar.querySelector(
@@ -102,9 +120,14 @@ export default class Calendar {
     Object.keys(styled).forEach((selector) => {
       // Обработка ошибок
       const inline = styled[selector] ?? {};
-      
-      if (Object.keys(inline).length && Object.values(inline).some((val) => val)) {
-        Object.keys(inline).forEach((key) => this[selector].style[key] = inline[key]);
+
+      if (
+        Object.keys(inline).length &&
+        Object.values(inline).some((val) => val)
+      ) {
+        Object.keys(inline).forEach(
+          (key) => (this[selector].style[key] = inline[key])
+        );
       } else return;
     });
   }
@@ -125,7 +148,7 @@ export default class Calendar {
   // События ------
   // 1--
   calendarChangeHandler = ({ target: { name, value } }) => {
-    if (!names.includes(name)) return;
+    if (!NAMES.includes(name)) return;
     this.store.setCurrDate(name, +value);
   };
 
@@ -140,7 +163,7 @@ export default class Calendar {
       className,
     },
   }) => {
-    if (!classes.some((cls) => className.includes(cls))) return;
+    if (!CLASSES.some((cls) => className.includes(cls))) return;
     id
       ? this.store.setCurrDate("date", +id)
       : this.store.setCurrDate(null, {
@@ -172,20 +195,22 @@ export default class Calendar {
     return `${year} ${month} ${date}`;
   }
 
-  // удаление всех кастомных inline-стилей 
+  // удаление всех кастомных inline-стилей
   removeInlineStyles() {
-    [this.$calendar, this.$year, this.$month, this.$calendarField].forEach(el => el.removeAttribute("style"))
+    [this.$calendar, this.$year, this.$month, this.$calendarField].forEach(
+      (el) => el.removeAttribute("style")
+    );
   }
 
   // удаление кастомных inline-стилей по Селектору
   removeSelectorStyles(selector) {
-    this[selector].removeAttribute("style")
+    this[selector].removeAttribute("style");
   }
 
   // переключение темы
   changeTheme() {
-    this.theme === 'light' ? this.theme = 'dark' : this.theme = 'light';
-    // if(new Date().getHours() >= 20) this.theme = "dark"    
-    themeToggler(this.theme)
+    this.theme === "light" ? (this.theme = "dark") : (this.theme = "light");
+    // if(new Date().getHours() >= 20) this.theme = "dark"
+    themeToggler(this.theme);
   }
 }

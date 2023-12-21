@@ -20,8 +20,9 @@ const calendar = new Calendar(
     },
     $year: { backgroundColor: "" },
     $month: [],
-    $calendar: { fontFamily: "", color: "", background: [true, false], },
+    $calendar: { fontFamily: "", color: "", background: [true, false], backgroundImage: "url(./images/test2.jpg)" },
   }
 );
 
+// calendar.changeTheme()
 

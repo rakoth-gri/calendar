@@ -34,6 +34,7 @@
   --app-default-bg: var(--app-light-bg);  
   
   --app-active-color: #7a1b1b;
+  --app-success-color: #077714;
 
   --app-subZero-zi: -2;
   --app-default-zi: 0;
@@ -47,7 +48,7 @@ label {
   justify-content: space-between;
   width: 100%;
   padding: 0 var(--app-xs-mr);
-  /* margin: 0 auto; */
+  z-index: var(--app-max-zi);  
 }
 
 input,
