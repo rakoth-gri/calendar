@@ -137,7 +137,7 @@ const calendar = new Calendar(
   + **'$monthName'** - элемент отображения текущего месяца (<div class="calendar__panel_monthName"></div>);
   + **'$calendarField'** - поле отображения месячных дат (<div class="calendar__field"></div>);
 
-!['$calendar']('images/$calendar.png '$calendar')
+!['$calendar'](images/$calendar.png '$calendar')
   
 **Допускается** передавать в качестве значений селекторов следующие значения, если вы не хотите стилизовать элемент:
 
