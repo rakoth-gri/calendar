@@ -14,13 +14,13 @@ const calendar = new Calendar(
   {
     $calendarField: {
       textDecoration: "",
-      color: "green",
+      color: "",
       transform: "",
-      fontFamily: "Bebas Neue",      
+      fontFamily: "",      
     },
     // $year: { backgroundColor: "whitesmoke" },
     $month: [],
-    $calendar: { fontFamily: "Montserrat", color: "red", background: [true, false] },
+    $calendar: { fontFamily: "Nunito Sans", color: "", background: [true, false] },
   }
 );
 
