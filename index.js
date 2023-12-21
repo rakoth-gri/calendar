@@ -13,16 +13,19 @@ const calendar = new Calendar(
   },
   {
     $calendarField: {
-      textDecoration: "",      
+      textDecoration: "",
       transform: "",
       fontFamily: "",
-      color: '',      
+      color: "",
     },
     $year: { backgroundColor: "" },
     $month: [],
-    $calendar: { fontFamily: "", color: "", background: [true, false], backgroundImage: "url(./images/test2.jpg)" },
+    $calendar: { fontFamily: "", color: "", background: '' },
   }
 );
 
-// calendar.changeTheme()
+// calendar.changeTheme();
 
+// calendar.addSelectorStyles("$calendar", "font-family: 'Roboto';")
+
+// calendar.removeSelectorStyles("$calendar")

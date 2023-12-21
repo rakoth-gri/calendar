@@ -77,7 +77,10 @@ export default class Calendar {
         `
       )}
       <datalist id="${list[0].listFor}">
-          ${getHTML(YEARS_LIST, (year) => `<option value="${year}"></option>`)}  
+          ${getHTML(
+            YEARS_LIST,
+            (year) => `<option value="${year}"></option>`
+          )}  
       </datalist>
       <div class="calendar__panel">
         <button class="calendar__panel_btn"> сегодня </button>
@@ -200,6 +203,14 @@ export default class Calendar {
     [this.$calendar, this.$year, this.$month, this.$calendarField].forEach(
       (el) => el.removeAttribute("style")
     );
+  }
+
+  // добавление кастомных inline-стилей по Селектору
+  addSelectorStyles(selector, styles) {    
+
+    const currInlineStyles = this[selector].getAttribute("style");
+    this[selector].setAttribute("style", currInlineStyles + styles)
+   
   }
 
   // удаление кастомных inline-стилей по Селектору
