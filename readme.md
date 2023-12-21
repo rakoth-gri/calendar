@@ -112,11 +112,11 @@ const calendar = new Calendar(
 
 #### Объект **options** для кастомных inline-стилей:
 
-Для кастомизации стилей при вызове конструктора new Calendar(obj, options), второй аргумент - **объект options** должен иметь вид:
+Для кастомизации стилей при вызове конструктора new Calendar(obj, options), второй аргумент **options** должен иметь вид:
 
 ```javascript
 
-// Валидными значениями каждого из 4-х селекторов должны выступать вложенные объекты СSS-стилей, описанные в Javascript-нотации:
+// Валидными значениями каждого из 4-х селекторов - выступают объекты СSS-стилей, описанные в Javascript-Нотации:
 
 {
   [selector1]: {
@@ -141,6 +141,25 @@ const calendar = new Calendar(
   + **'$calendarField'** - поле отображения месячных дат:<br>
     !['$calendarField'](images/$calendarField.png '$calendarField')
 
+Пример Валидного объекта **options**:
+
+```javascript
+
+  {
+    $calendarField: {      
+      transform: "rotateZ(5deg)",
+      fontFamily: "Bebas Neue",      
+    },
+    $year: { backgroundColor: "teal" },
+    $month: false,
+    // относитедльные пути изображений в вашем проектк могут отличаться!!
+    $calendar: { fontFamily: "Montserrat", background: './images/test1.jpg' },
+  }
+
+```
+Результатом передачи объекта **options** выше будет:
+
+!['customized'](images/styled.png 'customized')
 
   
 **Допускается** передавать в качестве значений селекторов следующие значения, если вы не хотите стилизовать элемент:
