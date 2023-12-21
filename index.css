@@ -186,10 +186,13 @@ label {
 }
 
 .calendar__field_cell:hover,
-.calendar__field_header:hover,
 .calendar__panel_btn:hover {
-  color: var(--app-white-color);
+  color: var(--app-active-color);
   transform: scale(1.03);
+}
+
+.calendar__panel_btn:hover {
+  color: inherit
 }
 
 .active {

@@ -19,9 +19,8 @@
 
     &_btn {
       background-color: var(--app-active-color);
-      font-family: 'Montserrat', serif;
+      font-family: "Montserrat", serif;
       &:hover {
-        color: var(--app-white-color);
         transform: scale(1.03);
       }
     }
@@ -29,7 +28,7 @@
     &_monthName {
       font-weight: var(--app-bold-fw);
       color: var(--app-active-color);
-      font-family: 'Montserrat', serif;
+      font-family: "Montserrat", serif;
       width: 100%;
       text-align: right;
       padding: var(--app-xs-mr);
@@ -46,8 +45,7 @@
     border-right: 2px solid;
     border-bottom: 2px solid;
 
-    &_cell,
-    &_header {
+    &_cell {
       justify-self: center;
       border: 2px solid;
       border-right: none;
@@ -61,7 +59,7 @@
       overflow: hidden;
       transition: 0.09s all linear;
       &:hover {
-        color: var(--app-white-color);
+        color: var(--app-active-color);
         transform: scale(1.03);
       }
     }
