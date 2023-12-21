@@ -14,7 +14,7 @@ const calendar = new Calendar(
   {
     $calendarField: '',
     $year: null,    
-    $calendar: { fontFamily: "Montserrat", },
+    $calendar: { fontFamily: "Ubuntu", color: 'teal', textTransform: 'uppercase'},
   }
   
 );
