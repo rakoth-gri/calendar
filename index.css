@@ -130,11 +130,6 @@
   transition: 0.3s all linear;
 }
 
-.hidden {
-  opacity: 0;
-  z-index: var(--app-subZero-zi);
-}
-
 label {
   cursor: pointer;
   display: flex;
@@ -220,14 +215,19 @@ label {
   color: inherit
 }
 
+.calendar__field_header {
+  font-weight: var(--app-bold-fw);
+  color: var(--app-light-color);
+}
+
 .active {
   color: var(--app-active-color);
   transform: scale(1.03);
 }
 
-.calendar__field_header {
-  font-weight: var(--app-bold-fw);
-  color: var(--app-light-color);
+.hidden {
+  transform: scale(0.01);
+  z-index: var(--app-subZero-zi);
 }
 
 /* MEDIA QUERRIES ---- */

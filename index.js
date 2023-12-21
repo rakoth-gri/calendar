@@ -13,17 +13,15 @@ const calendar = new Calendar(
   },
   {
     $calendarField: {
-      textDecoration: "",
-      // color: "green",
+      textDecoration: "",      
       transform: "",
-      fontFamily: "",      
+      fontFamily: "",
+      color: '',      
     },
-    // $year: { backgroundColor: "whitesmoke" },
+    $year: { backgroundColor: "" },
     $month: [],
-    $calendar: { fontFamily: "Nunito Sans", color: "", background: [true, false], },
+    $calendar: { fontFamily: "", color: "", background: [true, false], },
   }
 );
 
-// calendar.removeInlineStyles()
 
-// calendar.removeSelectorStyles("$calendar")

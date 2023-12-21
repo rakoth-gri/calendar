@@ -1,4 +1,4 @@
-import { MONTH_MAP } from "../constants/index.js";
+import { MONTH_MAP, ROOT } from "../constants/index.js";
 
 // (num:number) => string
 const monthFormat = (num) => MONTH_MAP[num];
@@ -9,4 +9,13 @@ const getIntList = (len) => new Array(len).fill().map((_, i) => i);
 // <T>(list: T[], cb: (args: T) => string ) => string
 const getHTML = (list, cb) => list.map(cb).join("");
 
-export { monthFormat, getIntList, getHTML };
+// (num:string) => void
+const themeToggler = (theme) => {    
+    ROOT.style.setProperty('--app-default-color', `var(--app-${theme}-color)`)
+    ROOT.style.setProperty('--app-default-bg', `var(--app-${theme}-bg)`)
+}
+
+
+export { monthFormat, getIntList, getHTML, themeToggler };
+
+

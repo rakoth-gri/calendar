@@ -1,4 +1,4 @@
-import { getIntList, monthFormat, getHTML } from "./services.js";
+import { getIntList, monthFormat, getHTML, themeToggler } from "./services.js";
 import { names, classes } from "../constants/index.js";
 
 export default class Calendar {
@@ -9,9 +9,10 @@ export default class Calendar {
     this.$year = null;
     this.$month = null;
     this.$calendarField = null;
-    this.$cells = null;
-    // CONTROLLER
+    this.$cells = null;    
+    // LOGICAL
     this.store = store;
+    this.theme = "light"
     // METHODS
     this.init(weekday, inputList, options);
   }
@@ -39,7 +40,7 @@ export default class Calendar {
     });
     // 5 --
     this.addChangeListenerToCalendar();
-    this.addClickListenerToCalendar();
+    this.addClickListenerToCalendar();   
   }
 
   // отрисовываем разметку календаря 1 раз
@@ -176,7 +177,15 @@ export default class Calendar {
     [this.$calendar, this.$year, this.$month, this.$calendarField].forEach(el => el.removeAttribute("style"))
   }
 
+  // удаление кастомных inline-стилей по Селектору
   removeSelectorStyles(selector) {
     this[selector].removeAttribute("style")
+  }
+
+  // переключение темы
+  changeTheme() {
+    this.theme === 'light' ? this.theme = 'dark' : this.theme = 'light';
+    // if(new Date().getHours() >= 20) this.theme = "dark"    
+    themeToggler(this.theme)
   }
 }

@@ -1,4 +1,5 @@
 const CALENDAR = document.querySelector(".calendar");
+const ROOT = document.querySelector(":root")
 
 const MONTH_MAP = [
   "январь",
@@ -45,4 +46,4 @@ const INPUT_LIST = [
 const names = ["year", "month"];
 const classes = ["calendar__field_cell", "calendar__panel_btn"];
 
-export { CALENDAR, MONTH_MAP, WEEK_DAY, INPUT_LIST, names, classes};
+export { CALENDAR, MONTH_MAP, WEEK_DAY, INPUT_LIST, ROOT, names, classes};

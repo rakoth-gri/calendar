@@ -8,7 +8,7 @@
   align-items: start;
   font-size: var(--app-md-fs);
   color: var(--app-default-color);
-  transition: 0.3s all linear;
+  transition: 0.25s all linear;
   font-weight: 400;
   font-family: "Roboto";
 
@@ -81,7 +81,7 @@
 }
 
 .hidden {
-  opacity: 0;
+  transform: scale(0.01);
   z-index: var(--app-subZero-zi);
 }
 
