@@ -239,3 +239,40 @@ const obj = {
 !['invalid2'](images/invalid2.png "invalid2")
 - **ВСЕ ОК!**:<br>
 !['valid'](images/valid.png "valid")
+
+#### Кнопка "Сегодня" сбрасывает ранее выбранное состояние даты и отображает текущую дату!
+
+# API:
+
+#### Темизация:
+#### После вызова Инстанса класса **_Calendar_** (cм. выше) нам доступны методы:
+
+```javascript
+// объект опций получает фоновую картинку
+  {
+    $calendar: { fontFamily: "Ubuntu", backgroundImage: "url('./images/test2.jpg')" },
+  }
+
+```
+
+```javascript
+// cтартуем преключатель темы:
+
+  calendar.changeTheme();
+
+```
+
+- **На картинке представлен darkmode**:<br>
+!['dark'](images/dark.png "dark")
+
+
+#### Изменение видимости:
+#### Мы можем скрыть / показать наш Календарь (за счет динамических классов в предустановленных стилях index.min.css / index.css)
+
+```javascript
+
+// скрыть / показать:
+
+  calendar.toggleHidden()
+
+```

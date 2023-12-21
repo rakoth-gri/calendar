@@ -14,12 +14,16 @@ const calendar = new Calendar(
   {
     $calendarField: '',
     $year: null,    
-    $calendar: { fontFamily: "Ubuntu", color: 'teal', textTransform: 'uppercase'},
+    $calendar: { fontFamily: "Ubuntu", backgroundImage: "url('./images/test2.jpg')" },
   }
   
 );
 
 // calendar.changeTheme();
+
+// calendar.toggleHidden()
+// calendar.toggleHidden()
+
 
 // calendar.addSelectorStyles("$calendar", "font-family: 'Roboto';")
 
