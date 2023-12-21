@@ -280,3 +280,19 @@ const obj = {
   calendar.toggleHidden()
 
 ```
+
+---
+
+#### Логирование текущей даты:
+
+```javascript
+
+// логируемся:
+
+  calendar.logCurrDate()
+
+// Результат в консоли:
+
+{year: 2023, month: 11, date: 21}
+
+```

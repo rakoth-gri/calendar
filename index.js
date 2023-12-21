@@ -24,6 +24,8 @@ const calendar = new Calendar(
 // calendar.toggleHidden()
 // calendar.toggleHidden()
 
+calendar.logCurrDate()
+
 
 // calendar.addSelectorStyles("$calendar", "font-family: 'Roboto';")
 
