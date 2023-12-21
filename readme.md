@@ -132,12 +132,13 @@ const calendar = new Calendar(
 ```
 
 В настоящее время, для стилизации через **API** доступно 4 селектора, которые 'обращаются' к 4 DOM-элементам:  
-  + **'$calendar'** - главный контейнер календаря (<section class="calendar"></section>);
+  + **'$calendar'** - главный контейнер календаря (<section class="calendar"></section>):
+    - !['$calendar'](images/$calendar.png '$calendar')
   + **'$year'** - инпут для выбора календарного года;
   + **'$monthName'** - элемент отображения текущего месяца (<div class="calendar__panel_monthName"></div>);
   + **'$calendarField'** - поле отображения месячных дат (<div class="calendar__field"></div>);
 
-!['$calendar'](images/$calendar.png '$calendar')
+
   
 **Допускается** передавать в качестве значений селекторов следующие значения, если вы не хотите стилизовать элемент:
 
