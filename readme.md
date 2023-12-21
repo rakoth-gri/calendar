@@ -152,7 +152,7 @@ const calendar = new Calendar(
     },
     $year: { backgroundColor: "teal" },
     $month: false,
-    // относитедльные пути изображений в вашем проектк могут отличаться!!
+    // относительные пути изображений в вашем Проекте могут отличаться!
     $calendar: { fontFamily: "Montserrat", background: './images/test1.jpg' },
   }
 
