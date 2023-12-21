@@ -1,13 +1,12 @@
-import { MONTH_MAP } from "../constants/constants.js"
+import { MONTH_MAP } from "../constants/index.js";
 
-// принимаем только числовые значения
-export const monthFormat = (num) => MONTH_MAP[num]
-
-// функция формирования числового массива данных
+// (num:number) => string
+const monthFormat = (num) => MONTH_MAP[num];
 
 // (len:number) => Array<number>
-export const createDataList = (len) => {
-    return new Array(len)
-        .fill()
-        .map((_, i) => i)
-}
+const getIntList = (len) => new Array(len).fill().map((_, i) => i);
+
+// <T>(list: T[], cb: (args: T) => string ) => string
+const getHTML = (list, cb) => list.map(cb).join("");
+
+export { monthFormat, getIntList, getHTML };

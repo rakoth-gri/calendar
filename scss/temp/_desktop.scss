@@ -6,10 +6,11 @@
   display: flex;
   flex-direction: column;
   align-items: start;
-  font-size: var(--app-md-fs);
-  font-family: "Roboto Condensed", sans-serif;
+  font-size: var(--app-md-fs);  
   color: var(--app-default-color);
   transition: 0.3s all linear;
+  font-weight: 400;
+  font-family: "Roboto";
 
   &__panel {
     width: 100%;
@@ -18,17 +19,15 @@
     justify-content: space-around;
 
     &_btn {
-      background-color: var(--app-active-color);
+      background-color: var(--app-active-color);      
       &:hover {
-        color: var(--app-white-color);
         transform: scale(1.03);
       }
     }
 
     &_monthName {
       font-weight: var(--app-bold-fw);
-      color: var(--app-active-color);
-      /* display: inline-block; */
+      color: var(--app-active-color);      
       width: 100%;
       text-align: right;
       padding: var(--app-xs-mr);
@@ -45,8 +44,7 @@
     border-right: 2px solid;
     border-bottom: 2px solid;
 
-    &_cell,
-    &_header {
+    &_cell {
       justify-self: center;
       border: 2px solid;
       border-right: none;
@@ -60,7 +58,7 @@
       overflow: hidden;
       transition: 0.09s all linear;
       &:hover {
-        color: var(--app-white-color);
+        color: var(--app-active-color);
         transform: scale(1.03);
       }
     }
@@ -72,8 +70,7 @@
   }
 
   &__monthName,
-  label {
-    font-family: "Montserrat";
+  label {    
     font-weight: var(--app-medium-fw);
   }
 }
