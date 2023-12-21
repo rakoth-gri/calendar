@@ -24,11 +24,15 @@
   --app-medium-fw: 500;
   --app-bold-fw: 700;
 
-  --app-dark-color: rgb(5, 48, 65);
-  --app-light-color: rgb(16, 15, 15);
-  --app-white-color: rgb(232, 225, 225);
+  --app-dark-bg: rgb(6, 41, 55);
+  --app-dark-color: rgb(236, 222, 222);
 
-  --app-default-color: var(--app-dark-color);
+  --app-light-color: rgb(16, 15, 15);
+  --app-light-bg: rgb(236, 222, 222);
+
+  --app-default-color: var(--app-light-color);
+  --app-default-bg: var(--app-light-bg);  
+  
   --app-active-color: #7a1b1b;
 
   --app-subZero-zi: -2;
@@ -115,7 +119,7 @@
 .calendar {
   padding: var(--app-md-mr);
   width: 19%;
-  background-color: #5f5a5a;
+  background-color: var(--app-default-bg);
   border-radius: var(--app-sm-mr);
   display: flex;
   flex-direction: column;
@@ -146,7 +150,7 @@ button {
   outline: none;
   font-family: inherit;
   font-size: inherit;
-  background-color: rgb(106, 110, 110);
+  background-color: var(--app-default-bg);
   border: none;
   border-radius: var(--app-xs-mr);
   padding: var(--app-xs-mr);
@@ -180,16 +184,15 @@ button {
   margin: var(--app-md-mr) 0;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(7, calc(100% / 7));
-  grid-template-rows: repeat(5);
-  border-right: 2px solid;
-  border-bottom: 2px solid;
+  grid-template-columns: repeat(7, calc(100% / 7));  
+  border-right: 2px solid var(--app-default-color);
+  border-bottom: 2px solid var(--app-default-color);
 }
 
 .calendar__field_cell,
 .calendar__field_header {
   justify-self: center;
-  border: 2px solid;
+  border: 2px solid var(--app-default-color);
   border-right: none;
   border-bottom: none;
   width: 100%;

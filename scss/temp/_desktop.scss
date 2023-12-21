@@ -1,12 +1,12 @@
 .calendar {
   padding: var(--app-md-mr);
   width: 19%;
-  background-color: #5f5a5a;
+  background-color: var(--app-default-bg);
   border-radius: var(--app-sm-mr);
   display: flex;
   flex-direction: column;
   align-items: start;
-  font-size: var(--app-md-fs);  
+  font-size: var(--app-md-fs);
   color: var(--app-default-color);
   transition: 0.3s all linear;
   font-weight: 400;
@@ -19,7 +19,7 @@
     justify-content: space-around;
 
     &_btn {
-      background-color: var(--app-active-color);      
+      background-color: var(--app-active-color);
       &:hover {
         transform: scale(1.03);
       }
@@ -27,7 +27,7 @@
 
     &_monthName {
       font-weight: var(--app-bold-fw);
-      color: var(--app-active-color);      
+      color: var(--app-active-color);
       width: 100%;
       text-align: right;
       padding: var(--app-xs-mr);
@@ -41,12 +41,13 @@
     display: grid;
     grid-template-columns: repeat(7, calc(100% / 7));
     grid-template-rows: repeat(5);
-    border-right: 2px solid;
-    border-bottom: 2px solid;
+    border-right: 2px solid var(--app-default-color);
+    border-bottom: 2px solid var(--app-default-color);
 
-    &_cell {
+    &_cell,
+    &_header {
       justify-self: center;
-      border: 2px solid;
+      border: 2px solid var(--app-default-color);
       border-right: none;
       border-bottom: none;
       width: 100%;
@@ -65,12 +66,16 @@
 
     &_header {
       font-weight: var(--app-bold-fw);
-      color: var(--app-light-color);
+
+      &:hover {
+        color: var(--app-default-color);
+        transform: scale(1);
+      }
     }
   }
 
   &__monthName,
-  label {    
+  label {
     font-weight: var(--app-medium-fw);
   }
 }

@@ -24,11 +24,15 @@
   --app-medium-fw: 500;
   --app-bold-fw: 700;
 
-  --app-dark-color: rgb(5, 48, 65);
-  --app-light-color: rgb(16, 15, 15);
-  --app-white-color: rgb(232, 225, 225);
+  --app-dark-bg: rgb(6, 41, 55);
+  --app-dark-color: rgb(236, 222, 222);
 
-  --app-default-color: var(--app-dark-color);
+  --app-light-color: rgb(16, 15, 15);
+  --app-light-bg: rgb(236, 222, 222);
+
+  --app-default-color: var(--app-light-color);
+  --app-default-bg: var(--app-light-bg);  
+  
   --app-active-color: #7a1b1b;
 
   --app-subZero-zi: -2;
@@ -51,7 +55,7 @@ button {
   outline: none;
   font-family: inherit;
   font-size: inherit;
-  background-color: rgb(106, 110, 110);
+  background-color: var(--app-default-bg);
   border: none;
   border-radius: var(--app-xs-mr);
   padding: var(--app-xs-mr);
