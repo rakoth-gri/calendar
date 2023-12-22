@@ -306,8 +306,6 @@ calendar.toggleHidden();
 
 ```javascript
 
-// логируемся:
-
   calendar.getCurrDateString()
 
 // Результат в консоли:
