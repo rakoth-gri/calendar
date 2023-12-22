@@ -10,6 +10,7 @@ const calendar = new Calendar(
     store: Store,
     weekday: WEEK_DAY,
     inputList: INPUT_LIST,
+    delay: 5
   },
   {
     // $calendar: {backgroundImage: 'url(./images/test1.jpg)'}
@@ -17,16 +18,3 @@ const calendar = new Calendar(
 
 );
 
-calendar.changeTheme();
-
-// calendar.toggleHidden()
-// calendar.toggleHidden()
-
-// calendar.logCurrDate()
-// console.log(calendar.getCurrDateString())
-
-// calendar.removeInlineStyles()
-
-// calendar.addSelectorStyles("$calendar", 'text-transform: uppercase; background: white')
-
-// calendar.removeSelectorStyles("$calendarField")

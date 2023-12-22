@@ -2,23 +2,24 @@ import { getIntList, monthFormat, getHTML, themeToggler } from "./services.js";
 import { NAMES, CLASSES, YEARS_LIST } from "../constants/index.js";
 
 export default class Calendar {
-  constructor({ calendar, store, weekday, inputList }, options) {
+  constructor({ calendar, store, weekday, inputList, delay }, options) {
     // DOM_ELEMENTS
     this.$calendar = calendar;
     this.$monthName = null;
     this.$year = null;
     this.$month = null;
     this.$calendarField = null;
-    this.$cells = null;
+    this.$cells = null;    
     // LOGICAL
     this.store = store;
     this.theme = "light";
+    this.delay = delay;
     // METHODS
-    this.init(weekday, inputList, options);
+    this.init(weekday, inputList, delay, options);
   }
 
   // BUILDER SCHEME ---
-  init(weekday, inputList, options) {
+  init(weekday, inputList, delay, options) {
     // 1 --
     this.renderMarkUp(inputList);
     // 2 --
@@ -29,7 +30,8 @@ export default class Calendar {
     this.store.observe(() => {
       this.renderMonthDates(
         getIntList(this.store.datesInMonth(this.store.currDate)),
-        this.$cells
+        this.$cells,
+        delay
       );
       this.store.showCurrDate(
         this.$year,
@@ -136,15 +138,17 @@ export default class Calendar {
   }
 
   // Вызываем при каждом изменении this.store.currData
-  renderMonthDates(datesList, cells) {
+  renderMonthDates(datesList, cells, delay) {
     // очищаем поля календаря и активные классы перед отрисовкой:
     cells.forEach((cell) => {
       cell.textContent = "";
       cell.classList.remove("active");
-    });
+    });    
     datesList.forEach((i) => {
-      i + 1 === this.store.currDate.date && cells[i].classList.add("active");
-      cells[i].textContent = i + 1;
+      i + 1 === this.store.currDate.date && cells[i].classList.add("active");                  
+      setTimeout(() => {
+        cells[i].textContent = i + 1;   
+      }, delay*i)
     });
   }
 
