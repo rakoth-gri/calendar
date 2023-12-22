@@ -272,8 +272,8 @@ calendar.changeTheme();
 ```
 
 #### Результат с darkmode ниже:
-<br>
-  !['dark'](images/dark.png "dark")
+
+!['dark'](images/dark.png "dark")
 
 ---
 
