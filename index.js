@@ -12,15 +12,12 @@ const calendar = new Calendar(
     inputList: INPUT_LIST,
   },
   {
-    $calendarField: {background: 'teal', borderRadius: 'var(--app-xs-mr)'},
-    $year: null,    
-    $calendar: { fontFamily: "Ubuntu", background: "yellow" },
-    $monthName: {fontFamily: "Consolas", color: 'whitesmoke'}
-  }
+    // $calendar: {backgroundImage: 'url(./images/test1.jpg)'}
+   }
 
 );
 
-// calendar.changeTheme();
+calendar.changeTheme();
 
 // calendar.toggleHidden()
 // calendar.toggleHidden()
@@ -30,7 +27,6 @@ const calendar = new Calendar(
 
 // calendar.removeInlineStyles()
 
+// calendar.addSelectorStyles("$calendar", 'text-transform: uppercase; background: white')
 
-calendar.addSelectorStyles("$calendar", 'text-transform: uppercase; background: white')
-
-calendar.removeSelectorStyles("$calendarField")
+// calendar.removeSelectorStyles("$calendarField")

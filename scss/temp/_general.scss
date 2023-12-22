@@ -24,16 +24,17 @@
   --app-medium-fw: 500;
   --app-bold-fw: 700;
 
-  --app-dark-bg: rgb(6, 41, 55);
+  --app-dark-bg: rgb(7, 48, 65);
   --app-dark-color: rgb(236, 222, 222);
 
   --app-light-color: rgb(16, 15, 15);
   --app-light-bg: rgb(236, 222, 222);
 
   --app-default-color: var(--app-light-color);
-  --app-default-bg: var(--app-light-bg);  
-  
+  --app-default-bg: var(--app-light-bg);
+
   --app-active-color: #7a1b1b;
+  --app-btn-color: rgba(148, 15, 15, 0.65);
   --app-success-color: #077714;
 
   --app-subZero-zi: -2;
@@ -48,7 +49,8 @@ label {
   justify-content: space-between;
   width: 100%;
   padding: 0 var(--app-xs-mr);
-  z-index: var(--app-max-zi);  
+  z-index: var(--app-max-zi);
+  font-variant: small-caps;
 }
 
 input,
