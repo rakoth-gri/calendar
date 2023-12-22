@@ -213,7 +213,8 @@ const obj = {
 };
 ```
 
-#### Наследование: 
+#### Наследование:
+
 #### стили, переданные Селектору ['$calendar'] унаследуется всеми компонентами, в т.ч. инпутами и компонентами поля отображения месячных дат. Это достигается за счет кода в предустановленных стилях ( файлы index.min.css / index.css):
 
 ```javascript
@@ -223,29 +224,34 @@ const obj = {
   }
 
 ```
+
 Результат:
 
 !['inherit'](images/inherit.png "inherit")
 
-#### Валидация: 
+#### Валидация:
+
 #### касается элемента с Селектором '$year' - инпут для ввода календарного года. Валидными значениями являются значения с 1900 по 2100 гг включительно. Стили для визуализации валидных и невалидных значений описаны псевдо-селекторами.
+
 #### Реализованы подсказки при вводе в виде годов ближайших декад.
 
-#### ПРИМЕРЫ: 
+#### ПРИМЕРЫ:
 
 - **Невалидный год**:<br>
-!['invalid1'](images/invalid1.png "invalid1")
+  !['invalid1'](images/invalid1.png "invalid1")
 - **Снова невалидный...**:<br>
-!['invalid2'](images/invalid2.png "invalid2")
+  !['invalid2'](images/invalid2.png "invalid2")
 - **ВСЕ ОК!**:<br>
-!['valid'](images/valid.png "valid")
+  !['valid'](images/valid.png "valid")
 
 #### Кнопка "Сегодня" сбрасывает ранее выбранное состояние даты и отображает текущую дату!
 
 ---
+
 ---
 
 # API:
+
 ## После вызова Инстанса класса **_Calendar_** (cм. выше) нам доступны методы:
 
 #### Темизация:
@@ -261,24 +267,22 @@ const obj = {
 ```javascript
 // cтартуем преключатель темы:
 
-  calendar.changeTheme();
-
+calendar.changeTheme();
 ```
 
 - **На картинке представлен darkmode**:<br>
-!['dark'](images/dark.png "dark")
+  !['dark'](images/dark.png "dark")
 
 ---
 
 #### Изменение видимости:
+
 #### Мы можем скрыть / показать наш Календарь (за счет динамических классов в предустановленных стилях index.min.css / index.css)
 
 ```javascript
-
 // скрыть / показать:
 
-  calendar.toggleHidden()
-
+calendar.toggleHidden();
 ```
 
 ---
@@ -296,3 +300,61 @@ const obj = {
 {year: 2023, month: 11, date: 21}
 
 ```
+---
+
+#### Получение строки с текущей датой:
+
+```javascript
+
+// логируемся:
+
+  calendar.getCurrDateString()
+
+// Результат в консоли:
+`2023 11 22`
+
+```
+
+---
+
+#### Удаление inline-стилей всех 4-х Селекторов:
+
+```javascript
+
+// удаляем:
+// обратно к предустановленным стилям файлов index.min.css/ index.css
+
+  calendar.removeInlineStyles()
+
+```
+
+---
+
+#### Удаление inline-стилей определенного Селектора:
+
+```javascript
+
+// Передаем аргументом Селектор, inline-стили которого хотим удалить:
+
+  calendar.removeSelectorStyles("$calendarField")
+
+```
+
+---
+
+#### Добавление inline-стилей определенному Селектору:
+#### Метод **addSelectorStyles** принимает 2 аргумента:
++ ###### selector - один из 4-х ранее описанных Селекторов; 
++ ###### styles - строка стилей в СSS-нотации:
+  - **'text-transform: uppercase; background: white;'** 
+
+
+```javascript
+
+// Передаем аргументом Селектор, inline-стили которого хотим удалить:
+
+ calendar.addSelectorStyles("$calendar", 'text-transform: uppercase; background: white')
+
+```
+
+

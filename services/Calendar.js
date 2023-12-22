@@ -193,19 +193,20 @@ export default class Calendar {
   }
 
   // получение строки с текущей датой
-  getCurrDate() {
-    const { year, month, date } = this.store.currDate;
+  getCurrDateString() {
+    const { year, month, date } = this.store.currDate;    
+
     return `${year} ${month} ${date}`;
   }
 
-  // удаление всех кастомных inline-стилей
+  // удаление всех inline-стилей
   removeInlineStyles() {
-    [this.$calendar, this.$year, this.$month, this.$calendarField].forEach(
+    [this.$calendar, this.$year, this.$monthName, this.$calendarField].forEach(
       (el) => el.removeAttribute("style")
     );
   }
 
-  // добавление кастомных inline-стилей по Селектору
+  // добавление inline-стилей по Селектору
   addSelectorStyles(selector, styles) {    
 
     const currInlineStyles = this[selector].getAttribute("style");
@@ -213,7 +214,7 @@ export default class Calendar {
    
   }
 
-  // удаление кастомных inline-стилей по Селектору
+  // удаление inline-стилей по Селектору
   removeSelectorStyles(selector) {
     this[selector].removeAttribute("style");
   }
