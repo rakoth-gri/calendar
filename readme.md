@@ -346,12 +346,14 @@ calendar.toggleHidden();
 #### Метод **addSelectorStyles** принимает 2 аргумента:
 + ###### selector - один из 4-х ранее описанных Селекторов; 
 + ###### styles - строка стилей в СSS-нотации:
-  - **'text-transform: uppercase; background: white;'** 
+  - **'text-transform: uppercase; background: white;'**
+  - **или пустую строку: ошибки не будет, новые стили не создадутся**   
 
 
 ```javascript
 
-// Передаем аргументом Селектор, inline-стили которого хотим удалить:
+// Передаем аргументом Селектор, inline-стили которого хотим обновить или добавить впервые:
+// Метод не удаляет имеющиеся у Селектора inline-стили, добавляя к ним новые или перезаписывая одноименные!
 
  calendar.addSelectorStyles("$calendar", 'text-transform: uppercase; background: white')
 
