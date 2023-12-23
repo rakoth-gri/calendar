@@ -19,7 +19,12 @@ const calendar = new Calendar(
 
 );
 
-// METHODS
+// API
+
+calendar.removeInlineStyles()
 
 // calendar.changeTheme()
 // calendar.toggleHidden()
+
+// calendar.addSelectorStyles("$calendar", 'font-family: "Nunito Sans"')
+
