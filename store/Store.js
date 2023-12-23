@@ -21,6 +21,10 @@ export class Store {
 
   // (val: number) => void
   static setCurrDate = (key, val) => {
+    
+    console.log(val);
+    
+    
     key ? Store.currDate[key] = val : Object.assign(Store.currDate, val)
     Store.subs.forEach(cb => cb())
   }

@@ -1,4 +1,10 @@
-import { getIntList, monthFormat, getHTML, themeToggler } from "./services.js";
+import {
+  getIntList,
+  monthFormat,
+  getHTML,
+  themeToggler,
+  getFirstMonthDay,
+} from "./services.js";
 import { NAMES, CLASSES, YEARS_LIST } from "../constants/index.js";
 
 export default class Calendar {
@@ -10,7 +16,7 @@ export default class Calendar {
     this.$year = null;
     this.$month = null;
     this.$calendarField = null;
-    this.$cells = null;    
+    this.$cells = null;
     // LOGICAL
     this.store = store;
     this.theme = "light";
@@ -24,7 +30,7 @@ export default class Calendar {
     // 1 --
     this.renderMarkUp(inputList);
     // 2 --
-    this.renderGrid(this.$calendarField, 35, weekday);
+    this.renderGrid(this.$calendarField, 42, weekday);
     // 3 --
     this.setInlineStyles(options);
     // 4 -- (Подписываемся на изменение this.store.currDate)
@@ -106,7 +112,7 @@ export default class Calendar {
     // формируем массив с данными и заполняем шаблон
     const HTML = getHTML(
       getIntList(maxCellNumber),
-      (i) => `<div data-id="${i + 1}" class="calendar__field_cell"></div>`
+      (i) => `<div data-id="${i}" class="calendar__field_cell"></div>`
     );
     const HEADINGS = getHTML(
       weekday,
@@ -114,7 +120,9 @@ export default class Calendar {
     );
 
     container.insertAdjacentHTML("beforeend", HEADINGS + HTML);
-    this.$cells = document.querySelectorAll(".calendar__field_cell");
+    this.$cells = Array.from(
+      document.querySelectorAll(".calendar__field_cell")
+    );
   }
 
   // рендерим кастомные inline-стили только 1 раз
@@ -145,12 +153,17 @@ export default class Calendar {
     cells.forEach((cell) => {
       cell.textContent = "";
       cell.classList.remove("active");
-    });    
+    });
+ 
+    let firstMonthDay = getFirstMonthDay(this.store.currDate.year, this.store.currDate.month);
+
+    cells = firstMonthDay > 0 ? cells.slice(firstMonthDay - 1) : cells.slice(6);
+
     datesList.forEach((i) => {
-      i + 1 === this.store.currDate.date && cells[i].classList.add("active");                  
+      i + 1 === this.store.currDate.date && cells[i].classList.add("active");
       setTimeout(() => {
-        cells[i].textContent = i + 1;   
-      }, delay*i)
+        cells[i].textContent = i + 1;
+      }, delay * i);
     });
   }
 
@@ -170,11 +183,13 @@ export default class Calendar {
     target: {
       dataset: { id },
       className,
+      textContent,
     },
   }) => {
     if (!CLASSES.some((cls) => className.includes(cls))) return;
+
     id
-      ? this.store.setCurrDate("date", +id)
+      ? this.store.setCurrDate("date", +textContent)
       : this.store.setCurrDate(null, {
           year: new Date().getFullYear(),
           month: new Date().getMonth(),
@@ -200,7 +215,7 @@ export default class Calendar {
 
   // получение строки с текущей датой
   getCurrDateString() {
-    const { year, month, date } = this.store.currDate;    
+    const { year, month, date } = this.store.currDate;
 
     return `${year} ${month} ${date}`;
   }
@@ -213,11 +228,9 @@ export default class Calendar {
   }
 
   // добавление inline-стилей по Селектору
-  addSelectorStyles(selector, styles) {    
-
+  addSelectorStyles(selector, styles) {
     const currInlineStyles = this[selector].getAttribute("style");
-    this[selector].setAttribute("style", currInlineStyles + styles)
-   
+    this[selector].setAttribute("style", currInlineStyles + styles);
   }
 
   // удаление inline-стилей по Селектору

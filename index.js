@@ -14,14 +14,14 @@ const calendar = new Calendar(
   },
   {
     $calendar: {backgroundImage: 'url(./images/test1.jpg)', color: "whitesmoke"},
-    $overlay: {backdropFilter: 'grayscale(.39) blur(1px)'}
+    $overlay: {backdropFilter: 'grayscale(.39) blur(1.7px)'}
    }
 
 );
 
 // API
 
-calendar.removeInlineStyles()
+// calendar.removeInlineStyles()
 
 // calendar.changeTheme()
 // calendar.toggleHidden()

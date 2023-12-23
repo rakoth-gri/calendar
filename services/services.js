@@ -15,7 +15,12 @@ const themeToggler = (theme) => {
     ROOT.style.setProperty('--app-default-bg', `var(--app-${theme}-bg)`)
 }
 
+const getFirstMonthDay = (year, month) => {    
+    return new Date(year, month, 1).getDay();    
+}
 
-export { monthFormat, getIntList, getHTML, themeToggler };
+
+
+export { monthFormat, getIntList, getHTML, themeToggler, getFirstMonthDay };
 
 
