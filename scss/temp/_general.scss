@@ -6,42 +6,6 @@
   margin: 0px;
 }
 
-:root {
-  --app-xs-mr: 0.25rem;
-  --app-sm-mr: 0.5rem;
-  --app-md-mr: 1rem;
-  --app-lg-mr: 1.5rem;
-  --app-xl-mr: 2rem;
-
-  --app-xs-fs: 0.75rem;
-  --app-sm-fs: 1rem;
-  --app-md-fs: 1.25rem;
-  --app-lg-fs: 1.5rem;
-  --app-xl-fs: 2rem;
-
-  --app-light-fw: 300;
-  --app-normal-fw: 400;
-  --app-medium-fw: 500;
-  --app-bold-fw: 700;
-
-  --app-dark-bg: rgb(7, 48, 65);
-  --app-dark-color: rgb(236, 222, 222);
-
-  --app-light-color: rgb(16, 15, 15);
-  --app-light-bg: rgb(236, 222, 222);
-
-  --app-default-color: var(--app-light-color);
-  --app-default-bg: var(--app-light-bg);
-
-  --app-active-color: #7a1b1b;
-  --app-btn-color: rgba(148, 15, 15, 0.65);
-  --app-success-color: #077714;
-
-  --app-subZero-zi: -2;
-  --app-default-zi: 0;
-  --app-max-zi: 5;
-}
-
 label {
   cursor: pointer;
   display: flex;
@@ -66,4 +30,6 @@ button {
   margin: var(--app-sm-mr) 0;
   color: inherit;
   cursor: pointer;
+  letter-spacing: inherit;
+  word-spacing: inherit;
 }

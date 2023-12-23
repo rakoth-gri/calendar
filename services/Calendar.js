@@ -5,6 +5,7 @@ export default class Calendar {
   constructor({ calendar, store, weekday, inputList, delay }, options) {
     // DOM_ELEMENTS
     this.$calendar = calendar;
+    this.$overlay = null;
     this.$monthName = null;
     this.$year = null;
     this.$month = null;
@@ -97,6 +98,7 @@ export default class Calendar {
     );
     this.$year = this.$calendar.querySelector(".calendar__year");
     this.$month = this.$calendar.querySelector(".calendar__month");
+    this.$overlay = this.$calendar.querySelector(".calendar__overlay");
   }
 
   // отрисовываем сетку календаря 1 раз

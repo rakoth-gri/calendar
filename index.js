@@ -10,11 +10,16 @@ const calendar = new Calendar(
     store: Store,
     weekday: WEEK_DAY,
     inputList: INPUT_LIST,
-    delay: 5
+    delay: 10
   },
   {
-    // $calendar: {backgroundImage: 'url(./images/test1.jpg)'}
+    $calendar: {backgroundImage: 'url(./images/test1.jpg)', color: "whitesmoke"},
+    $overlay: {backdropFilter: 'grayscale(.39) blur(1px)'}
    }
 
 );
 
+// METHODS
+
+// calendar.changeTheme()
+// calendar.toggleHidden()
