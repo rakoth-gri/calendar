@@ -20,8 +20,7 @@ label {
 input,
 button {
   outline: none;
-  font-family: inherit;
-  font-size: inherit;
+  font: inherit;  
   background-color: var(--app-default-bg);
   border: none;
   border-radius: var(--app-xs-mr);

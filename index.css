@@ -47,7 +47,7 @@
 @font-face {
   font-family: "Roboto";
   src: url("./fonts/Roboto-Light.ttf");
-  font-weight: var(--app-light-fw);
+  font-weight: 300;
   font-display: swap;
   font-style: normal;
 }
@@ -55,7 +55,7 @@
 @font-face {
   font-family: "Roboto";
   src: url("./fonts/Roboto-Medium.ttf");
-  font-weight: var(-app-medium-fw);
+  font-weight: 500;
   font-display: swap;
   font-style: normal;
 }
@@ -63,7 +63,7 @@
 @font-face {
   font-family: "Roboto";
   src: url("./fonts/Roboto-Bold.ttf");
-  font-weight: var(--app-bold-fw);
+  font-weight: 700;
   font-display: swap;
   font-style: normal;
 }
@@ -71,7 +71,7 @@
 @font-face {
   font-family: "Montserrat";
   src: url("./fonts/Montserrat-Light.ttf");
-  font-weight: var(--app-light-fw);
+  font-weight: 300;
   font-display: swap;
   font-style: normal;
 }
@@ -79,7 +79,7 @@
 @font-face {
   font-family: "Montserrat";
   src: url("./fonts/Montserrat-Medium.ttf");
-  font-weight: var(-app-medium-fw);
+  font-weight: 500;
   font-display: swap;
   font-style: normal;
 }
@@ -87,7 +87,7 @@
 @font-face {
   font-family: "Montserrat";
   src: url("./fonts/Montserrat-Bold.ttf");
-  font-weight: var(--app-bold-fw);
+  font-weight: 700;
   font-display: swap;
   font-style: normal;
 }
@@ -95,7 +95,7 @@
 @font-face {
   font-family: "Bebas Neue";
   src: url("../fonts/BebasNeue-Regular.ttf");
-  font-weight: var(--app-light-fw);
+  font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
@@ -103,7 +103,7 @@
 @font-face {
   font-family: "Nunito Sans";
   src: url("../fonts/NunitoSans-Regular.ttf");
-  font-weight: var(-app-medium-fw);
+  font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
@@ -111,7 +111,7 @@
 @font-face {
   font-family: "Ubuntu";
   src: url("../fonts/Ubuntu-Regular.ttf");
-  font-weight: var(--app-bold-fw);
+  font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
@@ -134,6 +134,7 @@
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  font-weight: 300;
 }
 
 .calendar__overlay {
@@ -162,8 +163,7 @@ label {
 input,
 button {
   outline: none;
-  font-family: inherit;
-  font-size: inherit;
+  font: inherit;
   background-color: var(--app-default-bg);
   border: none;
   border-radius: var(--app-xs-mr);
@@ -201,32 +201,27 @@ button {
   font-variant: small-caps;
 }
 
-.calendar__panel_monthName {
-  font-weight: var(--app-bold-fw);
+.calendar__panel_monthName {  
   color: var(--app-active-color);
   width: 100%;
   text-align: right;
   padding: var(--app-xs-mr);
   display: inline-block;
-  font-variant: small-caps; 
+  font-variant: small-caps;
+  font-weight: var(--app-normal-fw); 
 }
 
 .calendar__field {
   margin: var(--app-md-mr) 0;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(7, calc(100% / 7));
-  border-right: 2px solid var(--app-default-color);
-  border-bottom: 2px solid var(--app-default-color);
+  grid-template-columns: repeat(7, calc(100% / 7));  
   z-index: var(--app-max-zi);
 }
 
 .calendar__field_cell,
 .calendar__field_header {
-  justify-self: center;
-  border: 2px solid var(--app-default-color);
-  border-right: none;
-  border-bottom: none;
+  justify-self: center;  
   width: 100%;
   display: flex;
   align-items: center;
@@ -235,11 +230,6 @@ button {
   cursor: pointer;
   overflow: hidden;
   transition: 0.09s all linear;
-}
-
-.calendar__monthName,
-label {
-  font-weight: var(--app-medium-fw);
 }
 
 .calendar__field_cell:hover,

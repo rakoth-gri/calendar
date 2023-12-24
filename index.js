@@ -13,7 +13,7 @@ const calendar = new Calendar(
     delay: 10
   },
   {
-    $calendar: {backgroundImage: 'url(./images/test1.jpg)'},
+    $calendar: {},
     $overlay: {backdropFilter: 'grayscale(.39) blur(1.7px)'}
    }
 
@@ -23,7 +23,7 @@ const calendar = new Calendar(
 
 // calendar.removeInlineStyles()
 
-// calendar.changeTheme()
+calendar.changeTheme()
 // calendar.toggleHidden()
 
 // calendar.addSelectorStyles("$calendar", 'font-family: "Nunito Sans"')

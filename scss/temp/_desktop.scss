@@ -9,7 +9,7 @@
   font-size: var(--app-md-fs);
   color: var(--app-default-color);
   transition: 0.25s all linear;
-  font-weight: 400;
+  font-weight: var(--app-light-fw);
   font-family: "Roboto";
   background-position: center center;
   background-repeat: no-repeat;
@@ -44,15 +44,13 @@
       }
     }
 
-    &_monthName {
-      font-weight: var(--app-bold-fw);
+    &_monthName {      
       color: var(--app-active-color);
       width: 100%;
       text-align: right;
       padding: var(--app-xs-mr);
       display: inline-block;
-      font-variant: small-caps; 
-      
+      font-variant: small-caps;       
     }
   }
 
@@ -77,25 +75,21 @@
     width: 100%;
     display: grid;
     grid-template-columns: repeat(7, calc(100% / 7));
-    grid-template-rows: repeat(5);
-    border-right: 2px solid var(--app-default-color);
-    border-bottom: 2px solid var(--app-default-color);
-    z-index: var(--app-max-zi);
+    grid-template-rows: repeat(5);    
+    z-index: var(--app-max-zi);   
 
     &_cell,
     &_header {
       justify-self: center;
-      border: 2px solid var(--app-default-color);
-      border-right: none;
-      border-bottom: none;
-      width: 100%;
+      border: none;
+      width: 90%;
       display: flex;
       align-items: center;
       justify-content: center;
-      height: 30px;
-      cursor: pointer;
+      height: 25px;
+      cursor: pointer;      
+      transition: 0.09s all linear;     
       overflow: hidden;
-      transition: 0.09s all linear;
       &:hover {
         color: var(--app-active-color);
         transform: scale(1.03);
@@ -106,12 +100,7 @@
       font-weight: var(--app-bold-fw);
       color: var(--app-active-color);     
     }
-  }
-
-  &__monthName,
-  label {
-    font-weight: var(--app-medium-fw);
-  }
+  }  
 }
 
 .hidden {

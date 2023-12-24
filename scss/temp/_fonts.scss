@@ -1,7 +1,7 @@
 @font-face {
   font-family: "Roboto";
   src: url("./fonts/Roboto-Light.ttf");
-  font-weight: var(--app-light-fw);
+  font-weight: 300;
   font-display: swap;
   font-style: normal;
 }
@@ -9,7 +9,7 @@
 @font-face {
   font-family: "Roboto";
   src: url("./fonts/Roboto-Medium.ttf");
-  font-weight: var(-app-medium-fw);
+  font-weight: 500;
   font-display: swap;
   font-style: normal;
 }
@@ -17,7 +17,7 @@
 @font-face {
   font-family: "Roboto";
   src: url("./fonts/Roboto-Bold.ttf");
-  font-weight: var(--app-bold-fw);
+  font-weight: 700;
   font-display: swap;
   font-style: normal;
 }
@@ -25,7 +25,7 @@
 @font-face {
   font-family: "Montserrat";
   src: url("./fonts/Montserrat-Light.ttf");
-  font-weight: var(--app-light-fw);
+  font-weight: 300;
   font-display: swap;
   font-style: normal;
 }
@@ -33,7 +33,7 @@
 @font-face {
   font-family: "Montserrat";
   src: url("./fonts/Montserrat-Medium.ttf");
-  font-weight: var(-app-medium-fw);
+  font-weight: 500;
   font-display: swap;
   font-style: normal;
 }
@@ -41,7 +41,7 @@
 @font-face {
   font-family: "Montserrat";
   src: url("./fonts/Montserrat-Bold.ttf");
-  font-weight: var(--app-bold-fw);
+  font-weight: 700;
   font-display: swap;
   font-style: normal;
 }
@@ -49,7 +49,7 @@
 @font-face {
   font-family: "Bebas Neue";
   src: url("../fonts/BebasNeue-Regular.ttf");
-  font-weight: var(--app-light-fw);
+  font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
@@ -57,7 +57,7 @@
 @font-face {
   font-family: "Nunito Sans";
   src: url("../fonts/NunitoSans-Regular.ttf");
-  font-weight: var(-app-medium-fw);
+  font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
@@ -65,7 +65,7 @@
 @font-face {
   font-family: "Ubuntu";
   src: url("../fonts/Ubuntu-Regular.ttf");
-  font-weight: var(--app-bold-fw);
+  font-weight: 400;
   font-display: swap;
   font-style: normal;
 }
