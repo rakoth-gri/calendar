@@ -104,11 +104,7 @@
 
     &_header {
       font-weight: var(--app-bold-fw);
-
-      &:hover {
-        color: var(--app-default-color);
-        transform: scale(1);
-      }
+      color: var(--app-active-color);     
     }
   }
 

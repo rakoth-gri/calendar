@@ -13,7 +13,7 @@ const calendar = new Calendar(
     delay: 10
   },
   {
-    $calendar: {backgroundImage: 'url(./images/test1.jpg)', color: "whitesmoke"},
+    $calendar: {backgroundImage: 'url(./images/test1.jpg)'},
     $overlay: {backdropFilter: 'grayscale(.39) blur(1.7px)'}
    }
 

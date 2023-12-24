@@ -254,7 +254,7 @@ label {
 
 .calendar__field_header {
   font-weight: var(--app-bold-fw);
-  color: var(--app-light-color);
+  color: var(--app-active-color)
 }
 
 .active {
