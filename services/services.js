@@ -15,14 +15,14 @@ const themeToggler = (theme) => {
     ROOT.style.setProperty('--app-default-bg', `var(--app-${theme}-bg)`)
 }
 
+
+// (year:number, month: number) => number
 const getFirstMonthDay = (year, month) => {    
     return new Date(year, month, 1).getDay();    
 }
 
-const cellsByFirstMonthDay = (firstDay) => {
-    firstDay > 0 ? cells.slice(firstDay - 1) : cells.slice(6)
-}
-
+// (firstDay:number, cells: HTMLDIVELEMENT[]) => number
+const cellsByFirstMonthDay = (firstDay, cells) => firstDay > 0 ? cells.slice(firstDay - 1) : cells.slice(6)
 
 export { monthFormat, getIntList, getHTML, themeToggler, getFirstMonthDay, cellsByFirstMonthDay };
 

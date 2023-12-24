@@ -161,7 +161,7 @@ export default class Calendar {
       this.store.currDate.month
     );
 
-    cells = cellsByFirstMonthDay(firstMonthDay)
+    cells = cellsByFirstMonthDay(firstMonthDay, cells)
 
     datesList.forEach((i) => {
       i + 1 === this.store.currDate.date && cells[i].classList.add("active");
