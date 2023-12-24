@@ -4,6 +4,7 @@ import {
   getHTML,
   themeToggler,
   getFirstMonthDay,
+  cellsByFirstMonthDay
 } from "./services.js";
 import { NAMES, CLASSES, YEARS_LIST } from "../constants/index.js";
 
@@ -154,10 +155,13 @@ export default class Calendar {
       cell.textContent = "";
       cell.classList.remove("active");
     });
- 
-    let firstMonthDay = getFirstMonthDay(this.store.currDate.year, this.store.currDate.month);
 
-    cells = firstMonthDay > 0 ? cells.slice(firstMonthDay - 1) : cells.slice(6);
+    let firstMonthDay = getFirstMonthDay(
+      this.store.currDate.year,
+      this.store.currDate.month
+    );
+
+    cells = cellsByFirstMonthDay(firstMonthDay)
 
     datesList.forEach((i) => {
       i + 1 === this.store.currDate.date && cells[i].classList.add("active");
