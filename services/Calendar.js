@@ -243,7 +243,7 @@ export default class Calendar {
   }
 
   // переключение темы
-  changeTheme() {
+  toggleTheme() {
     this.theme === "light" ? (this.theme = "dark") : (this.theme = "light");
     // if(new Date().getHours() >= 20) this.theme = "dark"
     themeToggler(this.theme);

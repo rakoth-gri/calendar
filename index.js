@@ -23,8 +23,11 @@ const calendar = new Calendar(
 
 // calendar.removeInlineStyles()
 
-calendar.changeTheme()
+calendar.toggleTheme()
 // calendar.toggleHidden()
 
 // calendar.addSelectorStyles("$calendar", 'font-family: "Nunito Sans"')
 
+// console.log(document.documentElement.clientWidth);
+
+window.addEventListener("resize", () => console.log(document.documentElement.clientWidth))
