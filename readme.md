@@ -301,7 +301,7 @@ const obj = {
 // объект options получает cтили:
 
 // cтартуем:
-calendar.changeTheme();
+calendar.toggleTheme();
 ```
 
 #### Переключение на светлую тему (lightMode):
@@ -330,7 +330,7 @@ calendar.toggleHidden();
 
   calendar.logCurrDate()
 
-// Результат в консоли:
+// Результат объекта Даты в консоли:
 
 {year: 2023, month: 11, date: 21}
 
@@ -341,10 +341,11 @@ calendar.toggleHidden();
 #### Получение строки с текущей датой:
 
 ```javascript
-calendar.getCurrDateString() // Результат в консоли:
-`2023 11 22`;
-```
+calendar.getCurrDateString() 
 
+// Результат в консоли:
+`2023 декабрь 25`;
+```
 ---
 
 #### Удаление inline-стилей всех Селекторов:
@@ -373,7 +374,8 @@ calendar.removeSelectorStyles("$calendarField");
 #### Метод **addSelectorStyles** принимает 2 аргумента:
 
 - ###### selector - один из 5-ти ранее описанных Селекторов;
-- ###### styles - строка стилей в СSS-нотации либо '': 'text-transform: uppercase; background: white;'
+- ###### styles - строка стилей в СSS-нотации либо '': <br>
+'text-transform: uppercase; background: white;'
 
 ```javascript
 // 1 аргумент - Селектор, inline-стили которого необходимо обновить или расширить:

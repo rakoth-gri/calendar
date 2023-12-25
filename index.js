@@ -31,3 +31,7 @@ window.addEventListener("resize", () =>
 
 calendar.toggleTheme();
 // setInterval(() => calendar.toggleHidden(), 2000)
+
+console.log(calendar.getCurrDateString());
+
+calendar.removeSelectorStyles("$overlay")
