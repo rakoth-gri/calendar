@@ -8,13 +8,20 @@
   align-items: start;
   font-size: var(--app-md-fs);
   color: var(--app-default-color);
-  transition: 0.25s all linear;
   font-weight: var(--app-light-fw);
   font-family: "Roboto";
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  transform: scale(1);
+  transition: 0.25s all linear;
+  z-index: 0;
+
+  &.hidden {
+    transform: scale(0.01);
+    z-index: var(--app-subZero-zi);
+  }
   
 
   &__overlay {
@@ -103,10 +110,6 @@
   }  
 }
 
-.hidden {
-  transform: scale(0.01);
-  z-index: var(--app-subZero-zi);
-}
 
 .active {
   color: var(--app-active-color);

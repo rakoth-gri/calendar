@@ -13,17 +13,18 @@ const calendar = new Calendar(
     delay: 10,
   },
   {
-    $calendar: {fontWeight: 700}
+    $calendar: {fontWeight: 400, color: null}
   }
 );
 
 // API
 
-calendar.addSelectorStyles("$calendar", 'font-family: "Nunito Sans"');
+// calendar.addSelectorStyles("$calendar", 'font-family: "Nunito Sans"');
 
 
 window.addEventListener("resize", () =>
   console.log(document.documentElement.clientWidth)
 );
 
-calendar.toggleTheme()
+// calendar.toggleTheme()
+// setInterval(() => calendar.toggleHidden(), 2000)

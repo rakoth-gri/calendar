@@ -129,12 +129,14 @@
   font-size: var(--app-md-fs);
   font-family: "Roboto", sans-serif;
   color: var(--app-default-color);
-  transition: 0.3s all linear;
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
   font-weight: 300;
+  transform: scale(1);
+  transition: 0.3s all linear;
+  z-index: 0;
 }
 
 .calendar.hidden {

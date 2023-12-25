@@ -15,7 +15,6 @@ const changeTheme = (theme) => {
     ROOT.style.setProperty('--app-default-bg', `var(--app-${theme}-bg)`)
 }
 
-
 // (year:number, month: number) => number
 const getFirstMonthDay = (year, month) => {    
     return new Date(year, month, 1).getDay();    
