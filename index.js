@@ -13,7 +13,14 @@ const calendar = new Calendar(
     delay: 10,
   },
   {
-    
+    $calendarField: {
+      transform: "rotateZ(5deg)",
+      fontFamily: "Nunito Sans",
+    },
+    $year: { backgroundColor: "teal" },
+    $month: false,
+    // относительные пути изображений в вашем проекте могут отличаться!
+    $calendar: { fontFamily: "Montserrat", background: 'url(./images/test1.jpg)' },
   }
 );
 
@@ -26,6 +33,6 @@ window.addEventListener("resize", () =>
   console.log(document.documentElement.clientWidth)
 );
 
-// calendar.toggleTheme()
+calendar.toggleTheme()
 // setInterval(() => calendar.toggleHidden(), 2000)
 
