@@ -262,8 +262,9 @@ const obj = {
   // объект options
 
   {
-    $calendar: {backgroundImage: 'url(./images/test1.jpg)', color: "whitesmoke"},
-    $overlay: {backdropFilter: 'grayscale(.48) blur(1.8px)'}
+    $calendar: {
+      backgroundImage: "url(./images/test1.jpg)", color: "whitesmoke"},
+    $overlay: { backdropFilter: "grayscale(.55) blur(2.1px)" },
   }
 
 ```
