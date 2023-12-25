@@ -10,24 +10,20 @@ const calendar = new Calendar(
     store: Store,
     weekday: WEEK_DAY,
     inputList: INPUT_LIST,
-    delay: 10
+    delay: 10,
   },
   {
-    $calendar: {},
-    $overlay: {backdropFilter: 'grayscale(.39) blur(1.7px)'}
-   }
-
+    $calendar: {fontWeight: 700}
+  }
 );
 
 // API
 
-// calendar.removeInlineStyles()
+calendar.addSelectorStyles("$calendar", 'font-family: "Nunito Sans"');
+
+
+window.addEventListener("resize", () =>
+  console.log(document.documentElement.clientWidth)
+);
 
 calendar.toggleTheme()
-// calendar.toggleHidden()
-
-// calendar.addSelectorStyles("$calendar", 'font-family: "Nunito Sans"')
-
-// console.log(document.documentElement.clientWidth);
-
-window.addEventListener("resize", () => console.log(document.documentElement.clientWidth))

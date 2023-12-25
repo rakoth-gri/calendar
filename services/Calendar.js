@@ -2,7 +2,7 @@ import {
   getIntList,
   monthFormat,
   getHTML,
-  themeToggler,
+  changeTheme,
   getFirstMonthDay,
   cellsByFirstMonthDay
 } from "./services.js";
@@ -127,24 +127,21 @@ export default class Calendar {
   }
 
   // рендерим кастомные inline-стили только 1 раз
-  setInlineStyles(styled) {
-    if (!Object.values(styled).some((val) => val)) {
-      console.error("Значения полей объекта 'styled' не заданы...");
+  setInlineStyles(is) {
+    if (!Object.values(is).some((val) => val)) {
+      console.error("Значения полей объекта 'is' не заданы...");
       return;
     }
 
-    Object.keys(styled).forEach((selector) => {
-      // Обработка ошибок
-      const inline = styled[selector] ?? {};
+    Object.keys(is).forEach((selector) => {
+      // Проверка:
+      if(!is[selector]) return; 
 
-      if (
-        Object.keys(inline).length &&
-        Object.values(inline).some((val) => val)
-      ) {
-        Object.keys(inline).forEach(
-          (key) => (this[selector].style[key] = inline[key])
+      if (Object.values(is[selector]).some((val) => val)
+      ) 
+        Object.keys(is[selector]).forEach(
+          (key) => (this[selector].style[key] = is[selector][key])
         );
-      } else return;
     });
   }
 
@@ -199,6 +196,9 @@ export default class Calendar {
           month: new Date().getMonth(),
           date: new Date().getDate(),
         });
+
+    console.log(this.getCurrDateString());
+        
   };
 
   addClickListenerToCalendar() {
@@ -220,21 +220,25 @@ export default class Calendar {
   // получение строки с текущей датой
   getCurrDateString() {
     const { year, month, date } = this.store.currDate;
-
-    return `${year} ${month} ${date}`;
+    return `${year} ${monthFormat(month)} ${date}`;
   }
 
   // удаление всех inline-стилей
   removeInlineStyles() {
-    [this.$calendar, this.$year, this.$monthName, this.$calendarField].forEach(
+    [this.$calendar, this.$year, this.$monthName, this.$calendarField, this.$overlay].forEach(
       (el) => el.removeAttribute("style")
     );
   }
 
   // добавление inline-стилей по Селектору
   addSelectorStyles(selector, styles) {
-    const currInlineStyles = this[selector].getAttribute("style");
-    this[selector].setAttribute("style", currInlineStyles + styles);
+
+    if(!styles) return   
+
+    // Проверки:
+    let currInlineStyles = this[selector].getAttribute("style") ?? "";    
+    
+    this[selector].setAttribute("style", (currInlineStyles.match(/;$/) ? currInlineStyles : currInlineStyles + ";") + styles);
   }
 
   // удаление inline-стилей по Селектору
@@ -246,6 +250,6 @@ export default class Calendar {
   toggleTheme() {
     this.theme === "light" ? (this.theme = "dark") : (this.theme = "light");
     // if(new Date().getHours() >= 20) this.theme = "dark"
-    themeToggler(this.theme);
+    changeTheme(this.theme);
   }
 }

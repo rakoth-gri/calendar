@@ -137,6 +137,11 @@
   font-weight: 300;
 }
 
+.calendar.hidden {
+  transform: scale(0.01);
+  z-index: var(--app-subZero-zi);
+}
+
 .calendar__overlay {
   width: 100%;
   display: block;
@@ -207,8 +212,7 @@ button {
   text-align: right;
   padding: var(--app-xs-mr);
   display: inline-block;
-  font-variant: small-caps;
-  font-weight: var(--app-normal-fw); 
+  font-variant: small-caps;  
 }
 
 .calendar__field {
@@ -252,10 +256,7 @@ button {
   transform: scale(1.03);
 }
 
-.hidden {
-  transform: scale(0.01);
-  z-index: var(--app-subZero-zi);
-}
+
 
 /* MEDIA QUERRIES ---- */
 
