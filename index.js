@@ -13,7 +13,7 @@ const calendar = new Calendar(
     delay: 10,
   },
   {
-    $calendar: {fontWeight: 400, color: null}
+    
   }
 );
 
@@ -28,3 +28,4 @@ window.addEventListener("resize", () =>
 
 // calendar.toggleTheme()
 // setInterval(() => calendar.toggleHidden(), 2000)
+

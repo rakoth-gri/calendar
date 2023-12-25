@@ -6,6 +6,10 @@
   margin: 0px;
 }
 
+body {
+  margin: 2rem;
+}
+
 label {
   cursor: pointer;
   display: flex;
@@ -31,4 +35,5 @@ button {
   cursor: pointer;
   letter-spacing: inherit;
   word-spacing: inherit;
+  text-transform: inherit;
 }

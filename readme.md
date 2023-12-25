@@ -110,7 +110,7 @@ const calendar = new Calendar(
     inputList: INPUT_LIST,
     delay: 10, // шаг задержки в ms при отображения месячных дат
   },
-  {} // второй аргумент - объект **options** для передачи кастомных инлайн-стилей
+  {} // второй аргумент - объект **options** для передачи пользовательских инлайн-стилей
 );
 ```
 
@@ -122,7 +122,7 @@ const calendar = new Calendar(
 
 ```javascript
 
-// Валидными значениями каждого из 4-х Селекторов - выступают объекты СSS-стилей, описанные в Javascript-Нотации:
+// Валидными значениями каждого из 4-х Селекторов выступают объекты СSS-стилей, описанные в JS-нотации:
 
 {
   [selector1]: {
@@ -138,7 +138,7 @@ const calendar = new Calendar(
 
 ```
 
-На сегодня, для стилизации через **options** / **API** доступно 5 Селекторов, 'представляющих' 5 DOM-элементов:
+Пока, для стилизации через **options** / **API** доступно 5 Селекторов, 'представляющих' 5 DOM-элементов:
 
 - **'$calendar'** - главный контейнер календаря:<br>
   !['$calendar'](images/$calendar.png "$calendar")
@@ -157,11 +157,11 @@ const calendar = new Calendar(
   {
     $calendarField: {
       transform: "rotateZ(5deg)",
-      fontFamily: "Bebas Neue",
+      fontFamily: "Nunito Sans",
     },
     $year: { backgroundColor: "teal" },
     $month: false,
-    // относительные пути изображений в вашем Проекте могут отличаться!
+    // относительные пути изображений в вашем проекте могут отличаться!
     $calendar: { fontFamily: "Montserrat", background: './images/test1.jpg' },
   }
 
@@ -173,7 +173,7 @@ const calendar = new Calendar(
 
 ##### Допустимо:
 
-- передавать пустой объект **options** (inline-стили не заданы);
+- передавать пустой объект **options**;
 - стилизовать конкретные Селекторы;
 - использовать в качестве значений Селекторов 'лживые' значения: **null** / **undefined** / **''** / **false**
 
@@ -191,7 +191,7 @@ const calendar = new Calendar(
 
 #### ВАЖНО! объект **options** манипулирует с inline-стилями (CSS-специфичность: **1, 0, 0, 0**). Если необходимо, в дальнейшем, переопределить или добавить к ним новые стили - воспользуйтесь методами API (рассмотрим далее...), либо вовсе не передавайте св-ва.
 
-#### На всякий случай)) примеры аналогичных стилей в CSS и JS:
+#### Примеры аналогичных стилей в CSS и JS:
 
 ```css
 <style>
@@ -249,7 +249,7 @@ const obj = {
   {
     $calendar: {backgroundImage: 'url(./images/test1.jpg)'},
     $overlay: null
-   }
+  }
 
 ```
 
@@ -263,7 +263,7 @@ const obj = {
 
   {
     $calendar: {backgroundImage: 'url(./images/test1.jpg)', color: "whitesmoke"},
-    $overlay: {backdropFilter: 'grayscale(.39) blur(1px)'}
+    $overlay: {backdropFilter: 'grayscale(.48) blur(1.8px)'}
   }
 
 ```
@@ -299,19 +299,14 @@ const obj = {
 
 ```javascript
 // объект options получает cтили:
-  {
-    $calendar: { fontFamily: "Ubuntu", backgroundImage: "url('./images/test2.jpg')" },
-  }
 
-  // cтартуем:
-
-  calendar.changeTheme();
-
+// cтартуем:
+calendar.changeTheme();
 ```
 
-#### Результат с darkmode ниже:
+#### Переключение на светлую тему (lightMode):
 
-!['dark'](images/dark.png "dark")
+!['light'](images/light.png "light")
 
 ---
 

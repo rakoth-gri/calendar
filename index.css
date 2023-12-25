@@ -118,6 +118,10 @@
 
 /* CALENDAR CONTAINER STYLES */
 
+body {
+  margin: 2rem;
+}
+
 .calendar {
   padding: var(--app-md-mr);
   width: 19%;
@@ -164,7 +168,7 @@ label {
   width: 100%;
   padding: 0 var(--app-xs-mr);
   z-index: var(--app-max-zi);
-  font-variant: small-caps; 
+  font-variant: small-caps;
 }
 
 input,
@@ -203,31 +207,31 @@ button {
   z-index: var(--app-max-zi);
 }
 
-.calendar__panel_btn {  
+.calendar__panel_btn {
   background-color: var(--app-btn-color);
   font-variant: small-caps;
 }
 
-.calendar__panel_monthName {  
+.calendar__panel_monthName {
   color: var(--app-active-color);
   width: 100%;
   text-align: right;
   padding: var(--app-xs-mr);
   display: inline-block;
-  font-variant: small-caps;  
+  font-variant: small-caps;
 }
 
 .calendar__field {
   margin: var(--app-md-mr) 0;
   width: 100%;
   display: grid;
-  grid-template-columns: repeat(7, calc(100% / 7));  
+  grid-template-columns: repeat(7, calc(100% / 7));
   z-index: var(--app-max-zi);
 }
 
 .calendar__field_cell,
 .calendar__field_header {
-  justify-self: center;  
+  justify-self: center;
   width: 100%;
   display: flex;
   align-items: center;
@@ -250,15 +254,13 @@ button {
 
 .calendar__field_header {
   font-weight: var(--app-bold-fw);
-  color: var(--app-active-color)
+  color: var(--app-active-color);
 }
 
 .active {
   color: var(--app-active-color);
   transform: scale(1.03);
 }
-
-
 
 /* MEDIA QUERRIES ---- */
 
