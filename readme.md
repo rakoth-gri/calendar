@@ -298,7 +298,6 @@ const obj = {
 #### Метод переключает тему: со светлой на темную и наоборот (работает при использовании базовых стилей index.min.css / index.css):
 
 ```javascript
-// объект options получает cтили:
 
 // cтартуем:
 calendar.toggleTheme();
@@ -351,8 +350,7 @@ calendar.getCurrDateString()
 #### Удаление inline-стилей всех Селекторов:
 
 ```javascript
-// удаляем:
-// обратно к предустановленным стилям файлов index.min.css/ index.css
+// возвращаемся к базовым стилям (index.min.css/ index.css):
 
 calendar.removeInlineStyles();
 ```
@@ -378,8 +376,7 @@ calendar.removeSelectorStyles("$calendarField");
 'text-transform: uppercase; background: white;'
 
 ```javascript
-// 1 аргумент - Селектор, inline-стили которого необходимо обновить или расширить:
-// Важно! метод не удаляет сущ. inline-стили, а добавляет новые либо перезаписывает одноименные!
+// Важно! метод не удаляет сущ. inline-стили, а добавляет новые!
 
 calendar.addSelectorStyles(
   "$calendar",
