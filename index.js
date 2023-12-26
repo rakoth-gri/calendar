@@ -10,17 +10,17 @@ const calendar = new Calendar(
     store: Store,
     weekday: WEEK_DAY,
     inputList: INPUT_LIST,
-    delay: 10,
-    time: true
+    delay: undefined,
+    // time: true,
   },
   {
     $calendar: {},
-    $overlay: {},
+    $overlay: null,
+    $timeBoard: { color: "pink", fontFamily: "Montserrat" }
   }
 );
 
 // API
-
 
 window.addEventListener("resize", () =>
   console.log(document.documentElement.clientWidth)
@@ -28,6 +28,6 @@ window.addEventListener("resize", () =>
 
 calendar.toggleTheme();
 
-
+calendar.toggleTimer()
 
 

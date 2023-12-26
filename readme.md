@@ -108,7 +108,8 @@ const calendar = new Calendar(
     store: Store, // управление состоянием даты с автоматической отрисовкой актуальной даты
     weekday: WEEK_DAY,
     inputList: INPUT_LIST,
-    delay: 10, // шаг задержки в ms при отображения месячных дат
+    delay: 10, // шаг задержки в ms при отображения месячных дат, необязательный параметр
+    time: true, // включает панель текущего времени, принимает значения true / false, необязательный параметр
   },
   {} // второй аргумент - объект **options** для передачи пользовательских инлайн-стилей
 );
@@ -122,7 +123,7 @@ const calendar = new Calendar(
 
 ```javascript
 
-// Валидными значениями каждого из 4-х Селекторов выступают объекты СSS-стилей, описанные в JS-нотации:
+// Валидными значениями каждого из 6-ти Селекторов выступают объекты СSS-стилей, описанные в JS-нотации:
 
 {
   [selector1]: {
@@ -134,7 +135,9 @@ const calendar = new Calendar(
   [selector3]: null,
   [selector4]: { backgroundColor: "green" },
   [selector5]: {backdropFilter: 'grayscale(.8)'},
+  [selector6]: {},
 }
+
 
 ```
 
@@ -148,6 +151,8 @@ const calendar = new Calendar(
   !['$monthName'](images/$monthName.png "$monthName")
 - **'$calendarField'** - поле отображения месячных дат:<br>
   !['$calendarField'](images/$calendarField.png "$calendarField")
+- **'$timeBoard'** - поле отображения текущего времени:<br>
+  !['$timeBoard'](images/$timeBoard.png "$timeBoard")
 - **'$overlay'** - промежуточный слой, находящийся по оси Z между слоем UI-элементов (**'$year'**, **'$monthName'**, **'$calendarField'**) и главным контейнером (**'$calendar'**). Позволяет использовать св-во 'backdrop-filter' при задании изображения в качестве фона Селектора **'$calendar'**.
 
 Пример Валидного объекта **options**:
@@ -311,7 +316,7 @@ calendar.toggleTheme();
 
 #### Изменение видимости:
 
-#### Можно скрыть / показать элемент Календаря (работает при использовании базовых стилей index.min.css / index.css)
+#### Скрытие / показ Календаря (работает при использовании базовых стилей index.min.css / index.css)
 
 ```javascript
 // скрыть / показать:
@@ -319,6 +324,14 @@ calendar.toggleTheme();
 calendar.toggleHidden();
 ```
 
+---
+
+#### Включение / отключение панели  текущего времени (работает при использовании базовых стилей index.min.css / index.css)
+
+```javascript
+// скрыть / показать:
+calendar.toggleTimer();
+```
 ---
 
 #### Логирование текущей даты:
