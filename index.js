@@ -13,25 +13,13 @@ const calendar = new Calendar(
     delay: 10,
   },
   {
-    $calendar: {
-      backgroundImage: "url(./images/test1.jpg)",
-      color: "whitesmoke",
-    },
-    $overlay: { backdropFilter: "grayscale(.55) blur(2.1px)" },
+    $calendar: {},    
   }
 );
 
 // API
 
-// calendar.addSelectorStyles("$calendar", 'font-family: "Nunito Sans"');
-
 window.addEventListener("resize", () =>
   console.log(document.documentElement.clientWidth)
 );
 
-calendar.toggleTheme();
-// setInterval(() => calendar.toggleHidden(), 2000)
-
-console.log(calendar.getCurrDateString());
-
-calendar.removeSelectorStyles("$overlay")
