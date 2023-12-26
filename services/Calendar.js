@@ -4,17 +4,20 @@ import {
   getHTML,
   changeTheme,
   getFirstMonthDay,
-  cellsByFirstMonthDay
+  cellsByFirstMonthDay,
+  timeFormat,
 } from "./services.js";
 import { NAMES, CLASSES, YEARS_LIST } from "../constants/index.js";
 
 export default class Calendar {
-  constructor({ calendar, store, weekday, inputList, delay }, options) {
+  constructor({ calendar, store, weekday, inputList, delay, time }, options) {
     // DOM_ELEMENTS
     this.$calendar = calendar;
     this.$overlay = null;
     this.$monthName = null;
     this.$year = null;
+    this.$timeBoard = null;
+    this.$timeSegs = null;
     this.$month = null;
     this.$calendarField = null;
     this.$cells = null;
@@ -22,12 +25,13 @@ export default class Calendar {
     this.store = store;
     this.theme = "light";
     this.delay = delay;
+    this.interval = null;
     // METHODS
-    this.init(weekday, inputList, delay, options);
+    this.init(weekday, inputList, delay, options, time);
   }
 
   // BUILDER SCHEME ---
-  init(weekday, inputList, delay, options) {
+  init(weekday, inputList, delay, options, time) {
     // 1 --
     this.renderMarkUp(inputList);
     // 2 --
@@ -51,6 +55,8 @@ export default class Calendar {
     // 5 --
     this.addChangeListenerToCalendar();
     this.addClickListenerToCalendar();
+    // 6. timer
+    time && this.toggleTimer();
   }
 
   // отрисовываем разметку календаря 1 раз
@@ -94,7 +100,13 @@ export default class Calendar {
       </datalist>
       <div class="calendar__panel">
         <button class="calendar__panel_btn"> сегодня </button>
+        <div class="calendar__panel_time">
+            <span class="time">${timeFormat(new Date().getHours())}</span>
+            <span>:</span>
+            <span class="time">${timeFormat(new Date().getMinutes())}</span>
+        </div>
         <div class="calendar__panel_monthName"></div>
+        
       </div>      
       <div class="calendar__field"></div>
         
@@ -106,6 +118,8 @@ export default class Calendar {
     this.$year = this.$calendar.querySelector(".calendar__year");
     this.$month = this.$calendar.querySelector(".calendar__month");
     this.$overlay = this.$calendar.querySelector(".calendar__overlay");
+    this.$timeBoard = this.$calendar.querySelector(".calendar__panel_time");
+    this.$timeSegs = this.$calendar.querySelectorAll(".time");
   }
 
   // отрисовываем сетку календаря 1 раз
@@ -135,10 +149,9 @@ export default class Calendar {
 
     Object.keys(is).forEach((selector) => {
       // Проверка:
-      if(!is[selector]) return; 
+      if (!is[selector]) return;
 
-      if (Object.values(is[selector]).some((val) => val)
-      ) 
+      if (Object.values(is[selector]).some((val) => val))
         Object.keys(is[selector]).forEach(
           (key) => (this[selector].style[key] = is[selector][key])
         );
@@ -158,7 +171,7 @@ export default class Calendar {
       this.store.currDate.month
     );
 
-    cells = cellsByFirstMonthDay(firstMonthDay, cells)
+    cells = cellsByFirstMonthDay(firstMonthDay, cells);
 
     datesList.forEach((i) => {
       i + 1 === this.store.currDate.date && cells[i].classList.add("active");
@@ -198,7 +211,6 @@ export default class Calendar {
         });
 
     console.log(this.getCurrDateString());
-        
   };
 
   addClickListenerToCalendar() {
@@ -225,20 +237,28 @@ export default class Calendar {
 
   // удаление всех inline-стилей
   removeInlineStyles() {
-    [this.$calendar, this.$year, this.$monthName, this.$calendarField, this.$overlay].forEach(
-      (el) => el.removeAttribute("style")
-    );
+    [
+      this.$calendar,
+      this.$year,
+      this.$monthName,
+      this.$calendarField,
+      this.$overlay,
+    ].forEach((el) => el.removeAttribute("style"));
   }
 
   // добавление inline-стилей по Селектору
   addSelectorStyles(selector, styles) {
-
-    if(!styles) return   
+    if (!styles) return;
 
     // Проверки:
-    let currInlineStyles = this[selector].getAttribute("style") ?? "";    
-    
-    this[selector].setAttribute("style", (currInlineStyles.match(/;$/) ? currInlineStyles : currInlineStyles + ";") + styles);
+    let currInlineStyles = this[selector].getAttribute("style") ?? "";
+
+    this[selector].setAttribute(
+      "style",
+      (currInlineStyles.match(/;$/)
+        ? currInlineStyles
+        : currInlineStyles + ";") + styles
+    );
   }
 
   // удаление inline-стилей по Селектору
@@ -251,5 +271,17 @@ export default class Calendar {
     this.theme === "light" ? (this.theme = "dark") : (this.theme = "light");
     // if(new Date().getHours() >= 20) this.theme = "dark"
     changeTheme(this.theme);
+  }
+
+  toggleTimer() {
+    this.$timeBoard.classList.toggle("active")
+    this.interval ? 
+      clearInterval(this.interval)
+    : this.interval = setInterval(() => {
+      [
+        timeFormat(new Date().getHours()),
+        timeFormat(new Date().getMinutes()),
+      ].forEach((t, i) => (this.$timeSegs[i].textContent = t));
+    }, 60000);
   }
 }

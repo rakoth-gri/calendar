@@ -123,14 +123,14 @@ body {
 }
 
 .calendar {
-  padding: var(--app-md-mr);
+  padding: var(--app-sm-mr);
   width: 19%;
   background-color: var(--app-default-bg);
   border-radius: var(--app-sm-mr);
   display: flex;
   flex-direction: column;
   align-items: start;
-  font-size: var(--app-md-fs);
+  font-size: 18px;
   font-family: "Roboto", sans-serif;
   color: var(--app-default-color);
   background-position: center center;
@@ -203,18 +203,36 @@ button {
   width: 100%;
   display: flex;
   align-items: center;
-  justify-content: space-around;
+  justify-content: space-between;
   z-index: var(--app-max-zi);
 }
 
 .calendar__panel_btn {
   background-color: var(--app-btn-color);
   font-variant: small-caps;
+  width: 35%;
+}
+
+.calendar__panel_time {
+  display: flex;
+  align-items: center;
+  font-weight: var(--app-medium-fw);
+  font-size: 1.13em;
+  display: none;
+  margin-left: 0.25em;      
+}
+
+.calendar__panel_time.active {
+  display: flex;    
+} 
+
+.calendar__panel_time span {
+  margin-right: var(--app-xs-mr);
 }
 
 .calendar__panel_monthName {
   color: var(--app-active-color);
-  width: 100%;
+  width: auto;
   text-align: right;
   padding: var(--app-xs-mr);
   display: inline-block;
@@ -243,6 +261,11 @@ button {
   transition: 0.09s all linear;
 }
 
+.calendar__field_cell.active {
+  color: var(--app-active-color);
+  transform: scale(1.03);
+}
+
 .calendar__field_cell:hover,
 .calendar__panel_btn:hover {
   color: var(--app-active-color);
@@ -258,10 +281,6 @@ button {
   color: var(--app-active-color);
 }
 
-.active {
-  color: var(--app-active-color);
-  transform: scale(1.03);
-}
 
 /* MEDIA QUERRIES ---- */
 
@@ -294,6 +313,7 @@ button {
   .calendar {
     width: 38%;
     font-size: 14px;
+    padding: var(--app-xs-mr);
   }
 
   .calendar__field {
@@ -307,6 +327,11 @@ button {
 }
 
 @media screen and (max-width: 575.98px) {
+
+  input {
+    margin: 0.25em 0
+  }
+
   .calendar {
     width: 45%;
     font-size: 12px;
@@ -321,6 +346,7 @@ button {
 
 @media screen and (max-width: 454.98px) {
   .calendar {
-    width: 50%;
-  }
+    width: 52%;
+    font-size: 11.5px;  
+  }   
 }

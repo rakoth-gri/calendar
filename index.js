@@ -11,27 +11,23 @@ const calendar = new Calendar(
     weekday: WEEK_DAY,
     inputList: INPUT_LIST,
     delay: 10,
+    time: true
   },
   {
-    $calendar: {
-      backgroundImage: "url(./images/test1.jpg)",
-      color: "whitesmoke",
-    },
-    $overlay: { backdropFilter: "grayscale(.55) blur(2.1px)" },
+    $calendar: {},
+    $overlay: {},
   }
 );
 
 // API
 
-// calendar.addSelectorStyles("$calendar", 'font-family: "Nunito Sans"');
 
 window.addEventListener("resize", () =>
   console.log(document.documentElement.clientWidth)
 );
 
 calendar.toggleTheme();
-// setInterval(() => calendar.toggleHidden(), 2000)
 
-console.log(calendar.getCurrDateString());
 
-calendar.removeSelectorStyles("$overlay")
+
+

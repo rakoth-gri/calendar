@@ -1,12 +1,12 @@
 .calendar {
-  padding: var(--app-md-mr);
+  padding: var(--app-sm-mr);
   width: 19%;
   background-color: var(--app-default-bg);
   border-radius: var(--app-sm-mr);
   display: flex;
   flex-direction: column;
   align-items: start;
-  font-size: var(--app-md-fs);
+  font-size: 18px;
   color: var(--app-default-color);
   font-weight: var(--app-light-fw);
   font-family: "Roboto";
@@ -22,43 +22,58 @@
     transform: scale(0.01);
     z-index: var(--app-subZero-zi);
   }
-  
 
   &__overlay {
     width: 100%;
     display: block;
-    background: rgba(0,0,0, .28);
+    background: rgba(0, 0, 0, 0.28);
     position: absolute;
     top: 0;
-    left: 0;    
+    left: 0;
     height: 100%;
     border-radius: var(--app-sm-mr);
-    backdrop-filter: blur(1.5px);    
+    backdrop-filter: blur(1.5px);
   }
 
   &__panel {
     width: 100%;
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
     z-index: var(--app-max-zi);
 
     &_btn {
       background-color: var(--app-btn-color);
-      font-variant: small-caps; 
+      font-variant: small-caps;
+      width: auto;
       &:hover {
         transform: scale(1.03);
       }
     }
 
-    &_monthName {      
-      color: var(--app-active-color);
-      width: 100%;
+    &_monthName {
+      color: var(--app-active-color);      
       text-align: right;
       padding: var(--app-xs-mr);
       display: inline-block;
       font-variant: small-caps;
-      font-weight: var(--app-medium-fw);       
+      font-weight: var(--app-medium-fw);
+      width: auto;
+    }
+
+    &_time {
+      display: flex;
+      align-items: center;
+      font-weight: var(--app-medium-fw);
+      font-size: 1.10em;
+      display: none;
+      margin-left: 3px;      
+      span {
+        margin-right: var(--app-xs-mr);
+      }
+      &.active {
+        display: flex;
+      }
     }
   }
 
@@ -83,8 +98,8 @@
     width: 100%;
     display: grid;
     grid-template-columns: repeat(7, calc(100% / 7));
-    grid-template-rows: repeat(5);    
-    z-index: var(--app-max-zi);   
+    grid-template-rows: repeat(5);
+    z-index: var(--app-max-zi);
 
     &_cell,
     &_header {
@@ -95,10 +110,16 @@
       align-items: center;
       justify-content: center;
       height: 30px;
-      cursor: pointer;      
-      transition: 0.09s all linear;     
+      cursor: pointer;
+      transition: 0.09s all linear;
       overflow: hidden;
+      
       &:hover {
+        color: var(--app-active-color);
+        transform: scale(1.03);
+      }
+
+      &.active {
         color: var(--app-active-color);
         transform: scale(1.03);
       }
@@ -106,13 +127,9 @@
 
     &_header {
       font-weight: var(--app-bold-fw);
-      color: var(--app-active-color);     
+      color: var(--app-active-color);
     }
-  }  
+  }
 }
 
 
-.active {
-  color: var(--app-active-color);
-  transform: scale(1.03);
-}

@@ -3,6 +3,9 @@ import { MONTH_MAP, ROOT } from "../constants/index.js";
 // (num:number) => string
 const monthFormat = (num) => MONTH_MAP[num];
 
+// (num:number) => string | number
+const timeFormat = (time) => time < 10 ? `0${time}` : time;
+
 // (len:number) => Array<number>
 const getIntList = (len) => new Array(len).fill().map((_, i) => i);
 
@@ -23,6 +26,6 @@ const getFirstMonthDay = (year, month) => {
 // (firstDay:number, cells: HTMLDIVELEMENT[]) => number
 const cellsByFirstMonthDay = (firstDay, cells) => firstDay > 0 ? cells.slice(firstDay - 1) : cells.slice(6)
 
-export { monthFormat, getIntList, getHTML, changeTheme, getFirstMonthDay, cellsByFirstMonthDay };
+export { monthFormat, getIntList, getHTML, changeTheme, getFirstMonthDay, cellsByFirstMonthDay, timeFormat };
 
 
