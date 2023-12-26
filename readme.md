@@ -379,13 +379,10 @@ calendar.removeSelectorStyles("$calendarField");
 
 ---
 
-#### Добавление inline-стилей Селектору:
+#### Метод **addSelectorStyles** добавляет inline-стили конкретному Селектору и принимает 2 аргумента:
 
-#### Метод **addSelectorStyles** принимает 2 аргумента:
-
-- ###### selector - один из 5-ти ранее описанных Селекторов;
-- ###### styles - строка стилей в СSS-нотации либо '': <br>
-  'text-transform: uppercase; background: white;'
+- ###### selector - один из 6-ти ранее описанных Селекторов;
+- ###### styles - строка стилей в СSS-нотации: 'text-transform: uppercase; background: white;'
 
 ```javascript
 // Важно! метод не удаляет сущ. inline-стили, а добавляет новые!
