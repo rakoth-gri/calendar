@@ -11,12 +11,12 @@ const calendar = new Calendar(
     weekday: WEEK_DAY,
     inputList: INPUT_LIST,
     delay: undefined,
-    // time: true,
+    time: true,
   },
   {
     $calendar: {},
     $overlay: null,
-    $timeBoard: { color: "pink", fontFamily: "Montserrat" }
+    $timeBoard: { fontFamily: "Montserrat" }
   }
 );
 
@@ -26,8 +26,6 @@ window.addEventListener("resize", () =>
   console.log(document.documentElement.clientWidth)
 );
 
-calendar.toggleTheme();
 
-calendar.toggleTimer()
 
 
