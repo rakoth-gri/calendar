@@ -295,10 +295,10 @@ const obj = {
 #### После вызова Инстанса класса **_Calendar_** (cм. выше) нам доступны методы:
 
 #### Темизация:
+
 #### Метод переключает тему: со светлой на темную и наоборот (работает при использовании базовых стилей index.min.css / index.css):
 
 ```javascript
-
 // cтартуем:
 calendar.toggleTheme();
 ```
@@ -340,11 +340,10 @@ calendar.toggleHidden();
 #### Получение строки с текущей датой:
 
 ```javascript
-calendar.getCurrDateString() 
-
-// Результат в консоли:
+calendar.getCurrDateString()// Результат в консоли:
 `2023 декабрь 25`;
 ```
+
 ---
 
 #### Удаление inline-стилей всех Селекторов:
@@ -373,7 +372,7 @@ calendar.removeSelectorStyles("$calendarField");
 
 - ###### selector - один из 5-ти ранее описанных Селекторов;
 - ###### styles - строка стилей в СSS-нотации либо '': <br>
-'text-transform: uppercase; background: white;'
+  'text-transform: uppercase; background: white;'
 
 ```javascript
 // Важно! метод не удаляет сущ. inline-стили, а добавляет новые!

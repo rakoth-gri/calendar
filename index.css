@@ -119,7 +119,7 @@
 /* CALENDAR CONTAINER STYLES */
 
 body {
-  margin: 2rem;
+  padding: 2rem;
 }
 
 .calendar {
@@ -279,7 +279,7 @@ button {
 
 @media screen and (max-width: 991.98px) {
   .calendar {
-    width: 27%;
+    width: 32%;
     padding: var(--app-sm-mr);
   }
 
@@ -291,8 +291,8 @@ button {
 
 @media screen and (max-width: 767.98px) {
   .calendar {
-    width: 33%;
-    font-size: 15px;
+    width: 38%;
+    font-size: 14px;
   }
 
   .calendar__field {
@@ -307,13 +307,19 @@ button {
 
 @media screen and (max-width: 575.98px) {
   .calendar {
-    width: 40%;
-    font-size: 12.5px;
+    width: 45%;
+    font-size: 12px;
     padding: var(--app-xs-mr);
   }
 
   .calendar__field_cell,
   .calendar__field_header {
     height: 22px;
+  }
+}
+
+@media screen and (max-width: 454.98px) {
+  .calendar {
+    width: 50%;
   }
 }
