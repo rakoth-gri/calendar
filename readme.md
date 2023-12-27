@@ -123,7 +123,7 @@ const calendar = new Calendar(
 
 ```javascript
 
-// Валидными значениями каждого из 6-ти Селекторов выступают объекты СSS-стилей, описанные в JS-нотации:
+// Валидными значениями каждого из 7-ми Селекторов выступают объекты СSS-стилей, описанные в JS-нотации:
 
 {
   [selector1]: {
@@ -136,6 +136,7 @@ const calendar = new Calendar(
   [selector4]: { backgroundColor: "green" },
   [selector5]: {backdropFilter: 'grayscale(.8)'},
   [selector6]: {},
+  [selector7]: {},
 }
 
 
@@ -153,6 +154,8 @@ const calendar = new Calendar(
   !['$calendarField'](images/$calendarField.png "$calendarField")
 - **'$timeBoard'** - поле отображения текущего времени:<br>
   !['$timeBoard'](images/$timeBoard.png "$timeBoard")
+- **'$btn'** - кнопка отображения текущей даты: <br>
+  !['$btn'](images/$btn.png "$btn")
 - **'$overlay'** - промежуточный слой, находящийся по оси Z между слоем UI-элементов (**'$year'**, **'$monthName'**, **'$calendarField'**) и главным контейнером (**'$calendar'**). Позволяет использовать св-во 'backdrop-filter' при задании изображения в качестве фона Селектора **'$calendar'**.
 
 Пример Валидного объекта **options**:
@@ -326,12 +329,13 @@ calendar.toggleHidden();
 
 ---
 
-#### Включение / отключение панели  текущего времени (работает при использовании базовых стилей index.min.css / index.css)
+#### Включение / отключение панели текущего времени (работает при использовании базовых стилей index.min.css / index.css)
 
 ```javascript
 // скрыть / показать:
 calendar.toggleTimer();
 ```
+
 ---
 
 #### Логирование текущей даты:
@@ -353,7 +357,7 @@ calendar.toggleTimer();
 #### Получение строки с текущей датой:
 
 ```javascript
-calendar.getCurrDateString()// Результат в консоли:
+calendar.getCurrDateString() // Результат в консоли:
 `2023 декабрь 25`;
 ```
 
@@ -381,14 +385,14 @@ calendar.removeSelectorStyles("$calendarField");
 
 #### Метод **addSelectorStyles** добавляет inline-стили конкретному Селектору и принимает 2 аргумента:
 
-- ###### selector - один из 6-ти ранее описанных Селекторов;
+- ###### selector - один из 7-ми ранее описанных Селекторов;
 - ###### styles - строка стилей в СSS-нотации: **'text-transform: uppercase; background: white;'**
 
 ```javascript
-// Важно! метод не удаляет сущ. inline-стили, а добавляет новые!
+// Метод не удаляет существующие inline-стили, а добавляет новые. Требуется ставить ';' после каждого СSS-свойства!
 
 calendar.addSelectorStyles(
   "$calendar",
-  "text-transform: uppercase; background: white"
+  "text-transform: uppercase; background: white;"
 );
 ```

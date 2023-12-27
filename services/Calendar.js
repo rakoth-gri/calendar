@@ -6,6 +6,7 @@ import {
   getFirstMonthDay,
   cellsByFirstMonthDay,
   timeFormat,
+  getPanelMarkUp
 } from "./services.js";
 import { NAMES, CLASSES, YEARS_LIST } from "../constants/index.js";
 
@@ -21,6 +22,7 @@ export default class Calendar {
     this.$month = null;
     this.$calendarField = null;
     this.$cells = null;
+    this.$btn = null;
     // LOGICAL
     this.store = store;
     this.theme = "light";
@@ -98,18 +100,8 @@ export default class Calendar {
             (year) => `<option value="${year}"></option>`
           )}  
       </datalist>
-      <div class="calendar__panel">
-        <button class="calendar__panel_btn"> сегодня </button>
-        <div class="calendar__panel_time">
-            <span class="time">${timeFormat(new Date().getHours())}</span>
-            <span>:</span>
-            <span class="time">${timeFormat(new Date().getMinutes())}</span>
-        </div>
-        <div class="calendar__panel_monthName"></div>
-        
-      </div>      
-      <div class="calendar__field"></div>
-        
+      ${getPanelMarkUp()} 
+      <div class="calendar__field"></div>        
     `;
     this.$calendarField = this.$calendar.querySelector(".calendar__field");
     this.$monthName = this.$calendar.querySelector(
@@ -120,6 +112,7 @@ export default class Calendar {
     this.$overlay = this.$calendar.querySelector(".calendar__overlay");
     this.$timeBoard = this.$calendar.querySelector(".calendar__panel_time");
     this.$timeSegs = this.$calendar.querySelectorAll(".time");
+    this.$btn = this.$calendar.querySelector(".calendar__panel_btn");
   }
 
   // отрисовываем сетку календаря 1 раз
@@ -247,18 +240,14 @@ export default class Calendar {
   }
 
   // добавление inline-стилей по Селектору
-  addSelectorStyles(selector, styles) {
+  addSelectorStyles(selector, styles) {    
+
     if (!styles) return;
 
-    // Проверки:
+    // Проверка:
     let currInlineStyles = this[selector].getAttribute("style") ?? "";
-
-    this[selector].setAttribute(
-      "style",
-      (currInlineStyles.match(/;$/)
-        ? currInlineStyles
-        : currInlineStyles + ";") + styles
-    );
+    
+    this[selector].setAttribute("style", currInlineStyles + styles);
   }
 
   // удаление inline-стилей по Селектору
@@ -274,14 +263,14 @@ export default class Calendar {
   }
 
   toggleTimer() {
-    this.$timeBoard.classList.toggle("active")
-    this.interval ? 
-      clearInterval(this.interval)
-    : this.interval = setInterval(() => {
-      [
-        timeFormat(new Date().getHours()),
-        timeFormat(new Date().getMinutes()),
-      ].forEach((t, i) => (this.$timeSegs[i].textContent = t));
-    }, 60000);
+    this.$timeBoard.classList.toggle("active");
+    this.interval
+      ? clearInterval(this.interval)
+      : (this.interval = setInterval(() => {
+          [
+            timeFormat(new Date().getHours()),
+            timeFormat(new Date().getMinutes()),
+          ].forEach((t, i) => (this.$timeSegs[i].textContent = t));
+        }, 60000));
   }
 }

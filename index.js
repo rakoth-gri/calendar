@@ -16,16 +16,14 @@ const calendar = new Calendar(
   {
     $calendar: {},
     $overlay: null,
-    $timeBoard: { fontFamily: "Montserrat" }
+    $timeBoard: { }
   }
 );
 
 // API
 
-window.addEventListener("resize", () =>
-  console.log(document.documentElement.clientWidth)
-);
+// window.addEventListener("resize", () =>
+//   console.log(document.documentElement.clientWidth)
+// );
 
-
-
-
+calendar.toggleTheme()
