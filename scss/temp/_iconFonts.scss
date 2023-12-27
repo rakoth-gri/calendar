@@ -1,0 +1,41 @@
+$bootstrap-icons-font: "bootstrap-icons" !default;
+$bootstrap-icons-font-dir: "../fonts" !default;
+$bootstrap-icons-font-file: "#{$bootstrap-icons-font-dir}/#{$bootstrap-icons-font}" !default;
+$bootstrap-icons-font-hash: "24e3eb84d0bcaf83d77f904c78ac1f47" !default;
+$bootstrap-icons-font-src: url("#{$bootstrap-icons-font-file}.woff?#{$bootstrap-icons-font-hash}")
+  format("woff") !default;
+
+@font-face {
+  font-display: block;
+  font-family: $bootstrap-icons-font;
+  src: $bootstrap-icons-font-src;
+}
+
+.bi::before,
+[class^="bi-"]::before,
+[class*=" bi-"]::before {
+  display: inline-block;
+  font-family: $bootstrap-icons-font !important;
+  font-style: normal;
+  font-weight: normal !important;
+  font-variant: normal;
+  text-transform: none;
+  line-height: 1;
+  vertical-align: -0.125em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+$bootstrap-icons-map: (
+  "moon-stars-fill": "\f495",
+  "x-circle-fill": "\f622",
+  "arrow-bar-left": "\f113",
+  "arrow-bar-right": "\f114",
+  "clock": "\f293",
+);
+
+@each $icon, $codepoint in $bootstrap-icons-map {
+  .bi-#{$icon}::before {
+    content: $codepoint;
+  }
+}

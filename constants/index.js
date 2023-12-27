@@ -51,7 +51,7 @@ const YEARS_LIST = [
 ];
 
 const NAMES = ["year", "month"];
-const CLASSES = ["calendar__field_cell", "calendar__panel_btn"];
+const CLASSES = ["calendar__field_cell", "calendar__panel_btn", "bi"];
 
 export {
   CALENDAR,

@@ -152,10 +152,10 @@ const calendar = new Calendar(
   !['$monthName'](images/$monthName.png "$monthName")
 - **'$calendarField'** - поле отображения месячных дат:<br>
   !['$calendarField'](images/$calendarField.png "$calendarField")
-- **'$timeBoard'** - поле отображения текущего времени:<br>
-  !['$timeBoard'](images/$timeBoard.png "$timeBoard")
-- **'$btn'** - кнопка отображения текущей даты: <br>
-  !['$btn'](images/$btn.png "$btn")
+- **'$panelTime'** - поле отображения текущего времени:<br>
+  !['$panelTime'](images/$panelTime.png "$panelTime")
+- **'$panelBtn'** - кнопка отображения текущей даты: <br>
+  !['$panelBtn'](images/$panelBtn.png "$panelBtn")
 - **'$overlay'** - промежуточный слой, находящийся по оси Z между слоем UI-элементов (**'$year'**, **'$monthName'**, **'$calendarField'**) и главным контейнером (**'$calendar'**). Позволяет использовать св-во 'backdrop-filter' при задании изображения в качестве фона Селектора **'$calendar'**.
 
 Пример Валидного объекта **options**:
@@ -170,7 +170,7 @@ const calendar = new Calendar(
     $year: { backgroundColor: "teal" },
     $month: false,
     // относительные пути изображений в вашем проекте могут отличаться!
-    $calendar: { fontFamily: "Montserrat", background: './images/test1.jpg' },
+    $calendar: { fontFamily: "Montserrat", background: 'url(./images/test1.jpg)' },
   }
 
 ```

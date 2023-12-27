@@ -6,7 +6,7 @@ import {
   getFirstMonthDay,
   cellsByFirstMonthDay,
   timeFormat,
-  getPanelMarkUp
+  getPanelMarkUp,
 } from "./services.js";
 import { NAMES, CLASSES, YEARS_LIST } from "../constants/index.js";
 
@@ -17,12 +17,12 @@ export default class Calendar {
     this.$overlay = null;
     this.$monthName = null;
     this.$year = null;
-    this.$timeBoard = null;
+    this.$panelTime = null;
     this.$timeSegs = null;
     this.$month = null;
     this.$calendarField = null;
     this.$cells = null;
-    this.$btn = null;
+    this.$panelBtn = null;
     // LOGICAL
     this.store = store;
     this.theme = "light";
@@ -64,7 +64,16 @@ export default class Calendar {
   // отрисовываем разметку календаря 1 раз
   renderMarkUp(list) {
     this.$calendar.innerHTML = `
-    <div class="calendar__overlay"></div>
+    <div class="calendar__controls_open">
+          <i class="bi bi-arrow-bar-right" id="toggleControls"></i>       
+    </div>
+    <div class="calendar__controls">       
+        <i class="bi bi-moon-stars-fill" id="toggleTheme"></i>
+        <i class="bi bi-x-circle-fill" id="toggleHidden"></i>        
+        <i class="bi bi-clock" id="toggleTimer"></i>            
+        <i class="bi bi-arrow-bar-left" id="toggleControls"></i>  
+    </div>   
+    <div class="calendar__overlay"></div>    
       ${getHTML(
         list,
         ({
@@ -101,7 +110,8 @@ export default class Calendar {
           )}  
       </datalist>
       ${getPanelMarkUp()} 
-      <div class="calendar__field"></div>        
+      <div class="calendar__field"></div>     
+                
     `;
     this.$calendarField = this.$calendar.querySelector(".calendar__field");
     this.$monthName = this.$calendar.querySelector(
@@ -110,9 +120,10 @@ export default class Calendar {
     this.$year = this.$calendar.querySelector(".calendar__year");
     this.$month = this.$calendar.querySelector(".calendar__month");
     this.$overlay = this.$calendar.querySelector(".calendar__overlay");
-    this.$timeBoard = this.$calendar.querySelector(".calendar__panel_time");
+    this.$panelTime = this.$calendar.querySelector(".calendar__panel_time");
     this.$timeSegs = this.$calendar.querySelectorAll(".time");
-    this.$btn = this.$calendar.querySelector(".calendar__panel_btn");
+    this.$panelBtn = this.$calendar.querySelector(".calendar__panel_btn");
+    this.$controls = this.$calendar.querySelector(".calendar__controls");
   }
 
   // отрисовываем сетку календаря 1 раз
@@ -174,6 +185,10 @@ export default class Calendar {
     });
   }
 
+  toggleControls() {
+    this.$controls.classList.toggle("active");
+  }
+
   // События ------
   // 1--
   calendarChangeHandler = ({ target: { name, value } }) => {
@@ -188,21 +203,32 @@ export default class Calendar {
   // 2--
   calendarClickHandler = ({
     target: {
-      dataset: { id },
+      id,
+      // dataset: { id },
       className,
       textContent,
+      action
     },
   }) => {
     if (!CLASSES.some((cls) => className.includes(cls))) return;
 
-    id
-      ? this.store.setCurrDate("date", +textContent)
-      : this.store.setCurrDate(null, {
+    // console.log(target);
+
+    switch (className) {
+      case CLASSES[0]:
+        this.store.setCurrDate("date", +textContent);
+        break;
+      case CLASSES[1]:
+        this.store.setCurrDate(null, {
           year: new Date().getFullYear(),
           month: new Date().getMonth(),
           date: new Date().getDate(),
         });
-
+        break;
+      default:
+        this[id]()        
+        break;
+    }
     console.log(this.getCurrDateString());
   };
 
@@ -240,13 +266,12 @@ export default class Calendar {
   }
 
   // добавление inline-стилей по Селектору
-  addSelectorStyles(selector, styles) {    
-
+  addSelectorStyles(selector, styles) {
     if (!styles) return;
 
     // Проверка:
     let currInlineStyles = this[selector].getAttribute("style") ?? "";
-    
+
     this[selector].setAttribute("style", currInlineStyles + styles);
   }
 
@@ -263,7 +288,7 @@ export default class Calendar {
   }
 
   toggleTimer() {
-    this.$timeBoard.classList.toggle("active");
+    this.$panelTime.classList.toggle("active");
     this.interval
       ? clearInterval(this.interval)
       : (this.interval = setInterval(() => {

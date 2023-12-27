@@ -14,13 +14,21 @@ const calendar = new Calendar(
     time: true,
   },
   {
-    $calendar: {color: "green"},
-    $overlay: null,
-    $timeBoard: {}
+    $calendarField: {
+      transform: "rotateZ(5deg)",
+      fontFamily: "Nunito Sans",
+    },
+    $year: { backgroundColor: "teal" },
+    $month: false,
+    // относительные пути изображений в вашем проекте могут отличаться!
+    $calendar: { fontFamily: "Montserrat", background: 'url(/images/test1.jpg)' },
+    $overlay: {backdropFilter: "grayscale(.9) blur(8px)"}
   }
 );
 
 // API
 
+calendar.toggleTheme()
 
 
+calendar.addSelectorStyles("$panelTime", "color: teal;")

@@ -16,7 +16,8 @@
   position: relative;
   transform: scale(1);
   transition: 0.25s all linear;
-  z-index: 0;
+  // z-index: 0;
+  overflow: hidden;
 
   &.hidden {
     transform: scale(0.01);
@@ -35,12 +36,54 @@
     backdrop-filter: blur(1.5px);
   }
 
+  &__controls_open {
+    width: 10%;
+    color: var(--app-default-color);
+    z-index: var(--app-ui-zi);
+    cursor: pointer;
+    font-size: 1.2em;
+    font-weight: var(--app-bold-fw) !important;
+  }
+
+  &__controls {
+    margin: 0 var(--app-sm-mr);
+    width: auto;
+    padding: var(--app-sm-mr);
+    z-index: var(--app-subZero-zi);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    position: absolute;
+    top: 0%;
+    left: 0%;
+    color: var(--app-default-color);
+    font-size: 1.2em;
+    border-radius: 0 5px 5px 0;
+    transform: translate(-100%);
+    transition: 0.25s all linear;
+
+    &.active {
+      transform: translateX(15%);
+      transform: translate(0%);
+      z-index: var(--app-controls-zi);
+    }
+
+    i {
+      cursor: pointer;
+      margin-right: var(--app-md-mr);
+
+      &:last-child {
+        margin-right: 0px;
+      }
+    }
+  }
+
   &__panel {
     width: 100%;
     display: flex;
     align-items: center;
     justify-content: space-between;
-    z-index: var(--app-max-zi);
+    z-index: var(--app-ui-zi);
 
     &_btn {
       background-color: var(--app-btn-color);
@@ -52,7 +95,7 @@
     }
 
     &_monthName {
-      color: var(--app-active-color);      
+      color: var(--app-active-color);
       text-align: right;
       padding: var(--app-xs-mr);
       display: inline-block;
@@ -65,9 +108,9 @@
       display: flex;
       align-items: center;
       font-weight: var(--app-medium-fw);
-      font-size: 1.10em;
+      font-size: 1.1em;
       display: none;
-      margin-left: 3px;      
+      margin-left: 3px;
       span {
         margin-right: var(--app-xs-mr);
       }
@@ -99,7 +142,7 @@
     display: grid;
     grid-template-columns: repeat(7, calc(100% / 7));
     grid-template-rows: repeat(5);
-    z-index: var(--app-max-zi);
+    z-index: var(--app-ui-zi);
 
     &_cell,
     &_header {
@@ -113,7 +156,7 @@
       cursor: pointer;
       transition: 0.09s all linear;
       overflow: hidden;
-      
+
       &:hover {
         color: var(--app-active-color);
         transform: scale(1.03);
@@ -131,5 +174,3 @@
     }
   }
 }
-
-
