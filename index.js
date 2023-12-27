@@ -14,16 +14,13 @@ const calendar = new Calendar(
     time: true,
   },
   {
-    $calendar: {},
+    $calendar: {color: "green"},
     $overlay: null,
-    $timeBoard: { }
+    $timeBoard: {}
   }
 );
 
 // API
 
-// window.addEventListener("resize", () =>
-//   console.log(document.documentElement.clientWidth)
-// );
 
-calendar.toggleTheme()
+
