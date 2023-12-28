@@ -23,11 +23,11 @@ const getFirstMonthDay = (year, month) => {
     return new Date(year, month, 1).getDay();    
 }
 
-// (firstDay:number, cells: HTMLDIVELEMENT[]) => number
+// (firstDay:number, cells: HTMLDIVELEMENT[]) => HTMLDIVELEMENT[]
 const cellsByFirstMonthDay = (firstDay, cells) => firstDay > 0 ? cells.slice(firstDay - 1) : cells.slice(6)
 
 
-// (firstDay:number, cells: HTMLDIVELEMENT[]) => number
+// () => string
 const getPanelMarkUp = () => `
     <div class="calendar__panel">
         <button class="calendar__panel_btn"> сегодня </button>
@@ -39,16 +39,6 @@ const getPanelMarkUp = () => `
         <div class="calendar__panel_monthName"></div>        
     </div>
 `
-
-
-
-
-
-
-
-
-
-
 export { monthFormat, getIntList, getHTML, changeTheme, getFirstMonthDay, cellsByFirstMonthDay, timeFormat, getPanelMarkUp };
 
 
