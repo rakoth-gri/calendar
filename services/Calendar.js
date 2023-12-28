@@ -8,7 +8,7 @@ import {
   timeFormat,
   getPanelMarkUp,
 } from "./services.js";
-import { NAMES, CLASSES, YEARS_LIST } from "../constants/index.js";
+import { NAMES, CLASSES, YEARS_LIST, CONTROLS_LIST} from "../constants/index.js";
 
 export default class Calendar {
   constructor({ calendar, store, weekday, inputList, delay, time }, options) {
@@ -68,10 +68,9 @@ export default class Calendar {
           <i class="bi bi-arrow-bar-right" id="toggleControls"></i>       
     </div>
     <div class="calendar__controls">       
-        <i class="bi bi-moon-stars-fill" id="toggleTheme"></i>
-        <i class="bi bi-x-circle-fill" id="toggleHidden"></i>        
-        <i class="bi bi-clock" id="toggleTimer"></i>            
-        <i class="bi bi-arrow-bar-left" id="toggleControls"></i>  
+      ${
+        getHTML(CONTROLS_LIST, ({cls, id}) => `<i class="${cls}" id="${id}"></i>`)
+      }  
     </div>   
     <div class="calendar__overlay"></div>    
       ${getHTML(

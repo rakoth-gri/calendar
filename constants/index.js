@@ -50,6 +50,25 @@ const YEARS_LIST = [
   2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027,
 ];
 
+const CONTROLS_LIST = [
+  {
+    cls: "bi bi-moon-stars-fill",
+    id: "toggleTheme",
+  },
+  {
+    cls: "bi bi-x-circle-fill",
+    id: "toggleHidden",
+  },
+  {
+    cls: "bi bi-clock",
+    id: "toggleTimer",
+  },
+  {
+    cls: "i bi-arrow-bar-left",
+    id: "toggleControls",
+  },
+];
+
 const NAMES = ["year", "month"];
 const CLASSES = ["calendar__field_cell", "calendar__panel_btn", "bi"];
 
@@ -57,6 +76,7 @@ export {
   CALENDAR,
   MONTH_MAP,
   WEEK_DAY,
+  CONTROLS_LIST,
   INPUT_LIST,
   ROOT,
   YEARS_LIST,
