@@ -99,12 +99,12 @@
     &::-webkit-slider-thumb {
       width: 0.9rem;
       height: 0.9rem;
-      background: var(--app-default-bg);
+      background: var(--app-default-color);
       border-radius: 0.25em;
       -webkit-appearance: none;
       position: relative;
       top: -2.6px;
-      border: 2px solid var(--app-default-color);
+      border: 2px solid var(--app-default-bg);
     }
 
     &::-moz-range-thumb {
