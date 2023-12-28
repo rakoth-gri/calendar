@@ -7,16 +7,16 @@
   flex-direction: column;
   align-items: start;
   font-size: 18px;
+  font-family: "Roboto", sans-serif;
   color: var(--app-default-color);
-  font-weight: var(--app-light-fw);
-  font-family: "Roboto";
   background-position: center center;
   background-repeat: no-repeat;
   background-size: cover;
   position: relative;
+  font-weight: 300;
   transform: scale(1);
-  transition: 0.25s all linear;
-  // z-index: 0;
+  transition: 0.3s all linear;
+  z-index: 0;
   overflow: hidden;
 
   &.hidden {
@@ -37,34 +37,35 @@
   }
 
   &__controls_open {
-    width: 10%;
     color: var(--app-default-color);
     z-index: var(--app-ui-zi);
     cursor: pointer;
     font-size: 1.2em;
-    font-weight: var(--app-bold-fw) !important;
+        
+    i::before {
+      font-weight: var(--app-bold-fw) !important;
+    }
   }
 
   &__controls {
-    margin: 0 var(--app-sm-mr);
     width: auto;
-    padding: var(--app-sm-mr);
+    padding: var(--app-xs-mr);
     z-index: var(--app-subZero-zi);
     display: flex;
     align-items: center;
     justify-content: space-between;
     position: absolute;
-    top: 0%;
+    top: var(--app-sm-mr);
     left: 0%;
     color: var(--app-default-color);
     font-size: 1.2em;
     border-radius: 0 5px 5px 0;
-    transform: translate(-100%);
+    transform: translateX(-103%);
     transition: 0.25s all linear;
+    background-color: var(--app-default-bg);    
 
     &.active {
-      transform: translateX(15%);
-      transform: translate(0%);
+      transform: translateX(3%);
       z-index: var(--app-controls-zi);
     }
 
@@ -74,6 +75,14 @@
 
       &:last-child {
         margin-right: 0px;
+      }
+
+      &:hover {
+        color: var(--app-success-color)
+      }
+
+      &::before {
+        font-weight: var(--app-bold-fw) !important;
       }
     }
   }
