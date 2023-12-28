@@ -1,5 +1,5 @@
 .calendar {
-  padding: var(--app-sm-mr); 
+  padding: var(--app-sm-mr);
   width: 19%;
   background-color: var(--app-default-bg);
   border-radius: var(--app-sm-mr);
@@ -64,7 +64,7 @@
     border-radius: 0 5px 5px 0;
     transform: translateX(-103%);
     transition: 0.25s all linear;
-    background-color: var(--app-default-bg);    
+    background-color: var(--app-default-bg);
 
     &.active {
       transform: translateX(3%);
@@ -80,12 +80,56 @@
       }
 
       &:hover {
-        color: var(--app-success-color)
+        color: var(--app-btn-color);
       }
 
       &::before {
         font-weight: var(--app-bold-fw) !important;
       }
+    }
+  }
+
+  &__month {
+    -webkit-appearance: none;
+    outline: none;
+    background: transparent;
+    border-radius: var(--app-xs-mr);
+    padding: 0px;
+
+    &::-webkit-slider-thumb {
+      width: 0.9rem;
+      height: 0.9rem;
+      background: var(--app-default-bg);
+      border-radius: 0.25em;
+      -webkit-appearance: none;
+      position: relative;
+      top: -2.6px;
+      border: 2px solid var(--app-default-color);
+    }
+
+    &::-moz-range-thumb {
+      width: 0.9rem;
+      height: 0.9rem;
+      background: var(--app-default-bg);
+      border-radius: 0.25em;
+      -webkit-appearance: none;
+      position: relative;
+      top: -2.6px;
+      border: 2px solid var(--app-default-color);
+    }
+
+    &::-webkit-slider-runnable-track {
+      -webkit-appearance: none;
+      background: var(--app-btn-color);
+      height: 10px;
+      border-radius: 0.2em;
+    }
+
+    &::-moz-range-track {
+      -webkit-appearance: none;
+      background: var(--app-btn-color);
+      height: 10px;
+      border-radius: 0.2em;
     }
   }
 
@@ -182,6 +226,7 @@
     &_header {
       font-weight: var(--app-bold-fw);
       color: var(--app-active-color);
+      cursor: default;
     }
   }
 }

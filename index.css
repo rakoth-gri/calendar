@@ -210,10 +210,10 @@ body {
   font-size: 1.1em;
   font-weight: var(--app-bold-fw) !important;
   width: 30%;
-  margin-bottom: var(--app-xs-mr)
+  margin-bottom: var(--app-xs-mr);
 }
 
-.calendar__controls {  
+.calendar__controls {
   /* padding: var(--app-xs-mr); */
   z-index: var(--app-subZero-zi);
   display: flex;
@@ -241,7 +241,7 @@ body {
 }
 
 .calendar__controls i:hover {
-  color: var(--app-success-color);
+  color: var(--app-btn-color);
 }
 
 .calendar__controls i::before,
@@ -291,6 +291,73 @@ button {
   text-decoration: none;
   background-color: transparent;
 }
+
+/* Стилизация input[type="range"] */
+
+.calendar__month {
+  -webkit-appearance: none;
+  outline: none;
+  background: transparent;  
+  border-radius: var(--app-xs-mr);
+  position: relative;
+  padding: 0px;
+}
+
+.calendar__month::-webkit-slider-thumb {
+  width: 0.9rem;
+  height: 0.9rem;
+  background: var(--app-default-color);
+  border-radius: 0.25em;
+  -webkit-appearance: none;
+  position: relative;
+  top: -2.6px;
+  border: 2px solid var(--app-default-bg);
+}
+
+.calendar__month::-moz-range-thumb {
+  width: 0.9rem;
+  height: 0.9rem;
+  background: var(--app-default-bg);
+  border-radius: 0.25em;
+  -webkit-appearance: none; 
+  position: relative;
+  top: -2.6px;
+  border: 2px solid var(--app-default-bg); 
+}
+
+.calendar__month::-ms-thumb {
+  width: 0.9rem;
+  height: 0.9rem;
+  background: var(--app-default-bg);
+  border-radius: 0.25em;
+  -webkit-appearance: none;
+  position: relative;
+  top: -2.6px;
+  border: 2px solid var(--app-default-bg);  
+}
+
+.calendar__month::-webkit-slider-runnable-track {
+  -webkit-appearance: none;
+  background: var(--app-btn-color);  
+  height: 10px;
+  border-radius: 0.2em;  
+}
+
+.calendar__month::-moz-range-track {
+  -webkit-appearance: none;
+  background: var(--app-btn-color);  
+  height: 10px;
+  border-radius: 0.2em;  
+}
+
+.calendar__month::-ms-track {
+  -webkit-appearance: none;
+  background: var(--app-btn-color);  
+  height: 10px;
+  border-radius: 0.2em;  
+}
+
+/* Стилизация панели календаря */
 
 .calendar__panel {
   width: 100%;
@@ -372,6 +439,7 @@ button {
 .calendar__field_header {
   font-weight: var(--app-bold-fw);
   color: var(--app-active-color);
+  cursor: default;
 }
 
 /* MEDIA QUERRIES ---- */
@@ -424,7 +492,7 @@ button {
 
 @media screen and (max-width: 575.98px) {
   input {
-    margin: 0.25em 0;
+    margin: 0.5em 0;
   }
 
   .calendar {
