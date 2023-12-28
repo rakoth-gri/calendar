@@ -407,6 +407,10 @@ button {
     padding: var(--app-xs-mr);
   }
 
+  .calendar__controls {
+    top: var(--app-xs-mr);
+  }
+
   .calendar__field {
     margin: var(--app-sm-mr) 0;
   }

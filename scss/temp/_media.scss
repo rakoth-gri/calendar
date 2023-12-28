@@ -39,6 +39,10 @@
     &_header {
       height: 25px;
     }
+
+    &__controls {
+      top: var(--app-xs-mr);
+    }
   }
 }
 
