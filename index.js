@@ -10,29 +10,23 @@ const calendar = new Calendar(
     store: Store,
     weekday: WEEK_DAY,
     inputList: INPUT_LIST,
-    delay: 15,
+    delay: 8,
     time: true,
   },
   {
     $calendarField: {      
       fontFamily: "Nunito Sans",
     },
-    $year: { backgroundColor: "teal" },
+    $year: false,
     $month: false,
     // относительные пути изображений в вашем проекте могут отличаться!
     $calendar: {
-      fontFamily: "Montserrat",      
+        
     },
-    $overlay: { },
+    $overlay: {fontFamily: "Montserrat",},
   }
 );
 
 // API
 
-calendar.toggleTheme();
-
-calendar.addSelectorStyles("$panelTime", "color: teal;");
-
-// calendar.removeInlineStyles();
-
-// calendar.toggleHidden()
+calendar.removeInlineStyles()

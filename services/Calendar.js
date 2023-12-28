@@ -73,7 +73,7 @@ export default class Calendar {
         <i class="bi bi-clock" id="toggleTimer"></i>            
         <i class="bi bi-arrow-bar-left" id="toggleControls"></i>  
     </div>   
-       
+    <div class="calendar__overlay"></div>    
       ${getHTML(
         list,
         ({

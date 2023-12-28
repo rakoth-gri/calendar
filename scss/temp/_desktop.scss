@@ -41,7 +41,7 @@
     z-index: var(--app-ui-zi);
     cursor: pointer;
     font-size: 1.2em;
-        
+
     i::before {
       font-weight: var(--app-bold-fw) !important;
     }
@@ -146,7 +146,7 @@
   }
 
   &__field {
-    margin: var(--app-md-mr) 0;
+    margin: var(--app-sm-mr) 0;
     width: 100%;
     display: grid;
     grid-template-columns: repeat(7, calc(100% / 7));
