@@ -70,7 +70,7 @@ const CONTROLS_LIST = [
 ];
 
 const NAMES = ["year", "month"];
-const CLASSES = ["calendar__field_cell", "calendar__panel_btn", "bi"];
+const CLASSES = ["calendar__field_cell", "calendar__panel_btn", "calendar__controls_open", "bi"];
 
 export {
   CALENDAR,

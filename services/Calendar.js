@@ -109,8 +109,7 @@ export default class Calendar {
           )}  
       </datalist>
       ${getPanelMarkUp()} 
-      <div class="calendar__field"></div>     
-                
+      <div class="calendar__field"></div>                
     `;
     this.$calendarField = this.$calendar.querySelector(".calendar__field");
     this.$monthName = this.$calendar.querySelector(
@@ -224,6 +223,9 @@ export default class Calendar {
           date: new Date().getDate(),
         });
         break;
+      case CLASSES[2]:
+        this.toggleControls()
+        break;  
       default:
         this[id]()        
         break;
