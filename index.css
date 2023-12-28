@@ -214,7 +214,7 @@ body {
 }
 
 .calendar__controls {  
-  padding: var(--app-xs-mr);
+  /* padding: var(--app-xs-mr); */
   z-index: var(--app-subZero-zi);
   display: flex;
   align-items: center;
