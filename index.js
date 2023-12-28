@@ -15,18 +15,18 @@ const calendar = new Calendar(
   },
   {
     $calendarField: {      
-      fontFamily: "Nunito Sans",
+      // fontFamily: "Ubuntu",
     },
     $year: false,
     $month: false,
     // относительные пути изображений в вашем проекте могут отличаться!
-    $calendar: {
-        
-    },
-    $overlay: {fontFamily: "Montserrat",},
+    $calendar: {},
+    $panelBtn: {},
+    $overlay: {},
   }
 );
 
 // API
 
-calendar.removeInlineStyles()
+
+

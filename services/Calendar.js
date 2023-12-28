@@ -8,7 +8,12 @@ import {
   timeFormat,
   getPanelMarkUp,
 } from "./services.js";
-import { NAMES, CLASSES, YEARS_LIST, CONTROLS_LIST} from "../constants/index.js";
+import {
+  NAMES,
+  CLASSES,
+  YEARS_LIST,
+  CONTROLS_LIST,
+} from "../constants/index.js";
 
 export default class Calendar {
   constructor({ calendar, store, weekday, inputList, delay, time }, options) {
@@ -23,6 +28,7 @@ export default class Calendar {
     this.$calendarField = null;
     this.$cells = null;
     this.$panelBtn = null;
+    this.$controls = null;
     // LOGICAL
     this.store = store;
     this.theme = "light";
@@ -65,12 +71,13 @@ export default class Calendar {
   renderMarkUp(list) {
     this.$calendar.innerHTML = `
     <div class="calendar__controls_open">
-          <i class="bi bi-arrow-bar-right" id="toggleControls"></i>       
+      <i class="bi bi-arrow-bar-right"></i>       
     </div>
     <div class="calendar__controls">       
-      ${
-        getHTML(CONTROLS_LIST, ({cls, id}) => `<i class="${cls}" id="${id}"></i>`)
-      }  
+      ${getHTML(
+        CONTROLS_LIST,
+        ({ cls, id }) => `<i class="${cls}" id="${id}"></i>`
+      )}  
     </div>   
     <div class="calendar__overlay"></div>    
       ${getHTML(
@@ -205,12 +212,12 @@ export default class Calendar {
       // dataset: { id },
       className,
       textContent,
-      action
-    },
-  }) => {
-    if (!CLASSES.some((cls) => className.includes(cls))) return;
 
-    // console.log(target);
+
+    },
+  }) => {    
+
+    if (!CLASSES.some((cls) => className.includes(cls))) return;
 
     switch (className) {
       case CLASSES[0]:
@@ -222,12 +229,14 @@ export default class Calendar {
           month: new Date().getMonth(),
           date: new Date().getDate(),
         });
-        break;
-      case CLASSES[2]:
-        this.toggleControls()
-        break;  
+        break;      
       default:
-        this[id]()        
+        if (!id) {
+          this.toggleControls();
+          return; 
+        }     
+        this[id]();        
+        if (this.$controls.classList.contains("active")) this.toggleControls()
         break;
     }
     console.log(this.getCurrDateString());
@@ -263,6 +272,8 @@ export default class Calendar {
       this.$monthName,
       this.$calendarField,
       this.$overlay,
+      this.$panelTime,
+      this.$panelBtn,
     ].forEach((el) => el.removeAttribute("style"));
   }
 
