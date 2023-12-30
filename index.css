@@ -6,7 +6,7 @@
   margin: 0px;
 }
 
-:root {
+:root {  
   --app-xs-mr: 0.25rem;
   --app-sm-mr: 0.5rem;
   --app-md-mr: 1rem;
@@ -199,11 +199,11 @@ body {
   top: 0;
   left: 0;
   height: 100%;
-  border-radius: var(--app-sm-mr);
-  backdrop-filter: blur(1.7px);
+  border-radius: var(--app-sm-mr);  
 }
 
 .calendar__controls_open {
+  padding: var(--app-xs-mr) 0;
   color: var(--app-default-color);
   z-index: var(--app-ui-zi);
   cursor: pointer;
@@ -214,7 +214,7 @@ body {
 }
 
 .calendar__controls {
-  /* padding: var(--app-xs-mr); */
+  padding: var(--app-xs-mr);
   z-index: var(--app-subZero-zi);
   display: flex;
   align-items: center;
@@ -339,21 +339,21 @@ button {
 .calendar__month::-webkit-slider-runnable-track {
   -webkit-appearance: none;
   background: var(--app-btn-color);  
-  height: 10px;
+  height: 8px;
   border-radius: 0.2em;  
 }
 
 .calendar__month::-moz-range-track {
   -webkit-appearance: none;
   background: var(--app-btn-color);  
-  height: 10px;
+  height: 8px;
   border-radius: 0.2em;  
 }
 
 .calendar__month::-ms-track {
   -webkit-appearance: none;
   background: var(--app-btn-color);  
-  height: 10px;
+  height: 8px;
   border-radius: 0.2em;  
 }
 

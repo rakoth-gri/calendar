@@ -37,6 +37,7 @@
   }
 
   &__controls_open {
+    padding: var(--app-xs-mr) 0;
     color: var(--app-default-color);
     z-index: var(--app-ui-zi);
     cursor: pointer;
@@ -51,7 +52,7 @@
 
   &__controls {
     width: auto;
-    // padding: var(--app-xs-mr);
+    padding: var(--app-xs-mr);
     z-index: var(--app-subZero-zi);
     display: flex;
     align-items: center;
@@ -121,14 +122,14 @@
     &::-webkit-slider-runnable-track {
       -webkit-appearance: none;
       background: var(--app-btn-color);
-      height: 10px;
+      height: 8px;
       border-radius: 0.2em;
     }
 
     &::-moz-range-track {
       -webkit-appearance: none;
       background: var(--app-btn-color);
-      height: 10px;
+      height: 8px;
       border-radius: 0.2em;
     }
   }

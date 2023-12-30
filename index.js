@@ -20,9 +20,9 @@ const calendar = new Calendar(
     $year: false,
     $month: false,
     // относительные пути изображений в вашем проекте могут отличаться!
-    $calendar: {},
+    $calendar: {background: "url(./images/test2.jpg)", backgroundPosition: "center", color: "whitesmoke"},
     $panelBtn: {},
-    $overlay: {},
+    $overlay: {backdropFilter: "blur(1.7px) grayscale(.5)"},
   }
 );
 
