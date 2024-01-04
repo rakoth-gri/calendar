@@ -171,7 +171,7 @@ const calendar = new Calendar(
   !['$panelBtn'](images/$panelBtn.png "$panelBtn")
 - **'$controls'** - панель отдельных API-функций: <br>
   !['$controls'](images/$controls.png "$controls")
-- **'$overlay'** - промежуточный слой, находящийся по оси Z между слоем UI-элементов (**'$year'**, **'$monthName'**, **'$calendarField'**) и главным контейнером (**'$calendar'**). Позволяет использовать св-во 'backdrop-filter' при задании изображения в качестве фона Селектора **'$calendar'**.
+- **'$overlay'** - промежуточный слой, находящийся по оси Z между слоем основных UI-элементов (**'$year'**, **'$monthName'**, **'$calendarField'** и т.д) и главным контейнером (**'$calendar'**). Позволяет использовать св-во 'backdrop-filter' при задании изображения в качестве фона **'$calendar'**.
 
 Пример Валидного объекта **options**:
 
