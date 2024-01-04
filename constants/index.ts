@@ -1,7 +1,10 @@
-const CALENDAR = document.querySelector(".calendar");
-const ROOT = document.querySelector(":root");
+// импортируем типы:
+import { U_MONTHS, I_INPUT_LIST, TCONTROLS_LIST, T_CLASSES } from "../types/types";
 
-const MONTH_MAP = [
+const CALENDAR = document.querySelector(".calendar") as HTMLDivElement;
+const ROOT = document.querySelector(":root") as HTMLElement;
+
+const MONTH_MAP: U_MONTHS[] = [
   "январь",
   "февраль",
   "март",
@@ -16,17 +19,17 @@ const MONTH_MAP = [
   "декабрь",
 ];
 
-const WEEK_DAY = ["Пн", "Вт", "Cр", "Чт", "Пт", "Cб", "Вс"];
+const WEEK_DAY: string[] = ["Пн", "Вт", "Cр", "Чт", "Пт", "Cб", "Вс"];
 
-const INPUT_LIST = [
+const INPUT_LIST: I_INPUT_LIST[]  = [
   {
     id: "year",
     labelText: "год:",
     type: "number",
     cls: "calendar__year",
-    min: "1900",
-    max: "2100",
-    step: "1",
+    min: 1900,
+    max: 2100,
+    step: 1,
     name: "year",
     autofocus: true,
     listFor: "defaultYears",
@@ -36,9 +39,9 @@ const INPUT_LIST = [
     labelText: "месяц:",
     type: "range",
     cls: "calendar__month",
-    min: "0",
-    max: "11",
-    step: "1",
+    min: 0,
+    max: 11,
+    step: 1,
     name: "month",
     autofocus: false,
     listFor: false,
@@ -50,7 +53,8 @@ const YEARS_LIST = [
   2015, 2016, 2017, 2018, 2019, 2020, 2021, 2022, 2023, 2024, 2025, 2026, 2027,
 ];
 
-const CONTROLS_LIST = [
+
+const CONTROLS_LIST: TCONTROLS_LIST[]  = [
   {
     cls: "bi bi-moon-stars-fill",
     id: "toggleTheme",
@@ -70,7 +74,13 @@ const CONTROLS_LIST = [
 ];
 
 const NAMES = ["year", "month"];
-const CLASSES = ["calendar__field_cell", "calendar__panel_btn", "calendar__controls_open", "bi"];
+
+const CLASSES: T_CLASSES[] = [
+  "calendar__field_cell",
+  "calendar__panel_btn",
+  "calendar__controls_open",
+  "bi",
+];
 
 export {
   CALENDAR,

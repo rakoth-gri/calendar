@@ -1,3 +1,6 @@
+import { I_INPUT_LIST, TCONTROLS_LIST, I_CURR_DATE, I_INLINE_STYLES, T_SELECTORS } from "../types/types";
+import { TStore } from "../store/Store";
+
 import {
   getIntList,
   monthFormat,
@@ -16,7 +19,40 @@ import {
 } from "../constants/index.js";
 
 export default class Calendar {
-  constructor({ calendar, store, weekday, inputList, delay, time }, options) {
+  $calendar: HTMLDivElement;
+  store: TStore;
+  $overlay: HTMLDivElement | null;
+  $monthName: HTMLDivElement | null;
+  $year: HTMLInputElement | null;
+  $month: HTMLInputElement | null;
+  $panelTime: HTMLDivElement | null;
+  $timeSegs: HTMLSpanElement[] | null;
+  $cells: HTMLDivElement[] | null;
+  delay: number;
+  theme: "dark" | "light";
+  $panelBtn: HTMLButtonElement | null;
+  $controls: HTMLDivElement | null;
+  $calendarField: HTMLDivElement | null;
+  interval: null | number;
+
+  constructor(
+    {
+      calendar,
+      store,
+      weekday,
+      inputList,
+      delay,
+      time,
+    }: {
+      calendar: HTMLDivElement;
+      delay: number;
+      weekday: string[];
+      inputList: I_INPUT_LIST[];
+      time: boolean;
+      store: TStore;
+    },
+    options: I_INLINE_STYLES
+  ) {
     // DOM_ELEMENTS
     this.$calendar = calendar;
     this.$overlay = null;
@@ -39,24 +75,30 @@ export default class Calendar {
   }
 
   // BUILDER SCHEME ---
-  init(weekday, inputList, delay, options, time) {
+  init(
+    weekday: string[],
+    inputList: I_INPUT_LIST[],
+    delay: number,
+    options: I_INLINE_STYLES,
+    time: boolean
+  ) {
     // 1 --
     this.renderMarkUp(inputList);
     // 2 --
-    this.renderGrid(this.$calendarField, 42, weekday);
+    this.renderGrid(this.$calendarField as HTMLDivElement, 42, weekday);
     // 3 --
     this.setInlineStyles(options);
     // 4 -- (Подписываемся на изменение this.store.currDate)
     this.store.observe(() => {
       this.renderMonthDates(
         getIntList(this.store.datesInMonth(this.store.currDate)),
-        this.$cells,
+        this.$cells as HTMLDivElement[],
         delay
       );
       this.store.showCurrDate(
-        this.$year,
-        this.$month,
-        this.$monthName,
+        this.$year as HTMLInputElement,
+        this.$month as HTMLInputElement,
+        this.$monthName as HTMLDivElement,
         monthFormat
       );
     });
@@ -68,7 +110,7 @@ export default class Calendar {
   }
 
   // отрисовываем разметку календаря 1 раз
-  renderMarkUp(list) {
+  renderMarkUp(list: I_INPUT_LIST[]) {
     this.$calendar.innerHTML = `
     <div class="calendar__controls_open">
       <i class="bi bi-arrow-bar-right"></i>       
@@ -80,7 +122,7 @@ export default class Calendar {
       )}  
     </div>   
     <div class="calendar__overlay"></div>    
-      ${getHTML(
+      ${getHTML<I_INPUT_LIST>(
         list,
         ({
           labelText,
@@ -126,13 +168,17 @@ export default class Calendar {
     this.$month = this.$calendar.querySelector(".calendar__month");
     this.$overlay = this.$calendar.querySelector(".calendar__overlay");
     this.$panelTime = this.$calendar.querySelector(".calendar__panel_time");
-    this.$timeSegs = this.$calendar.querySelectorAll(".time");
+    this.$timeSegs = Array.from(this.$calendar.querySelectorAll(".time"));
     this.$panelBtn = this.$calendar.querySelector(".calendar__panel_btn");
     this.$controls = this.$calendar.querySelector(".calendar__controls");
   }
 
   // отрисовываем сетку календаря 1 раз
-  renderGrid(container, maxCellNumber, weekday) {
+  renderGrid(
+    container: HTMLDivElement,
+    maxCellNumber: number,
+    weekday: string[]
+  ) {
     // формируем массив с данными и заполняем шаблон
     const HTML = getHTML(
       getIntList(maxCellNumber),
@@ -149,26 +195,30 @@ export default class Calendar {
     );
   }
 
-  // рендерим кастомные inline-стили только 1 раз
-  setInlineStyles(is) {
+  setInlineStyles(is: any) {
     if (!Object.values(is).some((val) => val)) {
-      console.error("Значения полей объекта 'is' не заданы...");
+      console.error("'is' object has empty property values");
       return;
     }
 
-    Object.keys(is).forEach((selector) => {
+    (Object.keys(is) as T_SELECTORS[]).forEach((selector) => {
       // Проверка:
       if (!is[selector]) return;
 
       if (Object.values(is[selector]).some((val) => val))
+
         Object.keys(is[selector]).forEach(
-          (key) => (this[selector].style[key] = is[selector][key])
+          (key: any) => ((this[selector] as HTMLElement).style[key] = is[selector][key])
         );
     });
   }
 
   // Вызываем при каждом изменении this.store.currData
-  renderMonthDates(datesList, cells, delay) {
+  renderMonthDates(
+    datesList: number[],
+    cells: HTMLDivElement[],
+    delay: number
+  ): void {
     // очищаем поля календаря и активные классы перед отрисовкой:
     cells.forEach((cell) => {
       cell.textContent = "";
@@ -185,20 +235,23 @@ export default class Calendar {
     datesList.forEach((i) => {
       i + 1 === this.store.currDate.date && cells[i].classList.add("active");
       setTimeout(() => {
-        cells[i].textContent = i + 1;
+        cells[i].textContent = String(i + 1);
       }, delay * i);
     });
   }
 
   toggleControls() {
-    this.$controls.classList.toggle("active");
+    (this.$controls as HTMLDivElement).classList.toggle("active");
   }
 
   // События ------
   // 1--
-  calendarChangeHandler = ({ target: { name, value } }) => {
+  calendarChangeHandler = (e: Event) => {
+    const {name, value} = e.target as HTMLInputElement
+
     if (!NAMES.includes(name)) return;
-    this.store.setCurrDate(name, +value);
+
+    this.store.setCurrDate(name as keyof I_CURR_DATE, +value);
   };
 
   addChangeListenerToCalendar() {
@@ -206,22 +259,14 @@ export default class Calendar {
   }
 
   // 2--
-  calendarClickHandler = ({
-    target: {
-      id,
-      // dataset: { id },
-      className,
-      textContent,
-
-
-    },
-  }) => {    
+  calendarClickHandler = (e: MouseEvent) => {
+    const { id, className, textContent } = e.target as HTMLElement;
 
     if (!CLASSES.some((cls) => className.includes(cls))) return;
 
     switch (className) {
       case CLASSES[0]:
-        this.store.setCurrDate("date", +textContent);
+        this.store.setCurrDate("date", +(textContent as string));
         break;
       case CLASSES[1]:
         this.store.setCurrDate(null, {
@@ -229,14 +274,15 @@ export default class Calendar {
           month: new Date().getMonth(),
           date: new Date().getDate(),
         });
-        break;      
+        break;
       default:
         if (!id) {
           this.toggleControls();
-          return; 
-        }     
-        this[id]();        
-        if (this.$controls.classList.contains("active")) this.toggleControls()
+          return;
+        }
+        this[id as TCONTROLS_LIST['id']]();
+        if ((this.$controls as HTMLDivElement).classList.contains("active"))
+          this.toggleControls();
         break;
     }
     console.log(this.getCurrDateString());
@@ -274,22 +320,26 @@ export default class Calendar {
       this.$overlay,
       this.$panelTime,
       this.$panelBtn,
-    ].forEach((el) => el.removeAttribute("style"));
+    ].forEach((el) => (el as HTMLElement).removeAttribute("style"));
   }
 
   // добавление inline-стилей по Селектору
-  addSelectorStyles(selector, styles) {
+  addSelectorStyles(selector: T_SELECTORS, styles: string) {
     if (!styles) return;
 
     // Проверка:
-    let currInlineStyles = this[selector].getAttribute("style") ?? "";
+    let currInlineStyles =
+      (this[selector] as HTMLElement).getAttribute("style") ?? "";
 
-    this[selector].setAttribute("style", currInlineStyles + styles);
+    (this[selector] as HTMLElement).setAttribute(
+      "style",
+      currInlineStyles + styles
+    );
   }
 
   // удаление inline-стилей по Селектору
-  removeSelectorStyles(selector) {
-    this[selector].removeAttribute("style");
+  removeSelectorStyles(selector: T_SELECTORS) {
+    (this[selector] as HTMLElement).removeAttribute("style");
   }
 
   // переключение темы
@@ -300,14 +350,19 @@ export default class Calendar {
   }
 
   toggleTimer() {
-    this.$panelTime.classList.toggle("active");
+    (this.$panelTime as HTMLDivElement).classList.toggle("active");
     this.interval
       ? clearInterval(this.interval)
       : (this.interval = setInterval(() => {
-          [
-            timeFormat(new Date().getHours()),
-            timeFormat(new Date().getMinutes()),
-          ].forEach((t, i) => (this.$timeSegs[i].textContent = t));
+          (
+            [
+              timeFormat(new Date().getHours()),
+              timeFormat(new Date().getMinutes()),
+            ] as number[]
+          ).forEach(
+            (t, i) =>
+              ((this.$timeSegs as HTMLSpanElement[])[i].textContent = "" + t)
+          );
         }, 60000));
   }
 }

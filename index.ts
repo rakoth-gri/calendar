@@ -14,19 +14,20 @@ const calendar = new Calendar(
     time: true,
   },
   {
-    $calendarField: {      
+    $calendarField: {
       // fontFamily: "Ubuntu",
     },
     $year: false,
-    $month: false,
     // относительные пути изображений в вашем проекте могут отличаться!
-    $calendar: {background: "url(./images/test2.jpg)", backgroundPosition: "center", color: "whitesmoke"},
+    $calendar: {
+      background: "url(./images/test2.jpg)",
+      backgroundPosition: "center",
+      color: "whitesmoke",
+    },
     $panelBtn: {},
-    $overlay: {backdropFilter: "blur(1.7px) grayscale(.5)"},
+    $overlay: { backdropFilter: "blur(1.7px) grayscale(.5)" },
   }
 );
 
 // API
-
-
-
+calendar.removeInlineStyles()

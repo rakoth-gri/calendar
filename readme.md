@@ -1,15 +1,13 @@
 ## Приложение _'gri_calendar'_
 
-#### Приложение написано с использованием Vanilla JS, HTML, СSS, SCSS (SASS).
-
-#### В дальнейшем, планируется перевести Весь проект на Typescript.
+#### Приложение написано с использованием Vanilla JS, TYPESCRIPT, HTML, СSS, SCSS (SASS).
 
 ---
 
 #### Исходная структура папок source-code-файлов представлена ниже:
 
 - **constants**
-  - _index.js_
+  - _index.ts_
 - **fonts**
   - font 1
   - font 2
@@ -21,19 +19,25 @@
 - **scss**
   - index.scss
   - **temp**
-    - temp1.scss
-    - temp2.scss
-    - tempN.scss
+    - \_desktop.scss
+    - \_fonts.scss
+    - \_general.scss
+    - \_iconFonts.scss
+    - \_media.scss
+    - \_vars.scss
 - **services**
-  - Calendar.js -- Главный класс для отрисовки DOM-элементов и управления пользовательскими действиями Календаря)
-  - services.js -- вспомогательные утилиты)
+  - Calendar.ts -- Главный класс для отрисовки DOM-элементов и управления пользовательскими действиями Календаря)
+  - services.ts -- вспомогательные утилиты)
 - **store**
-  - Store.js -- класс для установки и изменения даты и реактивной отрисовки изменений на UI (стороне пользователя)
+  - Store.ts -- класс для установки и изменения даты и реактивной отрисовки изменений на UI (стороне пользователя)
+- **types**
+  - types.ts -- файл с описанием основных типов приложения
 - **index.css** -- файл базовых стилей
 - **index.min.css** -- файл минифицированных базовых стилей, сгененированный из файлов папки **scss**
 - **index.html** -- HTML (показан для примера)
-- **index.js** -- главный индексный файл (показан для примера)
+- **index.ts** -- главный индексный файл (показан для примера)
 - **readme.md** -- файл описания приложения
+- **tsconfig.json** -- конфигурационный файл настроек ts-компилятора
 
 ---
 
@@ -53,7 +57,7 @@
     <!-- Укажите путь до локальных стилей: index.min.css / index.css: -->
     <link rel="stylesheet" href="./index.css" />
     <!-- Укажите путь к Вашему главному JS-файлу: -->
-    <script src="./index.js" type="module" defer></script>
+    <script src="./build/index.js" type="module" defer></script>
   </head>
   <body>
     <section class="calendar">
@@ -69,15 +73,16 @@
 
 ---
 
-#### Локальные шрифты, интегрированные в 'базовую конфигурации стилей', представлены 5 семействами:
+#### Локальные шрифты, интегрированные в 'базовую конфигурации стилей', представлены 5 семействами и иконочным шрифтом от [Bootstrap Icons](https://icons.getbootstrap.com/ "Free, high quality, open source icon library with over 2,000 icons.")!:
 
 - "Roboto",
 - "Montserrat",
 - "Bebas Neue",
 - "Nunito Sans",
 - "Ubuntu".
+- "bootstrap-icons" - иконочный шрифт от [Bootstrap](https://icons.getbootstrap.com/ "Bootstrap Icons")!
   <br>
-  Добавляйте шрифты в папку _'fonts'_ и вносите изменения в базовые _'index.css'_ / _'index.min.css'_:
+  Добавляйте шрифты в папку _'fonts'_ и вносите изменения в базовые _'index.css'_ / _'index.min.css'_, добавляя следующий код:
 
 ```css
 @font-face {
@@ -123,7 +128,7 @@ const calendar = new Calendar(
 
 ```javascript
 
-// Валидными значениями каждого из 7-ми Селекторов выступают объекты СSS-стилей, описанные в JS-нотации:
+// Валидными значениями каждого из 8 Селекторов выступают объекты СSS-стилей, описанные в JS-нотации:
 
 {
   [selector1]: {
@@ -137,8 +142,8 @@ const calendar = new Calendar(
   [selector5]: {backdropFilter: 'grayscale(.8)'},
   [selector6]: {},
   [selector7]: {},
+  [selector8]: {},
 }
-
 
 ```
 
@@ -156,6 +161,8 @@ const calendar = new Calendar(
   !['$panelTime'](images/$panelTime.png "$panelTime")
 - **'$panelBtn'** - кнопка отображения текущей даты: <br>
   !['$panelBtn'](images/$panelBtn.png "$panelBtn")
+- **'$controls'** - панель отдельных API-функций: <br>
+  !['$controls'](images/$controls.png "$controls")
 - **'$overlay'** - промежуточный слой, находящийся по оси Z между слоем UI-элементов (**'$year'**, **'$monthName'**, **'$calendarField'**) и главным контейнером (**'$calendar'**). Позволяет использовать св-во 'backdrop-filter' при задании изображения в качестве фона Селектора **'$calendar'**.
 
 Пример Валидного объекта **options**:
@@ -228,7 +235,7 @@ const obj = {
 
 #### Наследование:
 
-#### Inline-стили, переданные Селектору '$calendar' наследуется всеми компонентами, в т.ч. элементами input, button. Это работает при использовании базовых стилей (index.min.css / index.css):
+#### Inline-стили, переданные Селектору '$calendar' наследуется всеми компонентами. Это работает при использовании базовых стилей (index.min.css / index.css):
 
 ```javascript
 
@@ -343,7 +350,6 @@ calendar.toggleTimer();
 ```javascript
 
 // логируемся:
-
   calendar.logCurrDate()
 
 // Результат объекта Даты в консоли:
@@ -385,11 +391,11 @@ calendar.removeSelectorStyles("$calendarField");
 
 #### Метод **addSelectorStyles** добавляет inline-стили конкретному Селектору и принимает 2 аргумента:
 
-- ###### selector - один из 7-ми ранее описанных Селекторов;
+- ###### selector - один из 8-ми ранее описанных Селекторов;
 - ###### styles - строка стилей в СSS-нотации: **'text-transform: uppercase; background: white;'**
 
 ```javascript
-// Метод не удаляет существующие inline-стили, а добавляет новые. Требуется ставить ';' после каждого СSS-свойства!
+// Метод не удаляет существующие inline-стили, а добавляет новые. При задании 2 аргумента - необходимо ставить символ `;` после каждого СSS-свойства!
 
 calendar.addSelectorStyles(
   "$calendar",
