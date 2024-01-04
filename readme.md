@@ -69,10 +69,11 @@
 </html>
 ```
 
-Для генерации исходных js-файлов необходимо установить на Ваш компьютер typescript
-[глобально](https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html "TypeScript Tooling in 5 minutes.")<br>
-Далее, открыв терминал, перейти в папку с Проектом и набрать команду **'tsc --build .'** <br>
-Файл **_tsconfig.json_** необходимо разместить в корневой директории Проекта!
+Для генерации исходных js-файлов необходимо:
+ - установить на Ваш компьютер typescript [глобально](https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html "TypeScript Tooling in 5 minutes.");
+ - открыв терминал, перейти в папку с Проектом и набрать команду **'tsc --build .'**;
+
+ВАЖНО! Файл **_tsconfig.json_** необходимо разместить в корневой директории Проекта!
 
 ---
 
