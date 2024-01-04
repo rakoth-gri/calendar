@@ -6,6 +6,8 @@
 
 #### Исходная структура папок source-code-файлов представлена ниже:
 
+- **build**
+  - _index.js_ - скомпилированный ts-компилятором итоговый index.js стандарта ESNext со всеми необходимыми зависимостями
 - **constants**
   - _index.ts_
 - **fonts**
@@ -67,6 +69,11 @@
 </html>
 ```
 
+Для генерации исходных js-файлов необходимо установить на Ваш компьютер typescript
+[глобально](https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html "TypeScript Tooling in 5 minutes.")<br>
+Далее, открыв терминал, перейти в папку с Проектом и набрать команду **'tsc --build .'** <br>
+Файл **_tsconfig.json_** необходимо разместить в корневой директории Проекта!
+
 ---
 
 #### Для подключения 'базовой конфигурации CSS-стилей' - используйте способы выше!
@@ -80,9 +87,9 @@
 - "Bebas Neue",
 - "Nunito Sans",
 - "Ubuntu".
-- "bootstrap-icons" - иконочный шрифт от [Bootstrap](https://icons.getbootstrap.com/ "Bootstrap Icons")!
-  <br>
-  Добавляйте шрифты в папку _'fonts'_ и вносите изменения в базовые _'index.css'_ / _'index.min.css'_, добавляя следующий код:
+- "bootstrap-icons" - иконочный шрифт от [Bootstrap](https://icons.getbootstrap.com/ "Bootstrap Icons")! <br>
+
+###### Добавляйте шрифты в папку _'fonts'_ и вносите изменения в базовые _'index.css'_ / _'index.min.css'_, добавляя следующий код:
 
 ```css
 @font-face {
