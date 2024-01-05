@@ -162,6 +162,8 @@ const calendar = new Calendar(
 );
 ```
 
+#### 5. Поместите папку с локальными шрифтами _fonts_ в проект, указав в index.min.css / index.css путь до конкретных семейств (примеры ниже)
+
 ---
 
 #### Объект **options** для кастомных inline-стилей:
@@ -328,7 +330,7 @@ const obj = {
 
 ---
 
-#### Локальные шрифты, интегрированные в 'базовую конфигурации стилей', представлены 5 семействами и иконочным шрифтом от [Bootstrap Icons](https://icons.getbootstrap.com/ "Нigh quality, open source icon library")!:
+#### Локальные шрифты представлены 5 семействами и иконочным шрифтом от [Bootstrap Icons](https://icons.getbootstrap.com/ "Нigh quality, open source icon library")!:
 
 - "Roboto",
 - "Montserrat",
@@ -343,6 +345,7 @@ const obj = {
 /* Код в index.css / index.min.css*/
 @font-face {
   font-family: "Roboto";
+  /* относительный путь до папки fonts в Вашем проекте */
   src: url("./fonts/Roboto-Light.ttf");
   font-weight: 300;
   font-display: swap;
