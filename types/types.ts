@@ -14,7 +14,7 @@ export type T_SELECTORS =
   | "$controls"
   | "$overlay";
 
-// export type TInlineStyles = Record<TSelectors, | null
+// export type TInlineStyles = Record<TSelectors, null
 // | boolean
 // | undefined
 // | ""
@@ -87,7 +87,7 @@ export interface I_INPUT_LIST {
   listFor: string | boolean;
 }
 
-export type TCONTROLS_LIST = {
+export type T_CONTROLS_LIST = {
   cls: string;
   id: "toggleTheme" | "toggleHidden" | "toggleTimer" | "toggleControls";
 };

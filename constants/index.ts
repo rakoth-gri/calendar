@@ -1,5 +1,5 @@
 // импортируем типы:
-import { U_MONTHS, I_INPUT_LIST, TCONTROLS_LIST, T_CLASSES } from "../types/types";
+import { U_MONTHS, I_INPUT_LIST, T_CONTROLS_LIST, T_CLASSES } from "../types/types";
 
 const CALENDAR = document.querySelector(".calendar") as HTMLDivElement;
 const ROOT = document.querySelector(":root") as HTMLElement;
@@ -54,7 +54,7 @@ const YEARS_LIST = [
 ];
 
 
-const CONTROLS_LIST: TCONTROLS_LIST[]  = [
+const CONTROLS_LIST: T_CONTROLS_LIST[]  = [
   {
     cls: "bi bi-moon-stars-fill",
     id: "toggleTheme",

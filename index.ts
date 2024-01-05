@@ -30,4 +30,3 @@ const calendar = new Calendar(
 );
 
 // API
-calendar.removeInlineStyles()

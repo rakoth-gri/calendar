@@ -1,4 +1,10 @@
-import { I_INPUT_LIST, TCONTROLS_LIST, I_CURR_DATE, I_INLINE_STYLES, T_SELECTORS } from "../types/types";
+import {
+  I_INPUT_LIST,
+  T_CONTROLS_LIST,
+  I_CURR_DATE,
+  I_INLINE_STYLES,
+  T_SELECTORS,
+} from "../types/types";
 import { TStore } from "../store/Store";
 
 import {
@@ -53,7 +59,7 @@ export default class Calendar {
     },
     options: I_INLINE_STYLES
   ) {
-    // DOM_ELEMENTS
+    // HTML_ELEMENTS
     this.$calendar = calendar;
     this.$overlay = null;
     this.$monthName = null;
@@ -206,9 +212,9 @@ export default class Calendar {
       if (!is[selector]) return;
 
       if (Object.values(is[selector]).some((val) => val))
-
         Object.keys(is[selector]).forEach(
-          (key: any) => ((this[selector] as HTMLElement).style[key] = is[selector][key])
+          (key: any) =>
+            ((this[selector] as HTMLElement).style[key] = is[selector][key])
         );
     });
   }
@@ -247,7 +253,7 @@ export default class Calendar {
   // События ------
   // 1--
   calendarChangeHandler = (e: Event) => {
-    const {name, value} = e.target as HTMLInputElement
+    const { name, value } = e.target as HTMLInputElement;
 
     if (!NAMES.includes(name)) return;
 
@@ -280,7 +286,7 @@ export default class Calendar {
           this.toggleControls();
           return;
         }
-        this[id as TCONTROLS_LIST['id']]();
+        this[id as T_CONTROLS_LIST["id"]]();
         if ((this.$controls as HTMLDivElement).classList.contains("active"))
           this.toggleControls();
         break;

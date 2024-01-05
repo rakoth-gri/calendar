@@ -19,4 +19,3 @@ const calendar = new Calendar({
     $panelBtn: {},
     $overlay: { backdropFilter: "blur(1.7px) grayscale(.5)" },
 });
-calendar.removeInlineStyles();
