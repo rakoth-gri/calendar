@@ -6,7 +6,7 @@
   margin: 0px;
 }
 
-:root {  
+:root {
   --app-xs-mr: 0.25rem;
   --app-sm-mr: 0.5rem;
   --app-md-mr: 1rem;
@@ -199,7 +199,7 @@ body {
   top: 0;
   left: 0;
   height: 100%;
-  border-radius: var(--app-sm-mr);  
+  border-radius: var(--app-sm-mr);
 }
 
 .calendar__controls_open {
@@ -297,7 +297,7 @@ button {
 .calendar__month {
   -webkit-appearance: none;
   outline: none;
-  background: transparent;  
+  background: transparent;
   border-radius: var(--app-xs-mr);
   position: relative;
   padding: 0px;
@@ -319,10 +319,10 @@ button {
   height: 0.9rem;
   background: var(--app-default-bg);
   border-radius: 0.25em;
-  -webkit-appearance: none; 
+  -webkit-appearance: none;
   position: relative;
   top: -2.6px;
-  border: 2px solid var(--app-default-bg); 
+  border: 2px solid var(--app-default-bg);
 }
 
 .calendar__month::-ms-thumb {
@@ -333,28 +333,28 @@ button {
   -webkit-appearance: none;
   position: relative;
   top: -2.6px;
-  border: 2px solid var(--app-default-bg);  
+  border: 2px solid var(--app-default-bg);
 }
 
 .calendar__month::-webkit-slider-runnable-track {
   -webkit-appearance: none;
-  background: var(--app-btn-color);  
+  background: var(--app-btn-color);
   height: 8px;
-  border-radius: 0.2em;  
+  border-radius: 0.2em;
 }
 
 .calendar__month::-moz-range-track {
   -webkit-appearance: none;
-  background: var(--app-btn-color);  
+  background: var(--app-btn-color);
   height: 8px;
-  border-radius: 0.2em;  
+  border-radius: 0.2em;
 }
 
 .calendar__month::-ms-track {
   -webkit-appearance: none;
-  background: var(--app-btn-color);  
+  background: var(--app-btn-color);
   height: 8px;
-  border-radius: 0.2em;  
+  border-radius: 0.2em;
 }
 
 /* Стилизация панели календаря */
