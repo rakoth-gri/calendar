@@ -1,3 +1,5 @@
-**/build/
-
 /index.css
+
+**/scss/
+
+index.html

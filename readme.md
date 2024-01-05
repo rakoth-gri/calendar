@@ -1,13 +1,15 @@
-## Приложение _'gri_calendar'_
+## Приложение _'GRI_calendar'_
 
-#### Приложение написано с использованием Vanilla JS, TYPESCRIPT, HTML, СSS, SCSS (SASS).
+#### Приложение использует Vanilla JS, TYPESCRIPT, HTML, СSS, SCSS (SASS).
 
 ---
 
-#### Исходная структура папок source-code-файлов представлена ниже:
+#### Структура папок source-code-файлов представлена ниже:
 
-- **build**
-  - _index.js_ - скомпилированный ts-компилятором итоговый index.js стандарта ESNext со всеми необходимыми зависимостями
+- **calendar**
+  - services - папка скомпилированных js-файлов с классом Calendar и основными утилитами
+  - store - папка скомпилированного js-файла с классом Store для управления состоянием даты
+  - constants - папка скомпилированного js-файла с константами
 - **constants**
   - _index.ts_
 - **fonts**
@@ -45,86 +47,118 @@
 
 #### Входной точкой является файл _index.js_, который подключается к _index.html_. _index.js_ в исходниках имеет атрибут **type='module'** и **defer** (Важно! если Вы не используете сборщики!).
 
-Разметка в Вашем _index.html_ должна выглядить примерно так:
+Требуется следующая разметка:
 
 ```html
 <html lang="en">
   <head>
-    <!-- Можно использовать google.fonts API: -->
+    <!-- Google.fonts API: -->
     <!-- <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;500;700&family=Nunito+Sans:opsz@6..12&family=Roboto:wght@300;500;700&family=Ubuntu&display=swap"
       rel="stylesheet"
     /> -->
-    <!-- Укажите путь до локальных стилей: index.min.css / index.css: -->
+    <!-- Путь до локальных стилей: index.min.css / index.css: -->
     <link rel="stylesheet" href="./index.css" />
-    <!-- Укажите путь к Вашему главному JS-файлу: -->
-    <script src="./build/index.js" type="module" defer></script>
+    <!-- Путь к главному JS-файлу: -->
+    <script src="./scripts/index.js" type="module" defer></script>
   </head>
   <body>
+    <!-- Необходимая разметка В HTML!!: -->
     <section class="calendar">
-      <!-- Сюда будет динамически добавлена вся разметка Календаря при помощи скриптов -->
+      <!-- Dynamic Render -->
     </section>
   </body>
 </html>
 ```
 
-Для генерации исходных js-файлов необходимо:
- - установить на Ваш компьютер typescript [глобально](https://www.typescriptlang.org/docs/handbook/typescript-tooling-in-5-minutes.html "TypeScript Tooling in 5 minutes.");
- - открыв терминал, перейти в папку с Проектом и набрать команду **'tsc --build .'**;
-
-ВАЖНО! Файл **_tsconfig.json_** необходимо разместить в корневой директории Проекта!
-
 ---
 
-#### Для подключения 'базовой конфигурации CSS-стилей' - используйте способы выше!
+#### Для подключения 'базовой конфигурации CSS-стилей':
 
----
-
-#### Локальные шрифты, интегрированные в 'базовую конфигурации стилей', представлены 5 семействами и иконочным шрифтом от [Bootstrap Icons](https://icons.getbootstrap.com/ "Free, high quality, open source icon library with over 2,000 icons.")!:
-
-- "Roboto",
-- "Montserrat",
-- "Bebas Neue",
-- "Nunito Sans",
-- "Ubuntu".
-- "bootstrap-icons" - иконочный шрифт от [Bootstrap](https://icons.getbootstrap.com/ "Bootstrap Icons")! <br>
-
-###### Добавляйте шрифты в папку _'fonts'_ и вносите изменения в базовые _'index.css'_ / _'index.min.css'_, добавляя следующий код:
-
-```css
-@font-face {
-  font-family: "Roboto";
-  src: url("./fonts/Roboto-Light.ttf");
-  font-weight: 300;
-  font-display: swap;
-  font-style: normal;
-}
+```html
+<html lang="en">
+  <head>
+    <!-- Укажите путь до файлов: index.min.css / index.css: -->
+    <link rel="stylesheet" href="./index.css" />
+  </head>
+  <body>
+    <!-- Some Code -->
+    <script src="./index.js" type="module" defer></script>
+  </body>
+</html>
 ```
 
 ---
 
-#### Для инициализации Класса _'Calendar'_ в Вашем js-файле запустите следующий код:
+#### Для инициализации Класса _'Calendar'_ в главном js-файле запустите следующий код:
 
 ```javascript
-// константы
-import { CALENDAR, WEEK_DAY, INPUT_LIST } from "./constants/index.js";
-// класс состояния даты
-import { Store } from "./store/Store.js";
 // Класс календаря
-import Calendar from "./services/Calendar.js";
+import Calendar from "./calendar/services/Calendar.js";
 
 const calendar = new Calendar(
-  // CALENDAR - это DOM-элемент с классом 'calendar' (см. index.html выше!)
   {
-    calendar: CALENDAR,
-    store: Store, // управление состоянием даты с автоматической отрисовкой актуальной даты
-    weekday: WEEK_DAY,
-    inputList: INPUT_LIST,
-    delay: 10, // шаг задержки в ms при отображения месячных дат, необязательный параметр
-    time: true, // включает панель текущего времени, принимает значения true / false, необязательный параметр
+    delay: 18, // шаг задержки в ms (number) при отображения месячных дат, необязательный параметр
+    time: true, // включает панель текущего времени (boolean), необязательный параметр
   },
-  {} // второй аргумент - объект **options** для передачи пользовательских инлайн-стилей
+  {} // второй аргумент - объект **options** для стилизации, необязательный параметр
+);
+
+// В варианте ниже будут использованы дефолтные значения для параметров: delay, time. Стилизация будет реализована базовыми стилями ():
+const calendar = new Calendar({});
+```
+
+---
+
+### Несколько простых шагов для подключения календаря в Ваш проект:
+
+#### 1. Добавьте папку 'calendar', содержащую все скомпилированные js-файлы в Ваш проект
+
+#### 2. Подключите базовый CSS календаря в index.html:
+
+```html
+<html lang="en">
+  <head>
+    <!-- Укажите относительный путь до файлов: index.min.css / index.css: -->
+    <link rel="stylesheet" href="./index.css" />
+    <!-- Главный файл index.js -->
+    <script src="./index.js" type="module" defer></script>
+  </head>
+  <body>
+    <!-- Your Code -->
+  </body>
+</html>
+```
+
+#### 3. В index.html создайте разметку с контейнером для Календаря:
+
+```html
+<html lang="en">
+  <head>
+    <!-- Your code  -->
+  </head>
+  <body>
+    <!-- Необходимая разметка -->
+    <section class="calendar">
+      <!-- внутри будет динамически сгенерирован календарь -->
+    </section>
+  </body>
+</html>
+```
+
+#### 4. В главный файл index.js импортируйте класс _Calendar_, указав относительный путь до файла _Calendar.js_:
+
+```javascript
+// К примеру:
+import Calendar from "./calendar/services/Calendar.js";
+
+const calendar = new Calendar(
+  {
+    delay: 18, // необязательный параметр
+    time: true, // необязательный параметр
+  },
+  {} // необязательный параметр
 );
 ```
 
@@ -132,11 +166,11 @@ const calendar = new Calendar(
 
 #### Объект **options** для кастомных inline-стилей:
 
-Для кастомизации стилей при вызове конструктора new Calendar(obj, options), второй аргумент **options** должен иметь вид:
+Для кастомизации стилей в конструктор **new Calendar(settings, options)**, вторым аргументом передают объект стилей:
 
 ```javascript
 
-// Валидными значениями каждого из 8 Селекторов выступают объекты СSS-стилей, описанные в JS-нотации:
+// Значениями каждого из 8 Селекторов выступают объекты СSS-стилей, описанные в JS-нотации:
 
 {
   [selector1]: {
@@ -155,7 +189,7 @@ const calendar = new Calendar(
 
 ```
 
-Для стилизации элементов через 2 аргумент **options** ( либо через методы **API** ) доступно 8 Селекторов, 'представляющих' 8 DOM-элементов:
+Для стилизации через 2 аргумент **options** либо через методы **API** - доступно 8 Селекторов, 'представляющих' 8 DOM-элементов:
 
 - **'$calendar'** - главный контейнер календаря:<br>
   !['$calendar'](images/$calendar.png "$calendar")
@@ -167,11 +201,11 @@ const calendar = new Calendar(
   !['$calendarField'](images/$calendarField.png "$calendarField")
 - **'$panelTime'** - поле отображения текущего времени:<br>
   !['$panelTime'](images/$panelTime.png "$panelTime")
-- **'$panelBtn'** - кнопка отображения текущей даты: <br>
+- **'$panelBtn'** - кнопка отображения актуальной даты: <br>
   !['$panelBtn'](images/$panelBtn.png "$panelBtn")
 - **'$controls'** - панель отдельных API-функций: <br>
   !['$controls'](images/$controls.png "$controls")
-- **'$overlay'** - промежуточный слой, находящийся по оси Z между слоем основных UI-элементов (**'$year'**, **'$monthName'**, **'$calendarField'** и т.д) и главным контейнером (**'$calendar'**). Позволяет использовать св-во 'backdrop-filter' при задании изображения в качестве фона **'$calendar'**.
+- **'$overlay'** - промежуточный слой, находящийся по оси Z между слоем основных UI-элементов и главным контейнером (**'$calendar'**). Позволяет использовать св-во 'backdrop-filter' при задании изображения в качестве фона **'$calendar'**.
 
 Пример Валидного объекта **options**:
 
@@ -196,11 +230,13 @@ const calendar = new Calendar(
 
 ##### Допустимо:
 
-- передавать пустой объект **options**;
+- Не передавать объект **options** в Конструктор или передавать пустой объект (применятся базовые стили)
 - стилизовать конкретные Селекторы;
-- использовать в качестве значений Селекторов 'лживые' значения: **null** / **undefined** / **''** / **false**
+- использовать в качестве значений свойств Селекторов как объекты СSS-стилей, так и 'лживые' значения: **null** / **undefined** / **''** / **false**
 
 ```javascript
+
+ // У некоторых Селекторов, вместо объектов СSS-стилей, значениями выступают 'лживые' значения: ошибки не будет, стили не создадутся!
 
   {
     $calendarField: '',
@@ -210,9 +246,7 @@ const calendar = new Calendar(
 
 ```
 
-В примере выше задействованы конкретные Селекторы. У некоторых, вместо объектов СSS-стилей, значениями выступают 'лживые' значения: **ошибки не будет, стили не создадутся!**
-
-#### ВАЖНО! объект **options** манипулирует с inline-стилями (CSS-специфичность: **1, 0, 0, 0**). Если необходимо, в дальнейшем, переопределить или добавить к ним новые стили - воспользуйтесь методами API (рассмотрим далее...), либо вовсе не передавайте св-ва.
+#### ВАЖНО! объект **options** добавляет inline-стили (Специфичность: **1, 0, 0, 0**). Для переопределения - воспользуйтесь методами API (далее).
 
 #### Примеры аналогичных стилей в CSS и JS:
 
@@ -230,7 +264,7 @@ const calendar = new Calendar(
 ```
 
 ```javascript
-// В JS СSS-свойства обычно представляются в виде объектов, ключи которых описаны в _'camelCase'_ нотации, а значения типами string или number(для св-в: 'zIndex','fontWeight')
+// В JS стили описываются в виде объектов: ключи в camelCase нотации, а значения в виде строк либо чисел('zIndex','fontWeight' и т.п.)
 
 const obj = {
   color: "red",
@@ -241,9 +275,9 @@ const obj = {
 };
 ```
 
-#### Наследование:
+---
 
-#### Inline-стили, переданные Селектору '$calendar' наследуется всеми компонентами. Это работает при использовании базовых стилей (index.min.css / index.css):
+#### Стили Селектора '$calendar' наследуется всеми компонентами. Это работает при использовании базовых стилей (index.min.css / index.css):
 
 ```javascript
 
@@ -268,7 +302,6 @@ const obj = {
 ```javascript
 
   // объект options
-
   {
     $calendar: {backgroundImage: 'url(./images/test1.jpg)'},
     $overlay: null
@@ -278,12 +311,11 @@ const obj = {
 
 !['overlay1'](images/overlay1.png "overlay1")
 
-###### Все нормально, при стилизации Селектора '$overlay':
+###### При стилизации Селектора '$overlay':
 
 ```javascript
 
   // объект options
-
   {
     $calendar: {
       backgroundImage: "url(./images/test1.jpg)", color: "whitesmoke"},
@@ -294,11 +326,33 @@ const obj = {
 
 ## !['overlay2'](images/overlay2.png "overlay2")
 
-#### Валидация:
+---
 
-#### касается элемента с Селектором '$year' - инпут для ввода календарного года. Валидными для Селектора '$year' являются значения с 1900 по 2100 гг включительно. Визуализация валидных и невалидных значений реализована.
+#### Локальные шрифты, интегрированные в 'базовую конфигурации стилей', представлены 5 семействами и иконочным шрифтом от [Bootstrap Icons](https://icons.getbootstrap.com/ "Нigh quality, open source icon library")!:
 
-#### Есть подсказки при вводе календарного года.
+- "Roboto",
+- "Montserrat",
+- "Bebas Neue",
+- "Nunito Sans",
+- "Ubuntu".
+- "bootstrap-icons" - иконочный шрифт от [Bootstrap](https://icons.getbootstrap.com/ "Bootstrap Icons")! <br>
+
+###### Добавляйте шрифты в папку _'fonts'_ и вносите изменения в базовые стили:
+
+```css
+/* Код в index.css / index.min.css*/
+@font-face {
+  font-family: "Roboto";
+  src: url("./fonts/Roboto-Light.ttf");
+  font-weight: 300;
+  font-display: swap;
+  font-style: normal;
+}
+```
+
+---
+
+#### Валидными для Селектора '$year' являются значения с 1900 по 2100 гг. включительно. Реализованы: визуализация валидных / невалидных значений; подсказки при вводе календарного года.
 
 #### ПРИМЕРЫ:
 
@@ -309,7 +363,9 @@ const obj = {
 - **ВСЕ ОК!**:<br>
   !['valid'](images/valid.png "valid")
 
-#### Кнопка _"Сегодня"_ сбрасывает ранее выбранное состояние и отображает текущую дату!
+---
+
+#### Селектор _'$panelBtn'_ сбрасывает ранее выбранное состояние внутреннего объекта **_currDate_** и отображает текущую дату!
 
 ---
 
@@ -317,9 +373,7 @@ const obj = {
 
 #### После вызова Инстанса класса **_Calendar_** (cм. выше) нам доступны методы:
 
-#### Темизация:
-
-#### Метод переключает тему: со светлой на темную и наоборот (работает при использовании базовых стилей index.min.css / index.css):
+#### Темизация: переключение темы со светлой на темную и наоборот (работает при использовании базовых стилей index.min.css / index.css):
 
 ```javascript
 // cтартуем:
@@ -344,7 +398,7 @@ calendar.toggleHidden();
 
 ---
 
-#### Включение / отключение панели текущего времени (работает при использовании базовых стилей index.min.css / index.css)
+#### Включение / отключение панели времени (работает при использовании базовых стилей index.min.css / index.css)
 
 ```javascript
 // скрыть / показать:
@@ -360,8 +414,7 @@ calendar.toggleTimer();
 // логируемся:
   calendar.logCurrDate()
 
-// Результат объекта Даты в консоли:
-
+// Результат в консоли:
 {year: 2023, month: 11, date: 21}
 
 ```
@@ -377,7 +430,7 @@ calendar.getCurrDateString() // Результат в консоли:
 
 ---
 
-#### Удаление inline-стилей всех Селекторов:
+#### Удаление inline-стилей для всех Селекторов:
 
 ```javascript
 // возвращаемся к базовым стилям (index.min.css/ index.css):
@@ -390,7 +443,7 @@ calendar.removeInlineStyles();
 #### Удаление inline-стилей определенного Селектора:
 
 ```javascript
-// Передаем аргументом строку с Селектором, inline-стили которого хотим удалить:
+// Передаем Селектор, inline-стили которого хотим удалить:
 
 calendar.removeSelectorStyles("$calendarField");
 ```

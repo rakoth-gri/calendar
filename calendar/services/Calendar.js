@@ -31,7 +31,6 @@ export default class Calendar {
         this.store = Store;
         this.theme = "light";
         this.interval = null;
-        console.log(delay, time);
         this.init(WEEK_DAY, INPUT_LIST, delay, options, time);
     }
     init(weekDay, inputList, delay, options, time) {

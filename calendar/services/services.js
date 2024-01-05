@@ -7,9 +7,7 @@ const changeTheme = (theme) => {
     ROOT.style.setProperty('--app-default-color', `var(--app-${theme}-color)`);
     ROOT.style.setProperty('--app-default-bg', `var(--app-${theme}-bg)`);
 };
-const getFirstMonthDay = (year, month) => {
-    return new Date(year, month, 1).getDay();
-};
+const getFirstMonthDay = (year, month) => new Date(year, month, 1).getDay();
 const cellsByFirstMonthDay = (firstDay, cells) => firstDay > 0 ? cells.slice(firstDay - 1) : cells.slice(6);
 const getPanelMarkUp = () => `
     <div class="calendar__panel">

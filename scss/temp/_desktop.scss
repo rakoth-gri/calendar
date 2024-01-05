@@ -184,14 +184,6 @@
     }
   }
 
-  &__year {
-    &:valid {
-      border: 2px solid var(--app-success-color);
-      text-decoration: none;
-      background-color: transparent;
-    }
-  }
-
   &__field {
     margin: var(--app-sm-mr) 0;
     width: 100%;

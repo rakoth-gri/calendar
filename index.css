@@ -160,10 +160,6 @@
 
 /* CALENDAR CONTAINER STYLES */
 
-body {
-  padding: 2rem;
-}
-
 .calendar {
   padding: var(--app-sm-mr);
   width: 19%;
@@ -264,8 +260,8 @@ label {
   font-variant: small-caps;
 }
 
-input,
-button {
+.calendar__year, .calendar__month,
+.calendar__panel_btn {
   outline: none;
   font: inherit;
   background-color: var(--app-default-bg);
@@ -283,12 +279,6 @@ button {
 .calendar__year:invalid {
   border: 2px solid var(--app-active-color);
   text-decoration: line-through;
-  background-color: transparent;
-}
-
-.calendar__year:valid {
-  border: 2px solid var(--app-success-color);
-  text-decoration: none;
   background-color: transparent;
 }
 

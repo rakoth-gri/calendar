@@ -13,9 +13,7 @@ const changeTheme = (theme: string): void => {
     ROOT.style.setProperty('--app-default-bg', `var(--app-${theme}-bg)`)
 }
 
-const getFirstMonthDay = (year: number, month: number): number => {    
-    return new Date(year, month, 1).getDay();    
-}
+const getFirstMonthDay = (year: number, month: number): number => new Date(year, month, 1).getDay();    
 
 const cellsByFirstMonthDay = (firstDay: number, cells: HTMLDivElement[]) => firstDay > 0 ? cells.slice(firstDay - 1) : cells.slice(6)
 

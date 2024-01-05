@@ -69,9 +69,7 @@ export default class Calendar {
     // LOGICAL
     this.store = Store;
     this.theme = "light";    
-    this.interval = null;
-    console.log(delay, time);
-    
+    this.interval = null;    
     // METHODS
     this.init(WEEK_DAY, INPUT_LIST, delay, options, time);
   }
