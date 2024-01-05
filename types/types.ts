@@ -1,3 +1,8 @@
+export interface I_SETTINGS{
+  delay: number;
+  time: boolean;
+}
+
 export interface I_CURR_DATE {
   year: number;
   month: number;

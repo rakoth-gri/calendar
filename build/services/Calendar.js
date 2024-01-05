@@ -1,5 +1,6 @@
+import { Store } from "../store/Store.js";
 import { getIntList, monthFormat, getHTML, changeTheme, getFirstMonthDay, cellsByFirstMonthDay, timeFormat, getPanelMarkUp, } from "./services.js";
-import { NAMES, CLASSES, YEARS_LIST, CONTROLS_LIST, } from "../constants/index.js";
+import { NAMES, CLASSES, YEARS_LIST, CONTROLS_LIST, CALENDAR, INPUT_LIST, WEEK_DAY, } from "../constants/index.js";
 export default class Calendar {
     $calendar;
     store;
@@ -10,14 +11,13 @@ export default class Calendar {
     $panelTime;
     $timeSegs;
     $cells;
-    delay;
     theme;
     $panelBtn;
     $controls;
     $calendarField;
     interval;
-    constructor({ calendar, store, weekday, inputList, delay, time, }, options) {
-        this.$calendar = calendar;
+    constructor({ delay = 10, time = false, }, options = {}) {
+        this.$calendar = CALENDAR;
         this.$overlay = null;
         this.$monthName = null;
         this.$year = null;
@@ -28,15 +28,15 @@ export default class Calendar {
         this.$cells = null;
         this.$panelBtn = null;
         this.$controls = null;
-        this.store = store;
+        this.store = Store;
         this.theme = "light";
-        this.delay = delay;
         this.interval = null;
-        this.init(weekday, inputList, delay, options, time);
+        console.log(delay, time);
+        this.init(WEEK_DAY, INPUT_LIST, delay, options, time);
     }
-    init(weekday, inputList, delay, options, time) {
+    init(weekDay, inputList, delay, options, time) {
         this.renderMarkUp(inputList);
-        this.renderGrid(this.$calendarField, 42, weekday);
+        this.renderGrid(this.$calendarField, 42, weekDay);
         this.setInlineStyles(options);
         this.store.observe(() => {
             this.renderMonthDates(getIntList(this.store.datesInMonth(this.store.currDate)), this.$cells, delay);
@@ -86,22 +86,23 @@ export default class Calendar {
         this.$panelBtn = this.$calendar.querySelector(".calendar__panel_btn");
         this.$controls = this.$calendar.querySelector(".calendar__controls");
     }
-    renderGrid(container, maxCellNumber, weekday) {
+    renderGrid(container, maxCellNumber, weekDay) {
         const HTML = getHTML(getIntList(maxCellNumber), (i) => `<div data-id="${i}" class="calendar__field_cell"></div>`);
-        const HEADINGS = getHTML(weekday, (day) => `<div class="calendar__field_header">${day}</div>`);
+        const HEADINGS = getHTML(weekDay, (day) => `<div class="calendar__field_header">${day}</div>`);
         container.insertAdjacentHTML("beforeend", HEADINGS + HTML);
         this.$cells = Array.from(document.querySelectorAll(".calendar__field_cell"));
     }
-    setInlineStyles(is) {
-        if (!Object.values(is).some((val) => val)) {
-            console.error("'is' object has empty property values");
+    setInlineStyles(options) {
+        if (!Object.values(options).some((val) => val)) {
+            console.warn("Second parameter of 'Calendar' Constructor got empty property values...");
             return;
         }
-        Object.keys(is).forEach((selector) => {
-            if (!is[selector])
+        Object.keys(options).forEach((selector) => {
+            if (!options[selector])
                 return;
-            if (Object.values(is[selector]).some((val) => val))
-                Object.keys(is[selector]).forEach((key) => (this[selector].style[key] = is[selector][key]));
+            if (Object.values(options[selector]).some((val) => val))
+                Object.keys(options[selector]).forEach((key) => (this[selector].style[key] =
+                    options[selector][key]));
         });
     }
     renderMonthDates(datesList, cells, delay) {

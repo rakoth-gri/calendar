@@ -1,12 +1,6 @@
-import {
-  I_INPUT_LIST,
-  T_CONTROLS_LIST,
-  I_CURR_DATE,
-  I_INLINE_STYLES,
-  T_SELECTORS,
-} from "../types/types";
-import { TStore } from "../store/Store";
-
+// CLASSES:
+import { Store } from "../store/Store.js";
+// SERVICES:
 import {
   getIntList,
   monthFormat,
@@ -22,7 +16,20 @@ import {
   CLASSES,
   YEARS_LIST,
   CONTROLS_LIST,
+  CALENDAR,
+  INPUT_LIST,
+  WEEK_DAY,
 } from "../constants/index.js";
+// Types:
+import {
+  I_INPUT_LIST,
+  T_CONTROLS_LIST,
+  I_CURR_DATE,
+  I_INLINE_STYLES,
+  T_SELECTORS,
+  I_SETTINGS
+} from "../types/types";
+import { TStore } from "../store/Store";
 
 export default class Calendar {
   $calendar: HTMLDivElement;
@@ -33,8 +40,7 @@ export default class Calendar {
   $month: HTMLInputElement | null;
   $panelTime: HTMLDivElement | null;
   $timeSegs: HTMLSpanElement[] | null;
-  $cells: HTMLDivElement[] | null;
-  delay: number;
+  $cells: HTMLDivElement[] | null; 
   theme: "dark" | "light";
   $panelBtn: HTMLButtonElement | null;
   $controls: HTMLDivElement | null;
@@ -43,24 +49,13 @@ export default class Calendar {
 
   constructor(
     {
-      calendar,
-      store,
-      weekday,
-      inputList,
-      delay,
-      time,
-    }: {
-      calendar: HTMLDivElement;
-      delay: number;
-      weekday: string[];
-      inputList: I_INPUT_LIST[];
-      time: boolean;
-      store: TStore;
-    },
-    options: I_INLINE_STYLES
+      delay = 10,
+      time = false,
+    }: Partial<I_SETTINGS>,
+    options: I_INLINE_STYLES = {}
   ) {
     // HTML_ELEMENTS
-    this.$calendar = calendar;
+    this.$calendar = CALENDAR;
     this.$overlay = null;
     this.$monthName = null;
     this.$year = null;
@@ -72,17 +67,18 @@ export default class Calendar {
     this.$panelBtn = null;
     this.$controls = null;
     // LOGICAL
-    this.store = store;
-    this.theme = "light";
-    this.delay = delay;
+    this.store = Store;
+    this.theme = "light";    
     this.interval = null;
+    console.log(delay, time);
+    
     // METHODS
-    this.init(weekday, inputList, delay, options, time);
+    this.init(WEEK_DAY, INPUT_LIST, delay, options, time);
   }
 
   // BUILDER SCHEME ---
   init(
-    weekday: string[],
+    weekDay: string[],
     inputList: I_INPUT_LIST[],
     delay: number,
     options: I_INLINE_STYLES,
@@ -91,7 +87,7 @@ export default class Calendar {
     // 1 --
     this.renderMarkUp(inputList);
     // 2 --
-    this.renderGrid(this.$calendarField as HTMLDivElement, 42, weekday);
+    this.renderGrid(this.$calendarField as HTMLDivElement, 42, weekDay);
     // 3 --
     this.setInlineStyles(options);
     // 4 -- (Подписываемся на изменение this.store.currDate)
@@ -166,6 +162,7 @@ export default class Calendar {
       ${getPanelMarkUp()} 
       <div class="calendar__field"></div>                
     `;
+    // initializing DOM-constants:
     this.$calendarField = this.$calendar.querySelector(".calendar__field");
     this.$monthName = this.$calendar.querySelector(
       ".calendar__panel_monthName"
@@ -183,7 +180,7 @@ export default class Calendar {
   renderGrid(
     container: HTMLDivElement,
     maxCellNumber: number,
-    weekday: string[]
+    weekDay: string[]
   ) {
     // формируем массив с данными и заполняем шаблон
     const HTML = getHTML(
@@ -191,7 +188,7 @@ export default class Calendar {
       (i) => `<div data-id="${i}" class="calendar__field_cell"></div>`
     );
     const HEADINGS = getHTML(
-      weekday,
+      weekDay,
       (day) => `<div class="calendar__field_header">${day}</div>`
     );
 
@@ -201,20 +198,23 @@ export default class Calendar {
     );
   }
 
-  setInlineStyles(is: any) {
-    if (!Object.values(is).some((val) => val)) {
-      console.error("'is' object has empty property values");
+  setInlineStyles(options: any) {
+    if (!Object.values(options).some((val) => val)) {
+      console.warn(
+        "Second parameter of 'Calendar' Constructor got empty property values..."
+      );
       return;
     }
 
-    (Object.keys(is) as T_SELECTORS[]).forEach((selector) => {
+    (Object.keys(options) as T_SELECTORS[]).forEach((selector) => {
       // Проверка:
-      if (!is[selector]) return;
+      if (!options[selector]) return;
 
-      if (Object.values(is[selector]).some((val) => val))
-        Object.keys(is[selector]).forEach(
+      if (Object.values(options[selector]).some((val) => val))
+        Object.keys(options[selector]).forEach(
           (key: any) =>
-            ((this[selector] as HTMLElement).style[key] = is[selector][key])
+            ((this[selector] as HTMLElement).style[key] =
+              options[selector][key])
         );
     });
   }
