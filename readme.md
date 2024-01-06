@@ -4,12 +4,22 @@
 
 ---
 
-#### Структура папок source-code-файлов представлена ниже:
+- **calendar** - папка скомпиллированных и минифицированных файлов.
+  - services:
+     - Calendar.js
+     - services.js 
+  - store: 
+     - Store.js
+  - constants:
+     - index.js
+  - index.min.css  
+  - fonts
+- **src** -- исходники
+- **readme.md** -- файл описания
+- **tsconfig.json** -- конфиг. файл настроек ts-компилятора
 
-- **calendar**
-  - services - папка скомпилированных js-файлов с классом Calendar и основными утилитами
-  - store - папка скомпилированного js-файла с классом Store для управления состоянием даты
-  - constants - папка скомпилированного js-файла с константами
+#### src:
+
 - **constants**
   - _index.ts_
 - **fonts**
@@ -30,24 +40,22 @@
     - \_media.scss
     - \_vars.scss
 - **services**
-  - Calendar.ts -- Главный класс для отрисовки DOM-элементов и управления пользовательскими действиями Календаря)
-  - services.ts -- вспомогательные утилиты)
+  - Calendar.ts -- Главный класс для создания UI-элементов и обработчиков событий Календаря)
+  - services.ts -- утилиты
 - **store**
-  - Store.ts -- класс для установки и изменения даты и реактивной отрисовки изменений на UI (стороне пользователя)
+  - Store.ts -- класс для управления состоянием даты и реактивной отрисовки изменений на UI
 - **types**
   - types.ts -- файл с описанием основных типов приложения
 - **index.css** -- файл базовых стилей
-- **index.min.css** -- файл минифицированных базовых стилей, сгененированный из файлов папки **scss**
-- **index.html** -- HTML (показан для примера)
-- **index.ts** -- главный индексный файл (показан для примера)
-- **readme.md** -- файл описания приложения
-- **tsconfig.json** -- конфигурационный файл настроек ts-компилятора
+- **index.min.css** -- файл минифицированных базовых стилей (собран из **scss**)
+- **index.html**
+- **index.ts** -- вх. точка (для примера)
 
 ---
 
-#### Входной точкой является файл _index.js_, который подключается к _index.html_. _index.js_ в исходниках имеет атрибут **type='module'** и **defer** (Важно! если Вы не используете сборщики!).
+#### Если не используются сборщики, то Ваш основной файл _index.js_ должен иметь атрибут **type='module'**.
 
-Требуется следующая разметка:
+Образец разметки:
 
 ```html
 <html lang="en">
@@ -58,15 +66,15 @@
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;500;700&family=Nunito+Sans:opsz@6..12&family=Roboto:wght@300;500;700&family=Ubuntu&display=swap"
       rel="stylesheet"
     /> -->
-    <!-- Путь до локальных стилей: index.min.css / index.css: -->
+    <!-- Подключаем базовые стили index.min.css / index.css: -->
     <link rel="stylesheet" href="./index.css" />
-    <!-- Путь к главному JS-файлу: -->
-    <script src="./scripts/index.js" type="module" defer></script>
+    <!-- основной скрипт: -->
+    <script src="./scripts/index.js" type="module"></script>
   </head>
   <body>
-    <!-- Необходимая разметка В HTML!!: -->
+    <!-- Необходимая разметка: -->
     <section class="calendar">
-      <!-- Dynamic Render -->
+      <!-- Сюда будет сгененирован Календарь! -->
     </section>
   </body>
 </html>
@@ -94,7 +102,7 @@
 #### Для инициализации Класса _'Calendar'_ в главном js-файле запустите следующий код:
 
 ```javascript
-// Класс календаря
+// Образец пути до файла Calendar.js
 import Calendar from "./calendar/services/Calendar.js";
 
 const calendar = new Calendar(
@@ -113,14 +121,14 @@ const calendar = new Calendar({});
 
 ### Несколько простых шагов для подключения календаря в Ваш проект:
 
-#### 1. Добавьте папку 'calendar', содержащую все скомпилированные js-файлы в Ваш проект
+#### 1. Добавьте в Ваш проект папку 'calendar', содержащую: скомпилированные js-файлы, базовые стили, локальные шрифты.
 
 #### 2. Подключите базовый CSS календаря в index.html:
 
 ```html
 <html lang="en">
   <head>
-    <!-- Укажите относительный путь до файлов: index.min.css / index.css: -->
+    <!-- Укажите путь до файла index.min.css -->
     <link rel="stylesheet" href="./index.css" />
     <!-- Главный файл index.js -->
     <script src="./index.js" type="module" defer></script>
@@ -141,16 +149,16 @@ const calendar = new Calendar({});
   <body>
     <!-- Необходимая разметка -->
     <section class="calendar">
-      <!-- внутри будет динамически сгенерирован календарь -->
+      <!-- Сюда будет сгененирован Календарь! -->
     </section>
   </body>
 </html>
 ```
 
-#### 4. В главный файл index.js импортируйте класс _Calendar_, указав относительный путь до файла _Calendar.js_:
+#### 4. В главный файл index.js импортируйте класс _Calendar_, указав путь до файла _Calendar.js_:
 
 ```javascript
-// К примеру:
+// Пример:
 import Calendar from "./calendar/services/Calendar.js";
 
 const calendar = new Calendar(
@@ -162,7 +170,7 @@ const calendar = new Calendar(
 );
 ```
 
-#### 5. Поместите папку с локальными шрифтами _fonts_ в проект, указав в index.min.css / index.css путь до конкретных семейств (примеры ниже)
+#### 5. Поместите папку с локальными шрифтами _fonts_ в проект, указав в index.min.css / index.css путь до конкретных семейств (примеры есть ниже)
 
 ---
 

@@ -19,7 +19,7 @@ import {
   CALENDAR,
   INPUT_LIST,
   WEEK_DAY,
-} from "../constants/index.js";
+} from "../constants/constants.js";
 // Types:
 import {
   I_INPUT_LIST,

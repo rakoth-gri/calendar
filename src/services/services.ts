@@ -1,4 +1,4 @@
-import { MONTH_MAP, ROOT } from "../constants/index.js";
+import { MONTH_MAP, ROOT } from "../constants/constants.js";
 
 const monthFormat = (num: number) => MONTH_MAP[num];
 

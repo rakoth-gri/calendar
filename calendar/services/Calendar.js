@@ -1,6 +1,6 @@
 import { Store } from "../store/Store.js";
 import { getIntList, monthFormat, getHTML, changeTheme, getFirstMonthDay, cellsByFirstMonthDay, timeFormat, getPanelMarkUp, } from "./services.js";
-import { NAMES, CLASSES, YEARS_LIST, CONTROLS_LIST, CALENDAR, INPUT_LIST, WEEK_DAY, } from "../constants/index.js";
+import { NAMES, CLASSES, YEARS_LIST, CONTROLS_LIST, CALENDAR, INPUT_LIST, WEEK_DAY, } from "../constants/constants.js";
 export default class Calendar {
     $calendar;
     store;
