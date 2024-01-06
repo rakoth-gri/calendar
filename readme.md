@@ -199,19 +199,19 @@ const calendar = new Calendar(
 Для стилизации через 2 аргумент **options** либо через методы **API** - доступно 8 Селекторов, 'представляющих' 8 DOM-элементов:
 
 - **'$calendar'** - главный контейнер календаря:<br>
-  !['$calendar'](images/$calendar.png "$calendar")
+  !['$calendar'](src/images/$calendar.png "$calendar")
 - **'$year'** - инпут для выбора календарного года:<br>
-  !['$year'](images/$year.png "$year")
+  !['$year'](src/images/$year.png "$year")
 - **'$monthName'** - элемент отображения текущего месяца:<br>
-  !['$monthName'](images/$monthName.png "$monthName")
+  !['$monthName'](src/images/$monthName.png "$monthName")
 - **'$calendarField'** - поле отображения месячных дат:<br>
-  !['$calendarField'](images/$calendarField.png "$calendarField")
+  !['$calendarField'](src/images/$calendarField.png "$calendarField")
 - **'$panelTime'** - поле отображения текущего времени:<br>
-  !['$panelTime'](images/$panelTime.png "$panelTime")
+  !['$panelTime'](src/images/$panelTime.png "$panelTime")
 - **'$panelBtn'** - кнопка отображения актуальной даты: <br>
-  !['$panelBtn'](images/$panelBtn.png "$panelBtn")
+  !['$panelBtn'](src/images/$panelBtn.png "$panelBtn")
 - **'$controls'** - панель отдельных API-функций: <br>
-  !['$controls'](images/$controls.png "$controls")
+  !['$controls'](src/images/$controls.png "$controls")
 - **'$overlay'** - промежуточный слой, находящийся по оси Z между слоем основных UI-элементов и главным контейнером (**'$calendar'**). Позволяет использовать св-во 'backdrop-filter' при задании изображения в качестве фона **'$calendar'**.
 
 Пример Валидного объекта **options**:
@@ -233,7 +233,7 @@ const calendar = new Calendar(
 
 Результатом передачи объекта **options** выше будет:
 
-!['customized'](images/styled.png "customized")
+!['customized'](src/images/styled.png "customized")
 
 ##### Допустимо:
 
@@ -298,7 +298,7 @@ const obj = {
 
 Результат:
 
-!['inherit'](images/inherit.png "inherit")
+!['inherit'](src/images/inherit.png "inherit")
 
 ---
 
@@ -316,7 +316,7 @@ const obj = {
 
 ```
 
-!['overlay1'](images/overlay1.png "overlay1")
+!['overlay1'](src/images/overlay1.png "overlay1")
 
 ###### При стилизации Селектора '$overlay':
 
@@ -331,7 +331,7 @@ const obj = {
 
 ```
 
-## !['overlay2'](images/overlay2.png "overlay2")
+## !['overlay2'](src/images/overlay2.png "overlay2")
 
 ---
 
@@ -365,11 +365,11 @@ const obj = {
 #### ПРИМЕРЫ:
 
 - **Невалидный год**:<br>
-  !['invalid1'](images/invalid1.png "invalid1")
+  !['invalid1'](src/images/invalid1.png "invalid1")
 - **Снова невалидный...**:<br>
-  !['invalid2'](images/invalid2.png "invalid2")
+  !['invalid2'](src/images/invalid2.png "invalid2")
 - **ВСЕ ОК!**:<br>
-  !['valid'](images/valid.png "valid")
+  !['valid'](src/images/valid.png "valid")
 
 ---
 
@@ -390,7 +390,7 @@ calendar.toggleTheme();
 
 #### Переключение на светлую тему (lightMode):
 
-!['light'](images/light.png "light")
+!['light'](src/images/light.png "light")
 
 ---
 
