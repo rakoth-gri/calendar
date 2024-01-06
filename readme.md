@@ -1,8 +1,10 @@
 ## Приложение _'GRI_calendar'_
 
-#### Приложение использует Vanilla JS, TYPESCRIPT, HTML, СSS, SCSS (SASS).
+#### Приложение использует Vanilla JS, TYPESCRIPT, HTML, СSS/SCSS.
 
 ---
+
+#### Структура папок:
 
 - **calendar** - папка скомпиллированных и минифицированных файлов.
   - services:
@@ -17,6 +19,7 @@
 - **src** -- исходники
 - **readme.md** -- файл описания
 - **tsconfig.json** -- конфиг. файл настроек ts-компилятора
+- **index.html**
 
 #### src:
 
@@ -48,14 +51,13 @@
   - types.ts -- файл с описанием основных типов приложения
 - **index.css** -- файл базовых стилей
 - **index.min.css** -- файл минифицированных базовых стилей (собран из **scss**)
-- **index.html**
 - **index.ts** -- вх. точка (для примера)
 
 ---
 
-#### Если не используются сборщики, то Ваш основной файл _index.js_ должен иметь атрибут **type='module'**.
+#### Если не используются сборщики, то Ваш главный файл _index.js_ должен иметь атрибут **type='module'**.
 
-Образец разметки:
+#### Образец разметки:
 
 ```html
 <html lang="en">
@@ -65,11 +67,7 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;500;700&family=Nunito+Sans:opsz@6..12&family=Roboto:wght@300;500;700&family=Ubuntu&display=swap"
       rel="stylesheet"
-    /> -->
-    <!-- Подключаем базовые стили index.min.css / index.css: -->
-    <link rel="stylesheet" href="./index.css" />
-    <!-- основной скрипт: -->
-    <script src="./scripts/index.js" type="module"></script>
+    /> -->    
   </head>
   <body>
     <!-- Необходимая разметка: -->
@@ -79,7 +77,6 @@
   </body>
 </html>
 ```
-
 ---
 
 #### Для подключения 'базовой конфигурации CSS-стилей':
@@ -88,18 +85,18 @@
 <html lang="en">
   <head>
     <!-- Укажите путь до файлов: index.min.css / index.css: -->
-    <link rel="stylesheet" href="./index.css" />
+    <link rel="stylesheet" href="./calendar/index.min.css.css" />
   </head>
   <body>
-    <!-- Some Code -->
-    <script src="./index.js" type="module" defer></script>
+    <!-- Главный файл index.js -->
+    <script src="./index.js" type="module"></script>
   </body>
 </html>
 ```
 
 ---
 
-#### Для инициализации Класса _'Calendar'_ в главном js-файле запустите следующий код:
+#### Для инициализации Класса _'Calendar'_ в главном JS-файле запустите следующий код:
 
 ```javascript
 // Образец пути до файла Calendar.js
@@ -121,15 +118,15 @@ const calendar = new Calendar({});
 
 ### Несколько простых шагов для подключения календаря в Ваш проект:
 
-#### 1. Добавьте в Ваш проект папку 'calendar', содержащую: скомпилированные js-файлы, базовые стили, локальные шрифты.
+#### 1. Добавьте в Ваш проект папку 'calendar', содержащую: скомпилированные js-файлы, минифицированные стили, 5 локальных семейств шрифтов.
 
 #### 2. Подключите базовый CSS календаря в index.html:
 
 ```html
 <html lang="en">
   <head>
-    <!-- Укажите путь до файла index.min.css -->
-    <link rel="stylesheet" href="./index.css" />
+    <!-- Образец пути до файла стилей -->
+    <link rel="stylesheet" href="./calendar/index.min.css" />
     <!-- Главный файл index.js -->
     <script src="./index.js" type="module" defer></script>
   </head>
@@ -170,7 +167,7 @@ const calendar = new Calendar(
 );
 ```
 
-#### 5. Поместите папку с локальными шрифтами _fonts_ в проект, указав в index.min.css / index.css путь до конкретных семейств (примеры есть ниже)
+#### 5. Поместите папку с локальными шрифтами _fonts_ в проект, указав в index.min.css / index.css путь до конкретных семейств (примеры ниже)
 
 ---
 

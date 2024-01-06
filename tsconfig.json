@@ -102,7 +102,8 @@
     "./src/constants/constants.ts",
     "./src/services/Calendar.ts",
     "./src/services/services.ts",
-    "./src/store/Store.ts",    
+    "./src/store/Store.ts",
+    "./src/index.ts",    
   ],
-  "exclude": ["./src/index.ts", "./src/types/types.ts"]
+  "exclude": ["./src/types/types.ts"]
 }
