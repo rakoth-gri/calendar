@@ -8,13 +8,13 @@
 
 - **calendar** - папка скомпиллированных и минифицированных файлов.
   - services:
-     - Calendar.js
-     - services.js 
-  - store: 
-     - Store.js
+    - Calendar.js
+    - services.js
+  - store:
+    - Store.js
   - constants:
-     - index.js
-  - index.min.css  
+    - index.js
+  - index.min.css
   - fonts
 - **src** -- исходники
 - **readme.md** -- файл описания
@@ -67,7 +67,7 @@
     <link
       href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Montserrat:wght@300;500;700&family=Nunito+Sans:opsz@6..12&family=Roboto:wght@300;500;700&family=Ubuntu&display=swap"
       rel="stylesheet"
-    /> -->    
+    /> -->
   </head>
   <body>
     <!-- Необходимая разметка: -->
@@ -77,6 +77,7 @@
   </body>
 </html>
 ```
+
 ---
 
 #### Для подключения 'базовой конфигурации CSS-стилей':
